@@ -1,0 +1,33 @@
+{
+  "name": "sertaoseracloud",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "description": "O Sertão será Cloud — blog autoral PT-BR sobre cloud computing",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "packageManager": "pnpm@9.15.0",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "sync:devto": "node -e \"console.log('Phase 2: implement sync')\"",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "astro": "^6.0.0",
+    "@astrojs/mdx": "^4.0.0",
+    "@tailwindcss/vite": "^4.0.0",
+    "tailwindcss": "^4.0.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.0",
+    "typescript": "^5.6.0",
+    "prettier": "^3.3.0",
+    "prettier-plugin-astro": "^0.14.0"
+  }
+}
