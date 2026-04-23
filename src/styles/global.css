@@ -1,0 +1,707 @@
+/*
+ * Sistema de Design · Blog · Código Chama Azul
+ * sertaoseracloud.com
+ *
+ * Tokens extraídos de: blog-design-system/Blog Design System.html
+ * Fontes: Space Grotesk (body) · Chakra Petch (display/labels) · JetBrains Mono (code)
+ *
+ * TODO (Pitfall 6 — perf): migrar Google Fonts para self-host em public/fonts/
+ *       antes do deploy em produção para eliminar FOUC e dependência externa.
+ */
+
+/* ------------------------------------------------------------------ */
+/* 01 · Fonts                                                          */
+/* ------------------------------------------------------------------ */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap');
+
+/* ------------------------------------------------------------------ */
+/* 02 · Tailwind v4                                                    */
+/* ------------------------------------------------------------------ */
+
+@import 'tailwindcss';
+
+@theme {
+  /* Palette */
+  --color-abismo:       #0A0F1E;
+  --color-sub-nivel:    #1B293C;
+  --color-chama:        #1A3AC8;
+  --color-chama-hover:  #2548E0;
+  --color-nucleo:       #00FFFF;
+  --color-texto:        #FFFFFF;
+  --color-texto-sec:    #D1D9E6;
+  --color-prose:        #E6ECF5;
+  --color-prose-muted:  #A6B1C4;
+
+  /* Category hues */
+  --color-cat-arq:       #00FFFF;
+  --color-cat-cloud:     #8EA8FF;
+  --color-cat-devops:    #FFB86B;
+  --color-cat-lideranca: #FF6BD6;
+  --color-cat-seguranca: #6BFFB4;
+
+  /* Fonts */
+  --font-body:    'Space Grotesk', system-ui, sans-serif;
+  --font-display: 'Chakra Petch', sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+
+  /* Spacing (mirrors CSS custom props below) */
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 24px;
+  --spacing-6: 32px;
+  --spacing-7: 48px;
+  --spacing-8: 64px;
+  --spacing-9: 96px;
+}
+
+/* ------------------------------------------------------------------ */
+/* 03 · Design Tokens                                                  */
+/* ------------------------------------------------------------------ */
+
+:root {
+  /* Core palette */
+  --chama-primaria:  #1A3AC8;
+  --nucleo-eletrico: #00FFFF;
+  --abismo-profundo: #0A0F1E;
+  --sub-nivel:       #1B293C;
+  --neutro-escuro:   #000000;
+  --texto-principal: #FFFFFF;
+  --texto-secundario:#D1D9E6;
+
+  /* Prose / reading */
+  --prose-fg:        #E6ECF5;
+  --prose-fg-muted:  #A6B1C4;
+  --prose-rule:      rgba(209, 217, 230, 0.14);
+  --prose-mark:      rgba(0, 255, 255, 0.18);
+  --prose-quote-bar: var(--nucleo-eletrico);
+  --prose-measure:   68ch;
+  --prose-base:      18px;
+  --prose-lh:        1.72;
+
+  /* Borders & glows */
+  --grid-line:      rgba(0, 255, 255, 0.06);
+  --hairline:       rgba(209, 217, 230, 0.14);
+  --hairline-strong:rgba(0, 255, 255, 0.32);
+  --glow-cyan:      0 0 28px rgba(0, 255, 255, 0.45), 0 0 72px rgba(0, 255, 255, 0.18);
+  --glow-cobalt:    0 0 24px rgba(26, 58, 200, 0.55);
+
+  /* Category hues */
+  --cat-arq:       #00FFFF;
+  --cat-cloud:     #8EA8FF;
+  --cat-devops:    #FFB86B;
+  --cat-lideranca: #FF6BD6;
+  --cat-seguranca: #6BFFB4;
+
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  /* Tweakable intensity knobs */
+  --accent-intensity:  1;
+  --scanline-opacity:  0.06;
+}
+
+/* ------------------------------------------------------------------ */
+/* 04 · Reset & Base                                                   */
+/* ------------------------------------------------------------------ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  background: var(--abismo-profundo);
+  color: var(--texto-principal);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ------------------------------------------------------------------ */
+/* 05 · Ambient Background                                             */
+/*     Radial gradient blobs + CSS grid overlay + scanlines            */
+/* ------------------------------------------------------------------ */
+
+.ambient {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 60% 45% at 18% 22%, rgba(0, 180, 255, 0.18), transparent 60%),
+    radial-gradient(ellipse 70% 55% at 82% 78%, rgba(26, 58, 200, 0.22), transparent 65%),
+    radial-gradient(ellipse 40% 30% at 50% 110%, rgba(0, 255, 255, 0.08), transparent 70%),
+    var(--abismo-profundo);
+}
+
+.ambient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 85%);
+}
+
+.ambient::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 2px,
+    rgba(0, 255, 255, var(--scanline-opacity)) 3px,
+    transparent 4px
+  );
+  mix-blend-mode: screen;
+  opacity: 0.5;
+}
+
+/* ------------------------------------------------------------------ */
+/* 06 · Page Shell                                                     */
+/* ------------------------------------------------------------------ */
+
+.stage {
+  position: relative;
+  z-index: 1;
+  max-width: 1520px;
+  margin: 0 auto;
+  padding: var(--space-7) 56px var(--space-9);
+}
+
+@media (max-width: 768px) {
+  .stage {
+    padding: var(--space-5) var(--space-4) var(--space-7);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* 07 · Site Nav  (Section 01)                                         */
+/*     grid: [logo] [nav-links] [actions]                              */
+/* ------------------------------------------------------------------ */
+
+.site-nav {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 40px;
+  align-items: center;
+  padding: 18px 24px;
+  border: 1px solid var(--hairline);
+  background: rgba(10, 15, 30, 0.8);
+  backdrop-filter: blur(12px);
+  position: relative;
+}
+
+.site-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--texto-principal);
+}
+
+.site-brand .logo-mark {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: var(--chama-primaria);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--abismo-profundo);
+  box-shadow: var(--glow-cyan);
+}
+
+.site-brand .logo-mark svg {
+  width: 18px;
+  height: 18px;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.7));
+}
+
+.site-brand b {
+  color: var(--nucleo-eletrico);
+  font-weight: 700;
+}
+
+.site-brand .tld {
+  color: var(--texto-secundario);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  font-size: 12px;
+  text-transform: lowercase;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.nav-links {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.nav-links a {
+  color: var(--texto-secundario);
+  text-decoration: none;
+  padding: 6px 14px;
+  border: 1px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a[aria-current='page'] {
+  color: var(--texto-principal);
+  border-color: var(--hairline);
+}
+
+/* ------------------------------------------------------------------ */
+/* 08 · Tag Chips                                                      */
+/* ------------------------------------------------------------------ */
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px 10px;
+  border: 1px solid var(--hairline);
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--texto-secundario);
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.tag:hover {
+  border-color: var(--hairline-strong);
+  color: var(--nucleo-eletrico);
+}
+
+.tag .hash {
+  color: var(--nucleo-eletrico);
+  opacity: 0.7;
+}
+
+/* Category-tinted tag variants */
+.tag[data-cat='arq']       { border-color: rgba(0, 255, 255, 0.25);   color: var(--cat-arq); }
+.tag[data-cat='cloud']     { border-color: rgba(142, 168, 255, 0.25); color: var(--cat-cloud); }
+.tag[data-cat='devops']    { border-color: rgba(255, 184, 107, 0.25); color: var(--cat-devops); }
+.tag[data-cat='lideranca'] { border-color: rgba(255, 107, 214, 0.25); color: var(--cat-lideranca); }
+.tag[data-cat='seguranca'] { border-color: rgba(107, 255, 180, 0.25); color: var(--cat-seguranca); }
+
+/* ------------------------------------------------------------------ */
+/* 09 · Article Cards Grid  (Section 03)                               */
+/* ------------------------------------------------------------------ */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+@media (max-width: 1024px) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .cards { grid-template-columns: 1fr; }
+}
+
+.card {
+  border: 1px solid var(--hairline);
+  background: var(--sub-nivel);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: border-color 0.2s;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card:hover {
+  border-color: var(--hairline-strong);
+}
+
+/* Category-specific cover gradients */
+.card-media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.card-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, var(--abismo-profundo) 100%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.card:hover .card-media::after { opacity: 0.45; }
+
+.card-media.p-arq {
+  background:
+    radial-gradient(ellipse at 30% 40%, rgba(0, 255, 255, 0.4), transparent 55%),
+    linear-gradient(135deg, #0E1D42, #0A0F1E);
+}
+
+.card-media.p-cloud {
+  background:
+    radial-gradient(ellipse at 70% 30%, rgba(142, 168, 255, 0.45), transparent 60%),
+    linear-gradient(135deg, #1B293C, #0A0F1E);
+}
+
+.card-media.p-devops {
+  background:
+    radial-gradient(ellipse at 50% 70%, rgba(255, 184, 107, 0.3), transparent 60%),
+    linear-gradient(135deg, #1B1A2E, #0A0F1E);
+}
+
+.card-media.p-lideranca {
+  background:
+    radial-gradient(ellipse at 60% 50%, rgba(255, 107, 214, 0.3), transparent 60%),
+    linear-gradient(135deg, #2A1A30, #0A0F1E);
+}
+
+.card-media.p-seguranca {
+  background:
+    radial-gradient(ellipse at 40% 60%, rgba(107, 255, 180, 0.3), transparent 60%),
+    linear-gradient(135deg, #0F2A1F, #0A0F1E);
+}
+
+.card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.1) contrast(1.05);
+}
+
+.card-body {
+  padding: var(--space-4) var(--space-5) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  flex: 1;
+}
+
+.card h3 {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--texto-principal);
+  margin: 0;
+}
+
+.card-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--texto-secundario);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* ------------------------------------------------------------------ */
+/* 10 · Reading / Prose View  (Section 05)                             */
+/* ------------------------------------------------------------------ */
+
+.prose {
+  max-width: var(--prose-measure);
+  font-size: var(--prose-base);
+  line-height: var(--prose-lh);
+  color: var(--prose-fg);
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  color: var(--texto-principal);
+  line-height: 1.15;
+  margin: 1.8em 0 0.6em;
+}
+
+.prose h1 { font-size: clamp(32px, 2.8vw, 44px); letter-spacing: -0.015em; }
+.prose h2 { font-size: 26px; letter-spacing: -0.01em; }
+.prose h3 { font-size: 20px; }
+.prose h4 { font-size: 17px; }
+
+.prose h1 em,
+.prose h2 em {
+  font-style: italic;
+  color: var(--nucleo-eletrico);
+}
+
+.prose p {
+  margin: 0 0 1.2em;
+  text-wrap: pretty;
+}
+
+/* Drop cap on first paragraph */
+.prose p:first-of-type::first-letter {
+  float: left;
+  font-size: 3.2em;
+  line-height: 0.85;
+  margin: 0.08em 0.1em 0 0;
+  font-weight: 700;
+  color: var(--nucleo-eletrico);
+}
+
+.prose a {
+  color: var(--nucleo-eletrico);
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 255, 255, 0.4);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s;
+}
+
+.prose a:hover {
+  text-decoration-color: var(--nucleo-eletrico);
+}
+
+.prose strong {
+  color: var(--texto-principal);
+  font-weight: 600;
+}
+
+.prose em {
+  color: var(--prose-fg);
+}
+
+.prose mark {
+  background: var(--prose-mark);
+  color: var(--texto-principal);
+  padding: 0 3px;
+}
+
+.prose blockquote {
+  margin: 1.8em 0;
+  padding: 0 0 0 var(--space-5);
+  border-left: 3px solid var(--prose-quote-bar);
+  color: var(--prose-fg-muted);
+  font-style: italic;
+}
+
+.prose hr {
+  border: none;
+  border-top: 1px solid var(--prose-rule);
+  margin: 2.4em 0;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.4em;
+  margin: 0 0 1.2em;
+}
+
+.prose li {
+  margin-bottom: 0.4em;
+}
+
+.prose code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85em;
+  background: rgba(0, 255, 255, 0.07);
+  border: 1px solid var(--hairline);
+  padding: 1px 6px;
+  color: var(--nucleo-eletrico);
+}
+
+.prose pre {
+  margin: 1.6em 0;
+  padding: var(--space-5);
+  background: rgba(6, 10, 21, 0.85);
+  border: 1px solid var(--hairline);
+  overflow-x: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.prose pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+/* ------------------------------------------------------------------ */
+/* 11 · Callout Component  (Section 06)                                */
+/* ------------------------------------------------------------------ */
+
+.callout {
+  margin: 1.8em 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-4);
+  padding: 18px 22px;
+  border: 1px solid var(--hairline-strong);
+  background: rgba(0, 255, 255, 0.04);
+  align-items: flex-start;
+}
+
+.callout-icon {
+  font-size: 18px;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.callout-body {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--prose-fg);
+}
+
+.callout-body strong {
+  display: block;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--nucleo-eletrico);
+  margin-bottom: 6px;
+}
+
+/* Callout severity variants */
+.callout[data-type='warning'] {
+  border-color: rgba(255, 184, 107, 0.4);
+  background: rgba(255, 184, 107, 0.04);
+}
+
+.callout[data-type='warning'] .callout-body strong {
+  color: var(--cat-devops);
+}
+
+.callout[data-type='danger'] {
+  border-color: rgba(255, 107, 214, 0.4);
+  background: rgba(255, 107, 214, 0.04);
+}
+
+.callout[data-type='danger'] .callout-body strong {
+  color: var(--cat-lideranca);
+}
+
+.callout[data-type='success'] {
+  border-color: rgba(107, 255, 180, 0.4);
+  background: rgba(107, 255, 180, 0.04);
+}
+
+.callout[data-type='success'] .callout-body strong {
+  color: var(--cat-seguranca);
+}
+
+/* ------------------------------------------------------------------ */
+/* 12 · Table of Contents                                              */
+/* ------------------------------------------------------------------ */
+
+.toc {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: toc;
+}
+
+.toc li {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  padding: 10px 0;
+  border-bottom: 1px solid var(--hairline);
+  font-size: 14px;
+  color: var(--prose-fg-muted);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.toc li:last-child {
+  border-bottom: none;
+}
+
+.toc li:hover {
+  color: var(--texto-principal);
+}
+
+.toc li::before {
+  counter-increment: toc;
+  content: counter(toc, decimal-leading-zero);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--nucleo-eletrico);
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+.toc a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ------------------------------------------------------------------ */
+/* 13 · Footer                                                         */
+/* ------------------------------------------------------------------ */
+
+.footer {
+  border-top: 1px solid var(--hairline);
+  padding: var(--space-7) 0 var(--space-5);
+  margin-top: var(--space-9);
+  font-size: 13px;
+  color: var(--texto-secundario);
+}
+
+.footer .sig {
+  color: var(--texto-principal);
+}
+
+.footer .sig b {
+  color: var(--nucleo-eletrico);
+  font-weight: 500;
+}
+
+/* ------------------------------------------------------------------ */
+/* 14 · Utility: Glow                                                  */
+/* ------------------------------------------------------------------ */
+
+.glow-cyan   { box-shadow: var(--glow-cyan); }
+.glow-cobalt { box-shadow: var(--glow-cobalt); }
+
+.text-nucleo { color: var(--nucleo-eletrico); }
+.text-muted  { color: var(--texto-secundario); }
