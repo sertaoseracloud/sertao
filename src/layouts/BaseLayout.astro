@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { SITE_TITLE, SITE_URL } from '../lib/consts';
 
 interface Props {
   title: string;
@@ -15,8 +16,6 @@ const {
   pubDate,
 } = Astro.props;
 
-const SITE_TITLE = 'O Sertão será Cloud';
-const SITE_URL = 'https://sertaoseracloud.com';
 const canonicalURL = new URL(Astro.url.pathname, SITE_URL);
 ---
 
