@@ -44,8 +44,10 @@ const canonicalURL = new URL(Astro.url.pathname, SITE_URL);
     <!-- Theme init: prevent FOUC by reading localStorage before paint -->
     <script is:inline>
       (function () {
-        const stored = localStorage.getItem('theme');
-        if (stored) document.documentElement.setAttribute('data-theme', stored);
+        try {
+          var stored = localStorage.getItem('theme');
+          if (stored) document.documentElement.setAttribute('data-theme', stored);
+        } catch (_) {}
       })();
     </script>
   </head>
