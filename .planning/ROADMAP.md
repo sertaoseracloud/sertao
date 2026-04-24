@@ -28,17 +28,17 @@ Transformar o fluxo "escrever em inglês no dev.to" em "publicação dupla (dev.
 Plans:
 - [x] 01-01-PLAN.md — Astro scaffold, pnpm+Node pinning, Prettier tooling
 - [x] 01-02-PLAN.md — Design system tokens, layout components, content schema
-- [ ] 01-03-PLAN.md — GitHub Pages deploy workflow, CNAME, ROADMAP CSS token aliases (gap closure)
+- [x] 01-03-PLAN.md — GitHub Pages deploy workflow, CNAME, ROADMAP CSS token aliases (gap closure)
 
 **Success criteria:**
 
-- [ ] `pnpm dev` roda localmente em <5s
-- [ ] `pnpm build` produz `dist/` estático sem warnings
-- [ ] `sertaoseracloud.com` retorna HTTP 200 com SSL válido via Github Pages
-- [ ] Paleta semântica em CSS vars (`--color-text-primary`, `--color-accent`, `--color-decorative`) + fallbacks neutros para texto
-- [ ] `src/content.config.ts` com schema Zod incluindo `source.*`, `canonical_url`, `manual_override`
-- [ ] `lang="pt-BR"` em `<html>` via `BaseLayout.astro`
-- [ ] Domínio `sertaoseracloud.com` apontando pro deploy (DNS configurado)
+- [x] `pnpm dev` roda localmente em <5s — confirmed 3777ms (HUMAN-UAT 2026-04-24)
+- [x] `pnpm build` produz `dist/` estático sem warnings — confirmed 3.45s, noise-only warning (HUMAN-UAT 2026-04-24)
+- [ ] `sertaoseracloud.com` retorna HTTP 200 com SSL válido via Github Pages — **PENDING authorial action** (enable GitHub Pages in Settings + DNS A records)
+- [x] Paleta semântica em CSS vars (`--color-text-primary`, `--color-accent`, `--color-decorative`) + fallbacks neutros para texto — aliases added in 01-03
+- [x] `src/content.config.ts` com schema Zod incluindo `source.*`, `canonical_url`, `manual_override` — done in 01-02
+- [x] `lang="pt-BR"` em `<html>` via `BaseLayout.astro` — done in 01-02
+- [ ] Domínio `sertaoseracloud.com` apontando pro deploy (DNS configurado) — **PENDING authorial action**
 - [x] `package.json` scripts: `dev`, `build`, `preview`, `sync:devto` (stub) — **DONE in 01-01**
 
 **Scope in:**
