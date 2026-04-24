@@ -14,7 +14,11 @@ Construir a marca pessoal do autor como voz relevante em cloud computing no Bras
 
 <!-- Shipped and confirmed valuable. -->
 
-(None yet — ship to validate)
+- [x] Astro 6 + Tailwind v4 + MDX scaffold with pnpm@9.15.0 / Node 22 pinning — validated in Phase 1
+- [x] Código Chama Azul design system (62 CSS custom properties, 3-font stack) wired into BaseLayout — validated in Phase 1
+- [x] `pnpm dev` starts in <5s, `pnpm build` produces clean `dist/` — validated in Phase 1 (HUMAN-UAT 2026-04-24)
+- [x] GitHub Actions deploy workflow targeting `main` branch + `public/CNAME` for sertaoseracloud.com — validated in Phase 1
+- [x] Semantic CSS vars (`--color-text-primary`, `--color-accent`, `--color-decorative`) + Código Chama Azul canonical names — validated in Phase 1
 
 ### Active
 
@@ -36,9 +40,9 @@ Construir a marca pessoal do autor como voz relevante em cloud computing no Bras
 - [ ] Busca dentro do blog (Pagefind, estático, detecta `lang="pt-BR"`)
 - [ ] Sistema de comentários em posts (Giscus via GitHub Discussions)
 - [ ] Aplicar identidade visual consistente (paleta semântica derivada de #284068 / #14878c / #65d7b1 — ver Pitfall 2 de acessibilidade)
-- [ ] Deploy sob o domínio `sertaoseracloud.com` (Cloudflare Pages)
+- [ ] Deploy sob o domínio `sertaoseracloud.com` (Github Pages)
 - [ ] Página `/privacidade` (LGPD — newsletter + analytics)
-- [ ] Analytics privacy-first (Cloudflare Web Analytics, sem cookies, sem banner)
+- [ ] Analytics privacy-first (Github Web Analytics, sem cookies, sem banner)
 
 ### Out of Scope
 
@@ -76,7 +80,7 @@ Construir a marca pessoal do autor como voz relevante em cloud computing no Bras
 - **Budget:** Near-zero — hosting, CDN, comentários, newsletter, busca, analytics e compute de sync (GH Actions) rodam em tier gratuito. **Única exceção aceita:** Claude Haiku API (~$3-5/ano em volume projetado)
 - **Domain:** `sertaoseracloud.com` já adquirido — stack precisa suportar domínio customizado
 - **Repo do blog:** código hospedado em `github.com/sertaoseracloud/sertaoseracloud` — identidade GitHub é `sertaoseracloud`
-- **Workflow de escrita:** escrever no dev.to em EN → sync cron 24h traduz → PR draft abre → autor revisa/edita → merge → Cloudflare Pages deploya automaticamente
+- **Workflow de escrita:** escrever no dev.to em EN → sync cron 24h traduz → PR draft abre → autor revisa/edita → merge → Github Pages deploya automaticamente
 - **Idioma do blog:** PT-BR; idioma do source (dev.to): EN. Glossário técnico preserva anglicismos consolidados (AWS, deploy, endpoint, etc.)
 - **Secrets:** `ANTHROPIC_API_KEY` como GitHub Actions secret; `GITHUB_TOKEN` fornecido pelo runtime
 
@@ -95,7 +99,7 @@ Construir a marca pessoal do autor como voz relevante em cloud computing no Bras
 | Canonical URL bidirecional (dev.to → blog) | Google vê blog como canonical; evita duplicate-content penalty que ranquearia dev.to acima do blog | — Pending |
 | Cron 24h no GitHub Actions (não webhook) | Webhook dev.to é private beta; cron funciona no tier gratuito; latência de até 24h é aceitável para blog autoral | — Pending |
 | Circuit breaker de custo (`MAX_TRANSLATIONS_PER_RUN=5`) | Protege contra bug em diff detector que re-traduz tudo; budget Anthropic tem alerta em $5/mês | — Pending |
-| Stack estática: Astro 6 + Cloudflare Pages + Shiki + Pagefind + Giscus + Buttondown | Consenso 2026 para blogs de conteúdo; ajusta zero-JS-por-default com islands para features interativas; tier gratuito real (commercial-use permitido, bandwidth ilimitado) | — Pending |
+| Stack estática: Astro 6 + Github Pages + Shiki + Pagefind + Giscus + Buttondown | Consenso 2026 para blogs de conteúdo; ajusta zero-JS-por-default com islands para features interativas; tier gratuito real (commercial-use permitido, bandwidth ilimitado) | — Pending |
 | Sertão como *wrapper* de identidade, não tema do conteúdo | Usuário desmarcou "narrativa cultural" nos tipos de post — regional é marca, não tópico | — Pending |
 | Paleta de marca com regras semânticas WCAG-aware | Paleta fixa define marca; aplicação precisa de CSS vars semânticas (`--text-primary`, `--accent`, `--decorative`) porque `#14878c` e `#65d7b1` falham WCAG AA em texto corrido | — Pending |
 | Público tech BR amplo, não só NE | Usuário escolheu explicitamente — narrativa regional é magnetismo, não segmentação | — Pending |
@@ -106,6 +110,7 @@ Construir a marca pessoal do autor como voz relevante em cloud computing no Bras
 This document evolves at phase transitions and milestone boundaries.
 
 **After each phase transition** (via `/gsd-transition`):
+
 1. Requirements invalidated? → Move to Out of Scope with reason
 2. Requirements validated? → Move to Validated with phase reference
 3. New requirements emerged? → Add to Active
@@ -113,10 +118,11 @@ This document evolves at phase transitions and milestone boundaries.
 5. "What This Is" still accurate? → Update if drifted
 
 **After each milestone** (via `/gsd-complete-milestone`):
+
 1. Full review of all sections
 2. Core Value check — still the right priority?
 3. Audit Out of Scope — reasons still valid?
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-22 — dev.to source pivot + auto-translation pipeline (Claude Haiku + editorial PR)*
+*Last updated: 2026-04-24 — Phase 1 complete (Bootstrap & Fundações — 3/3 plans executed)*
