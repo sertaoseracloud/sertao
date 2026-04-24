@@ -1,9 +1,9 @@
 ---
-status: complete
+status: partial
 phase: 01-bootstrap-fundacoes
 source: [01-VERIFICATION.md]
 started: 2026-04-24T06:35:00Z
-updated: 2026-04-24T03:27:00Z
+updated: 2026-04-24T10:00:00Z
 ---
 
 ## Current Test
@@ -29,17 +29,23 @@ notes: |
   has lang="pt-BR". No blocking warnings.
 
 ### 3. GitHub Pages deploy configured and site live at sertaoseracloud.com
-expected: Create .github/workflows/deploy.yml + enable GitHub Pages in repo settings + DNS CNAME; https://sertaoseracloud.com returns HTTP 200 with valid SSL
-result: issue
-reported: "No .github/workflows/ directory found, no CNAME file. https://sertaoseracloud.com returns ECONNREFUSED — site is not live."
-severity: major
+expected: .github/workflows/deploy.yml + public/CNAME present; enable GitHub Pages in repo settings + DNS A records; https://sertaoseracloud.com returns HTTP 200 with valid SSL
+result: pending
+notes: |
+  Code side COMPLETE (plan 01-03): .github/workflows/deploy.yml created (pnpm 9.15.0,
+  Node 22, actions/deploy-pages@v4, targets master branch). public/CNAME contains
+  sertaoseracloud.com. Awaiting authorial actions:
+  1. GitHub repo Settings > Pages > Source: GitHub Actions
+  2. Push to master (or workflow_dispatch) to trigger first deploy
+  3. DNS A records at registrar: 185.199.108-111.153
+  4. Verify https://sertaoseracloud.com returns HTTP 200 with SSL
 
 ## Summary
 
 total: 3
 passed: 2
-issues: 1
-pending: 0
+issues: 0
+pending: 1
 skipped: 0
 blocked: 0
 
