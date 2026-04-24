@@ -169,6 +169,10 @@ None — no external service configuration required for this plan.
 - Phase 5 (First Post): `pnpm build` confirmed working. No blockers from this plan.
 - **Pending blocker (pre-existing):** Google Fonts import in `global.css` must be replaced with self-hosted WOFF2 before production deploy (Pitfall 6 mitigation). This predates this plan — tracked in global.css TODO comment.
 
+## Self-Check: PASSED
+
+All created files verified present on disk. All 6 task commits + 1 metadata commit verified in git log.
+
 ---
 *Phase: 01-bootstrap-fundacoes*
 *Completed: 2026-04-24*
