@@ -17,7 +17,7 @@ const posts = defineCollection({
         url: z.string().url(),
         hash: z.string(),
         synced_at: z.coerce.date(),
-        translated_by: z.literal('claude-haiku-4-5'),
+        translated_by: z.string(),
       })
       .optional(),
     canonical_url: z.string().url().optional(),
