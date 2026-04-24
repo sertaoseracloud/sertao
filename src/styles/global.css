@@ -112,6 +112,25 @@
 }
 
 /* ------------------------------------------------------------------ */
+/* 03b · ROADMAP Compatibility Aliases                                 */
+/*                                                                     */
+/* The ROADMAP Phase 1 success criterion names --color-text-primary,   */
+/* --color-accent, and --color-decorative as example token names.      */
+/* The Código Chama Azul design system supersedes those generic names  */
+/* (per ROADMAP Threat Model: "Design system supersedes Sertão brand   */
+/* colors from early planning"). These aliases satisfy the ROADMAP     */
+/* criterion without renaming any design-system token.                 */
+/*                                                                     */
+/* DO NOT use these aliases in components — use the canonical names.   */
+/* ------------------------------------------------------------------ */
+
+:root {
+  --color-text-primary:  var(--texto-principal);   /* #FFFFFF — body text */
+  --color-accent:        var(--nucleo-eletrico);    /* #00FFFF — accent (icons ≥24px, headings, borders) */
+  --color-decorative:    var(--chama-primaria);     /* #1A3AC8 — decorative backgrounds, illustrations */
+}
+
+/* ------------------------------------------------------------------ */
 /* 04 · Reset & Base                                                   */
 /* ------------------------------------------------------------------ */
 
