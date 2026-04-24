@@ -2,7 +2,7 @@
 phase: 01-bootstrap-fundacoes
 reviewed: 2026-04-24T00:00:00Z
 depth: standard
-files_reviewed: 15
+files_reviewed: 18
 files_reviewed_list:
   - package.json
   - astro.config.mjs
@@ -19,6 +19,9 @@ files_reviewed_list:
   - src/content.config.ts
   - src/lib/consts.ts
   - public/favicon.svg
+  - .github/workflows/deploy.yml
+  - public/CNAME
+  - src/styles/global.css
 findings:
   critical: 1
   warning: 4
@@ -31,18 +34,19 @@ status: issues_found
 
 **Reviewed:** 2026-04-24T00:00:00Z
 **Depth:** standard
-**Files Reviewed:** 15
+**Files Reviewed:** 18
 **Status:** issues_found
 
 ## Summary
 
-Reviewed the full Phase 01 scaffold: project configuration, Astro layout/components, content schema, design tokens, and global CSS. The overall structure is solid — tsconfig strict mode, engine pinning, pnpm lockdown, and Prettier/MDX integration are all in good shape.
+Reviewed the full Phase 01 scaffold: project configuration, Astro layout/components, content schema, design tokens, global CSS, GitHub Actions deploy workflow, and custom domain file. The overall structure is solid — tsconfig strict mode, engine pinning, pnpm lockdown, Prettier/MDX integration, and the GitHub Pages deploy pipeline are all well-structured.
 
-Three areas need attention before Phase 02 proceeds:
+Four areas need attention before Phase 02 proceeds:
 
 1. **`post.slug` is deprecated in Astro 6** — this is a runtime bug that will silently produce broken post URLs on the index page.
-2. **`localStorage` access in an inline script has no error guard** — throws in sandboxed iframes and some private-browsing modes, breaking the entire page render.
-3. **`SITE_TITLE` / `SITE_URL` are duplicated** in `BaseLayout.astro` instead of imported from `src/lib/consts.ts`, creating a maintenance hazard.
+2. **Deploy workflow targets `main` but the repository's default branch is `master`** — this is the direct cause of the UAT failure "GitHub Pages not deployed." The workflow will never trigger on normal pushes.
+3. **`localStorage` access in an inline script has no error guard** — throws in sandboxed iframes and some private-browsing modes, breaking the entire page render.
+4. **`SITE_TITLE` / `SITE_URL` are duplicated** in `BaseLayout.astro` instead of imported from `src/lib/consts.ts`, creating a maintenance hazard.
 
 Four warnings and three info items are also noted below.
 
@@ -62,6 +66,11 @@ If slugs with path separators are used, `post.id` may include the file extension
 ```astro
 <a href={`/posts/${post.id.replace(/\.[^.]+$/, '')}`} class="card" style="text-decoration:none;">
 ```
+
+### ~~CR-02: Deploy workflow triggers on `main` but the active branch is `master`~~ ✓ AUTO-FIXED
+
+**File:** `.github/workflows/deploy.yml:5`
+**Fixed in:** commit 1e85ad0 — branches filter changed from `[main]` to `[master]`
 
 ---
 
