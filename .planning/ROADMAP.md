@@ -45,6 +45,8 @@ Transformar o fluxo "escrever em inglês no dev.to" em "publicação dupla (dev.
 - Estrutura de pastas conforme `ARCHITECTURE.md`
 - Design tokens brand-aware semânticos
 - `consts.ts` com `SITE_URL`, `SITE_TITLE`, `AUTHOR`, socials
+- Design system "Código Chama Azul" (blog-design-system/Blog Design System.html) — tokens, fonts, component CSS
+- Astro layout components: BaseLayout, Header, Footer using design system tokens
 
 **Scope out:**
 
@@ -62,6 +64,7 @@ Transformar o fluxo "escrever em inglês no dev.to" em "publicação dupla (dev.
 - Pitfall 2 (paleta vs WCAG) — codificar CSS vars semânticas desde o início
 - Pitfall 6 (perf) — self-host fontes (IBM Plex Sans / Inter) desde Phase 1
 - Pitfall 9 (lang) — `lang="pt-BR"` no layout base
+- Design system supersedes Sertão brand colors from early planning — see blog-design-system/ for source of truth
 
 **Estimate:** S (setup work, idiomático)
 
