@@ -23,7 +23,7 @@ Transformar o fluxo "escrever em inglês no dev.to" em "publicação dupla (dev.
 
 **Goal:** Repositório Astro escaffoldado, paleta semântica configurada, deploy `hello world` em `sertaoseracloud.com` via Github Pages funcionando.
 
-**Plans:** 01-01 COMPLETE | 01-02 pending
+**Plans:** 01-01 COMPLETE | 01-02 COMPLETE
 
 **Success criteria:**
 
