@@ -38,7 +38,7 @@ const recentPosts = allPosts
         </p>
         <div class="cards">
           {recentPosts.map((post) => (
-            <a href={`/posts/${post.slug}`} class="card" style="text-decoration:none;">
+            <a href={`/posts/${post.id.replace(/\.[^.]+$/, '')}`} class="card" style="text-decoration:none;">
               <div class={`card-media p-${post.data.tags?.[0] ?? 'arq'}`}></div>
               <div class="card-body">
                 <div class="tag-row" style="margin-bottom:8px;">
