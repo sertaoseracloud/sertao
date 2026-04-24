@@ -77,7 +77,16 @@ Plans:
 
 ## Phase 2 — Dev.to Sync Pipeline (MVP)
 
-**Goal:** Rodar `pnpm run sync:devto` localmente (e via GH Actions cron 24h) e ver um PR draft aparecer com markdown traduzido de um artigo real do dev.to.
+**Goal:** Rodar `pnpm run sync:devto` localmente (e via GH Actions workflow_dispatch) e ver um PR draft aparecer com markdown traduzido de um artigo real do dev.to.
+
+**Plans:** 5 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Package setup + test scaffold (deps install, 6 failing test files)
+- [ ] 02-02-PLAN.md — DevToClient, DiffDetector, Translator, GlossaryEnforcer (Wave 2 core components)
+- [ ] 02-03-PLAN.md — PRBuilder, sync-devto.ts orchestrator, circuit breaker (Wave 3)
+- [ ] 02-04-PLAN.md — GH Actions workflow (workflow_dispatch-only), Claude Code schedule + RemoteTrigger
+- [ ] 02-05-PLAN.md — Runbook (docs/sync-pipeline.md) + E2E test checkpoint
 
 **Success criteria:**
 
