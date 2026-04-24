@@ -21,7 +21,7 @@ const currentPath = Astro.url.pathname;
     </a>
 
     <!-- Nav links -->
-    <nav class="nav-links" aria-label="Links de navegação">
+    <div class="nav-links">
       {navLinks.map(({ href, label }) => (
         <a
           href={href}
@@ -30,7 +30,7 @@ const currentPath = Astro.url.pathname;
           {label}
         </a>
       ))}
-    </nav>
+    </div>
 
     <!-- Actions placeholder (Phase 4: dark mode toggle, Phase 7: search) -->
     <div class="nav-actions" aria-label="Ações">
