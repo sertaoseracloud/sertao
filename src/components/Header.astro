@@ -1,0 +1,42 @@
+---
+const navLinks = [
+  { href: '/', label: 'Início' },
+  { href: '/posts', label: 'Posts' },
+  { href: '/sobre', label: 'Sobre' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header>
+  <nav class="site-nav" aria-label="Navegação principal">
+    <!-- Brand -->
+    <a href="/" class="site-brand" aria-label="O Sertão será Cloud — início">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 2l1.8 5.4H16l-4.3 3.1 1.6 5L9 12.6l-4.3 3-1.6-5L4.3 7.5 9 4.3V2z" fill="currentColor"/>
+        </svg>
+      </span>
+      O <b>Sertão</b><span class="tld">.cloud</span>
+    </a>
+
+    <!-- Nav links -->
+    <nav class="nav-links" aria-label="Links de navegação">
+      {navLinks.map(({ href, label }) => (
+        <a
+          href={href}
+          aria-current={currentPath === href || (href !== '/' && currentPath.startsWith(href)) ? 'page' : undefined}
+        >
+          {label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Actions placeholder (Phase 4: dark mode toggle, Phase 7: search) -->
+    <div class="nav-actions" aria-label="Ações">
+      <span class="text-muted" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;">
+        ☁ PT-BR
+      </span>
+    </div>
+  </nav>
+</header>
