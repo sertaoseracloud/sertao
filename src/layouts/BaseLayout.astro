@@ -1,0 +1,67 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  pubDate?: Date;
+}
+
+const {
+  title,
+  description = 'Blog sobre cloud computing em português — O Sertão será Cloud.',
+  image,
+  pubDate,
+} = Astro.props;
+
+const SITE_TITLE = 'O Sertão será Cloud';
+const SITE_URL = 'https://sertaoseracloud.com';
+const canonicalURL = new URL(Astro.url.pathname, SITE_URL);
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Primary meta -->
+    <title>{title} · {SITE_TITLE}</title>
+    <meta name="description" content={description} />
+
+    <!-- Open Graph (Phase 3 will enrich) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={`${title} · ${SITE_TITLE}`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content="pt_BR" />
+    {image && <meta property="og:image" content={new URL(image, SITE_URL)} />}
+
+    <!-- Theme init: prevent FOUC by reading localStorage before paint -->
+    <script is:inline>
+      (function () {
+        const stored = localStorage.getItem('theme');
+        if (stored) document.documentElement.setAttribute('data-theme', stored);
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- Ambient grid + gradient backdrop -->
+    <div class="ambient" aria-hidden="true"></div>
+
+    <!-- Site chrome -->
+    <slot name="header" />
+
+    <!-- Page content -->
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <!-- Site footer -->
+    <slot name="footer" />
+  </body>
+</html>
