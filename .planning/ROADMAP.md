@@ -23,7 +23,12 @@ Transformar o fluxo "escrever em inglês no dev.to" em "publicação dupla (dev.
 
 **Goal:** Repositório Astro escaffoldado, paleta semântica configurada, deploy `hello world` em `sertaoseracloud.com` via Github Pages funcionando.
 
-**Plans:** 01-01 COMPLETE | 01-02 COMPLETE
+**Plans:** 3 plans
+
+Plans:
+- [x] 01-01-PLAN.md — Astro scaffold, pnpm+Node pinning, Prettier tooling
+- [x] 01-02-PLAN.md — Design system tokens, layout components, content schema
+- [ ] 01-03-PLAN.md — GitHub Pages deploy workflow, CNAME, ROADMAP CSS token aliases (gap closure)
 
 **Success criteria:**
 
