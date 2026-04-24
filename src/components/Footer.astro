@@ -1,0 +1,30 @@
+---
+const currentYear = new Date().getFullYear();
+
+const socials = [
+  { href: 'https://dev.to/sertaoseracloud', label: 'dev.to' },
+  { href: 'https://github.com/sertaoseracloud', label: 'GitHub' },
+  { href: '/rss.xml', label: 'RSS' },
+];
+---
+
+<footer class="footer stage">
+  <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+    <p class="sig">
+      Feito com ☁ por <b>sertaoseracloud</b> · {currentYear}
+    </p>
+
+    <nav aria-label="Links sociais" style="display:flex;gap:20px;">
+      {socials.map(({ href, label }) => (
+        <a
+          href={href}
+          class="text-muted"
+          style="font-family:'Chakra Petch',sans-serif;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:color 0.2s;"
+          {...(href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+        >
+          {label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</footer>
