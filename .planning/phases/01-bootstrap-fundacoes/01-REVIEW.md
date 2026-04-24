@@ -23,10 +23,10 @@ files_reviewed_list:
   - public/CNAME
   - src/styles/global.css
 findings:
-  critical: 1
+  critical: 0
   warning: 4
   info: 3
-  total: 8
+  total: 7
 status: issues_found
 ---
 
@@ -67,10 +67,10 @@ If slugs with path separators are used, `post.id` may include the file extension
 <a href={`/posts/${post.id.replace(/\.[^.]+$/, '')}`} class="card" style="text-decoration:none;">
 ```
 
-### ~~CR-02: Deploy workflow triggers on `main` but the active branch is `master`~~ ✓ AUTO-FIXED
+### ~~CR-02: Deploy workflow triggers on `main` but the active branch is `master`~~ ✗ FALSE POSITIVE
 
 **File:** `.github/workflows/deploy.yml:5`
-**Fixed in:** commit 1e85ad0 — branches filter changed from `[main]` to `[master]`
+**Resolution:** Reverted in commit 84f26df — `[main]` is correct. The repository's principal branch on GitHub is `main`; the local working branch `master` is the author's development branch. No fix required.
 
 ---
 
