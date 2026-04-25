@@ -276,11 +276,11 @@ ${canonicalStatus}
     lines.push(`source:`);
     lines.push(`  platform: ${fm.source.platform}`);
     lines.push(`  id: ${fm.source.id}`);
-    lines.push(`  url: ${fm.source.url}`);
+    lines.push(`  url: ${JSON.stringify(fm.source.url)}`);
     lines.push(`  hash: "${fm.source.hash}"`);
     lines.push(`  synced_at: ${this.formatDate(fm.source.synced_at)}`);
     lines.push(`  translated_by: ${fm.source.translated_by}`);
-    if (fm.canonical_url) lines.push(`canonical_url: ${fm.canonical_url}`);
+    if (fm.canonical_url) lines.push(`canonical_url: ${JSON.stringify(fm.canonical_url)}`);
     lines.push(`manual_override: ${fm.manual_override}`);
     return lines.join('\n') + '\n';
   }
