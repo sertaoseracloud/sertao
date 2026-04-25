@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sertaoseracloud.com/sitemap-index.xml
