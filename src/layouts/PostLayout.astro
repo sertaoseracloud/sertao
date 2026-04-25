@@ -1,0 +1,39 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  image?: string;
+  canonicalUrl?: string;
+}
+
+const { title, description, pubDate, updatedDate, image, canonicalUrl } = Astro.props;
+---
+
+<BaseLayout {title} {description} {image} {pubDate} {canonicalUrl}>
+  <Header slot="header" />
+
+  <div class="stage">
+    <article class="prose">
+      <header style="margin-bottom: 32px;">
+        <p style="font-family:'Chakra Petch',sans-serif;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:var(--nucleo-eletrico);margin-bottom:12px;">
+          {new Date(pubDate).toLocaleDateString('pt-BR', { dateStyle: 'long' })}
+        </p>
+        <h1>{title}</h1>
+        {updatedDate && (
+          <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--texto-secundario);margin-top:8px;">
+            Atualizado em {new Date(updatedDate).toLocaleDateString('pt-BR', { dateStyle: 'long' })}
+          </p>
+        )}
+      </header>
+      <slot />
+    </article>
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>
