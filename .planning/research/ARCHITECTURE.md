@@ -163,10 +163,12 @@ sertaoseracloud/
 **When to use:** Always, for any Markdown-driven site. It eliminates an entire category of production bugs (missing title, malformed date, typo in draft flag).
 
 **Trade-offs:**
+
 - Pro: type safety, autocompletion, build-time errors, single schema for RSS + SEO + listing.
 - Con: slight upfront cost writing the schema (one file, under 50 lines).
 
 **Example:**
+
 ```ts
 // src/content.config.ts
 import { defineCollection, reference, z } from 'astro:content';
@@ -210,10 +212,12 @@ export const collections = { posts, authors };
 **When to use:** Solo-author workflows. Multi-author workflows need PR-based review instead.
 
 **Trade-offs:**
+
 - Pro: simple, Git-native, no branch juggling.
 - Con: drafts are visible on GitHub (fine for a personal blog; not fine for embargoed content).
 
 **Example:**
+
 ```ts
 // at the top of any list page
 const all = await getCollection('posts', ({ data }) => import.meta.env.PROD ? !data.draft : true);
@@ -229,10 +233,12 @@ This also means drafts are visible in `npm run dev` but never in production.
 **When to use:** Any component that needs browser interactivity — theme toggle, search box, comments. Everything else is pure server-rendered HTML.
 
 **Trade-offs:**
+
 - Pro: minimal JS payload, excellent Core Web Vitals, works without JS for the core reading experience.
 - Con: each island must justify its JS cost; adding a React-heavy component to every page erases the benefit.
 
 **Example:**
+
 ```astro
 ---
 // PostLayout.astro
@@ -252,10 +258,12 @@ import CommentsEmbed from '../components/CommentsEmbed.astro';
 **When to use:** Always for a tech blog with tutorials. Non-negotiable for Core Web Vitals.
 
 **Trade-offs:**
+
 - Pro: perfect fidelity (same grammars VS Code uses), zero client-side cost, works without JS.
 - Con: slower builds than Prism. Mitigation: cache Highlighter instances (documented to yield ~80% faster builds on repeated runs).
 
 **Example:**
+
 ```ts
 // astro.config.mjs — rehype Shiki with dual theme
 export default defineConfig({
@@ -269,6 +277,7 @@ export default defineConfig({
 ```
 
 CSS:
+
 ```css
 html.dark .shiki, html.dark .shiki span {
   color: var(--shiki-dark) !important;
@@ -283,10 +292,12 @@ html.dark .shiki, html.dark .shiki span {
 **When to use:** Always, whenever dark mode is offered. Without this, users see a flash of the wrong theme.
 
 **Trade-offs:**
+
 - Pro: zero flicker, works before any framework hydration, tiny (<500 bytes).
 - Con: must be inline (not an external JS file) — any bundler that externalizes it breaks FOUC prevention.
 
 **Example:**
+
 ```html
 <script is:inline>
   const stored = localStorage.getItem('theme');
@@ -304,10 +315,12 @@ html.dark .shiki, html.dark .shiki span {
 **When to use:** Every third-party integration on a content site.
 
 **Trade-offs:**
+
 - Pro: preserves LCP, INP, and page weight budgets.
 - Con: interaction has a small delay the first time (acceptable for comments; mitigated for forms via `client:idle`).
 
 **Example:**
+
 ```astro
 <CommentsEmbed client:visible repo="sertaoseracloud/sertaoseracloud" />
 <NewsletterForm client:idle />
@@ -320,6 +333,7 @@ html.dark .shiki, html.dark .shiki span {
 **When to use:** Whenever a post needs a diagram, custom callout, embed, or interactive visualization.
 
 **Trade-offs:**
+
 - Pro: keeps the 80% of posts on the fastest path; no JS tax for posts that don't need it.
 - Con: authors must remember which extension they chose. Mitigation: `.mdx` is a strict superset of `.md`, so "upgrading" an existing post is just renaming the file.
 
@@ -525,7 +539,7 @@ Dependencies flow top-to-bottom. Each later phase assumes the prior ones are in 
 ┌─────────────────────────────────────────────────────────────────┐
 │ 10. ANALYTICS + DEPLOY                                          │
 │     ─ Plausible / Umami script (privacy-respecting)             │
-│     ─ Cloudflare Pages / Vercel / Netlify build config          │
+│     ─ Github Pages / Vercel / Netlify build config          │
 │     ─ connect custom domain sertaoseracloud.com + SSL           │
 │     ─ submit sitemap to Google + Bing                           │
 │     ─ blocks: everything else (final integration step).         │
@@ -559,19 +573,23 @@ The architecture is designed so that **introducing MDX features later requires z
 **Today (v1):** all posts are `.md`. No MDX integration enabled.
 
 **When you want callouts:**
+
 ```ts
 // astro.config.mjs
 import mdx from '@astrojs/mdx';
 export default defineConfig({ integrations: [mdx()] });
 ```
+
 Rename one post from `.md` to `.mdx`, add `import Callout from '~/components/mdx/Callout.astro'` at the top (or wire a global components provider), and use `<Callout type="warning">...</Callout>`. Every other `.md` post is untouched.
 
 **When you want Mermaid:**
+
 ```ts
 // astro.config.mjs
 import rehypeMermaid from 'rehype-mermaid';
 markdown: { rehypePlugins: [[rehypeMermaid, { strategy: 'img-svg' }]] }
 ```
+
 Fenced code blocks with language `mermaid` are now rendered server-side into SVG. No per-post changes.
 
 **When you want admonitions in plain `.md`:**
@@ -595,7 +613,7 @@ For a solo-author blog, "scale" is mostly about post count and CDN traffic, not 
 | **0–100 posts** | Current architecture is exactly right. Build times under 30s. Pagefind index well under 1 MB. |
 | **100–1,000 posts** | Monitor CI build time. If >2 min: enable Shiki highlighter caching (documented ~80% speedup). Pagefind index chunks scale linearly but fetch on demand, so no change needed. Consider paginated tag pages at ~50 posts/tag. |
 | **1,000+ posts** | Incremental builds become valuable. Astro 5 ships content collection caching; Next.js has `generateStaticParams` + ISR. If you stay fully static: consider splitting content into multiple collections (e.g. `posts/` vs `notes/`) and building in parallel. At this scale search index may approach 5–10 MB total — still fine because Pagefind loads chunks on demand, but the initial fragment index grows. |
-| **Unlikely-but-if traffic explodes** | Irrelevant. Static files on a CDN scale effectively infinitely on free tiers. Cloudflare Pages, Netlify, and Vercel all have generous free bandwidth ceilings; if you exceed them you have a successful blog and can afford the upgrade. |
+| **Unlikely-but-if traffic explodes** | Irrelevant. Static files on a CDN scale effectively infinitely on free tiers. Github Pages, Netlify, and Vercel all have generous free bandwidth ceilings; if you exceed them you have a successful blog and can afford the upgrade. |
 
 ### Scaling Priorities
 
@@ -653,7 +671,7 @@ For a solo-author blog, "scale" is mostly about post count and CDN traffic, not 
 
 **What people do:** Paste a newsletter provider's API key into the repo to POST subscriptions.
 **Why it's wrong:** The repo is public. The key leaks immediately.
-**Do this instead:** Use provider-hosted embed endpoints (`<form action="https://buttondown.email/api/emails/embed-subscribe/yourname">`) so the browser POSTs directly to the provider. No secret in the build, no server needed. If more control is required, use a free serverless function (Cloudflare Workers free tier) with the key in an env var.
+**Do this instead:** Use provider-hosted embed endpoints (`<form action="https://buttondown.email/api/emails/embed-subscribe/yourname">`) so the browser POSTs directly to the provider. No secret in the build, no server needed. If more control is required, use a free serverless function (Github Workers free tier) with the key in an env var.
 
 ## Integration Points
 
@@ -664,7 +682,7 @@ For a solo-author blog, "scale" is mostly about post count and CDN traffic, not 
 | **GitHub Discussions (giscus)** | `<script src="https://giscus.app/client.js">` with `data-repo`, `data-repo-id`, `data-category-id`, `data-mapping="pathname"`. Lazy load via `client:visible`. | Requires enabling Discussions on the repo. Use `pathname` mapping so URL ↔ discussion is stable; never use `title` (breaks when titles change). |
 | **Buttondown / Beehiiv / Kit** | HTML `<form action="...provider-embed-url..." method="POST">` submits the email directly to provider. | Buttondown is the most dev-friendly and has a free tier up to 100 subscribers; Beehiiv free tier is more generous (2,500 subs) but heavier UI; Kit (formerly ConvertKit) has free tier to 10k. Pick based on tolerance for provider branding. |
 | **Plausible / Umami (self-host optional)** | Single `<script defer src="..." data-domain="sertaoseracloud.com">` in `<head>`. | Plausible is paid (free self-host possible); Umami has a free cloud tier. GA4 is free and more featureful but privacy-hostile. Choose based on values. |
-| **Cloudflare Pages / Netlify / Vercel** | Git push triggers build; output directory (`dist/`) uploaded to CDN. Custom domain + automatic SSL. | All three have free tiers adequate for a personal blog. Cloudflare Pages has the most generous bandwidth limits. |
+| **Github Pages / Netlify / Vercel** | Git push triggers build; output directory (`dist/`) uploaded to CDN. Custom domain + automatic SSL. | All three have free tiers adequate for a personal blog. Github Pages has the most generous bandwidth limits. |
 | **Google Search Console + Bing Webmaster** | Add TXT record or file verification; submit `/sitemap.xml`. | Indispensable for SEO feedback loop. Set up immediately after first deploy. |
 
 ### Internal Boundaries
@@ -749,7 +767,7 @@ Arquitetura original descreveu 3 eixos: **Author → Build → Runtime**. Com de
                                │  webhook on push to main
                                ▼
 ┌──────────────────────────────────────────────────────────────────┐
-│  BUILD (Cloudflare Pages / Astro)                                │
+│  BUILD (Github Pages / Astro)                                │
 │  [inalterado — Content Collections → Shiki → Pagefind → deploy]  │
 └──────────────────────────────────────────────────────────────────┘
 ```
@@ -819,7 +837,7 @@ jobs:
 
 ### Invariante atualizada
 
-A invariante original ("usuário sem JS ainda tem post completo") permanece. Nova invariante: **build do site nunca depende do sync em runtime**. Se o sync falha ou dev.to está fora, Cloudflare Pages continua servindo a última versão deployada dos posts traduzidos. Sync é assíncrono ao build; não há dependência crítica de tempo de execução.
+A invariante original ("usuário sem JS ainda tem post completo") permanece. Nova invariante: **build do site nunca depende do sync em runtime**. Se o sync falha ou dev.to está fora, Github Pages continua servindo a última versão deployada dos posts traduzidos. Sync é assíncrono ao build; não há dependência crítica de tempo de execução.
 
 ---
 *Architecture research for: dev.to-sourced + auto-translated personal tech blog (solo author, static output, near-zero-budget)*

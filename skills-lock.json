@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "skills": {
+    "a11y-debugging": {
+      "source": "chromedevtools/chrome-devtools-mcp",
+      "sourceType": "github",
+      "computedHash": "0cfdaa59d1a21f94509d2633a81735f57812c06661b1645a7a7b9dc778e6e0f7"
+    },
+    "aws-well-architected-framework": {
+      "source": "rameshvr/aws-well-architected-framework-skill",
+      "sourceType": "github",
+      "computedHash": "988743e6386abf7754e3bf69bccd782986e819a42a067e492d266116d4aabe83"
+    },
+    "azure-well-architected": {
+      "source": "microsoftdocs/agent-skills",
+      "sourceType": "github",
+      "computedHash": "e3f4a329e7e7b2e5231df476f2f1f995d4feb25fb8e97af2be7473a4bb1308b7"
+    },
+    "c4-architecture": {
+      "source": "softaworks/agent-toolkit",
+      "sourceType": "github",
+      "computedHash": "9192b5d6be529478a70d1a73f3d4ce83db12c2052c4e6df4accd445f21e906d4"
+    },
+    "chrome-devtools": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "computedHash": "85d9c4ef94e00ddfc937d50aab72a307e80b98bc7e6744ec6e239ef68819c2d7"
+    },
+    "clean-code": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "computedHash": "551e1ac1c416d9df11fce8bc613c3595794f1f5e634d20c5b3e257afded11ed7"
+    },
+    "clean-ddd-hexagonal": {
+      "source": "ccheney/robust-skills",
+      "sourceType": "github",
+      "computedHash": "37d516cad994acaf692e6d57761601ef9477dce0bc98e8b6b76329e17afe90b6"
+    },
+    "design-system": {
+      "source": "anthropics/knowledge-work-plugins",
+      "sourceType": "github",
+      "computedHash": "12497053dd5456ed6a80e51826d17c584d422584a1d2f653b4038170e4a3348f"
+    },
+    "documentation-and-adrs": {
+      "source": "addyosmani/agent-skills",
+      "sourceType": "github",
+      "computedHash": "d751b98cb2894feb833af869f397aaaadd9a3a679882331c1a5b254e8ed1399a"
+    },
+    "domain-driven-design": {
+      "source": "wondelai/skills",
+      "sourceType": "github",
+      "computedHash": "49716133589244e76519e785c7acc7680cf3dc083ea3bfb26e9ab5dfb1a62873"
+    },
+    "excalidraw-diagram-generator": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "computedHash": "e24e3c4cab4b5a07bc1d1801db14868f3a1cd184f7f28f5dd2c4a2b234bf2f2d"
+    },
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "computedHash": "516bd2154eb843a8240e43d5b285229129853114ad7075a5e141e1c08e408c84"
+    },
+    "gh-cli": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "computedHash": "cbe644b0c6760ae2a1eaafa39133920d889331327065d92a131675a665273e56"
+    },
+    "git-commit": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "computedHash": "2607fc60629b82b257136dd2a7a373f0a4466c0b49df7746d845d59313c99b21"
+    },
+    "github-actions-docs": {
+      "source": "xixu-me/skills",
+      "sourceType": "github",
+      "computedHash": "ead3fa2aff18e829c468dee593e1dc897aa95dc7a07d9ff8ff9f30c296b19af8"
+    },
+    "github-issues": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "computedHash": "3a752d99ddc3178f443fe242d490800398b2b42030a9d221b298b9486d90cc87"
+    },
+    "legal-risk-assessment": {
+      "source": "anthropics/knowledge-work-plugins",
+      "sourceType": "github",
+      "computedHash": "7305866282d5f10d4ca7acd1d8569b767f9f64a017016cb4da72c38e2d4ff2cc"
+    },
+    "togaf-guidance": {
+      "source": "melodic-software/claude-code-plugins",
+      "sourceType": "github",
+      "computedHash": "5c2243ae2180352eb6a50531d4091ed952c4e8bec8f07ad1431683071ae67ffc"
+    },
+    "tradeoff-assessment": {
+      "source": "dragoon0x/taste-skills",
+      "sourceType": "github",
+      "computedHash": "998782795af7c3213f53aafdc4d7c6a69c27174b0b91af1127f73d85502555b8"
+    },
+    "zachman-analysis": {
+      "source": "melodic-software/claude-code-plugins",
+      "sourceType": "github",
+      "computedHash": "5f20ea4932ee586118269b60f5eec46fc50a733ae7cc81bb14031a93679a1880"
+    }
+  }
+}

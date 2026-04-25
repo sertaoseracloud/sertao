@@ -64,7 +64,7 @@ Features that elevate a brand-building dev blog from "another blog" to "THE pers
 | Feature | Value Proposition | Complexity | Notes |
 |---------|-------------------|------------|-------|
 | Custom-designed homepage hero with Sertão+Cloud narrative | First impression. The "why this blog" in 2 seconds. Ties identity to content | MEDIUM | Brand palette `#284068 / #14878c / #65d7b1` + typography. Not just a post list — a statement |
-| Dynamic OG image generation per post | Every share on LinkedIn/X/WhatsApp becomes a branded billboard. Multiplies brand reach | MEDIUM | `@vercel/og` / `satori` or Cloudflare Workers at edge. Template with post title + brand mark. Heavy lift on design, minor on code |
+| Dynamic OG image generation per post | Every share on LinkedIn/X/WhatsApp becomes a branded billboard. Multiplies brand reach | MEDIUM | `@vercel/og` / `satori` or Github Workers at edge. Template with post title + brand mark. Heavy lift on design, minor on code |
 | Consistent visual system (icons, spacing, components) | Professionalism signal; amateur blogs have inconsistent chrome | MEDIUM | Design tokens from brand palette. Use a few reusable components (Callout, Aside, Figure) rather than ad-hoc styling |
 | Custom 404 / empty-state pages with personality | Delights readers, makes brand memorable | LOW | Small differentiator, cheap to do well |
 | Logo / wordmark applied consistently | Identity anchoring. Favicon, OG image, header, footer all align | LOW | Assumes logo exists; if not, start with typographic wordmark |
@@ -98,9 +98,9 @@ Features that elevate a brand-building dev blog from "another blog" to "THE pers
 | Newsletter capture with meaningful lead magnet | Owned audience channel. 2025 data: lead magnets boost signup conversion 150%+ (2-4x baseline). Builds brand beyond blog | MEDIUM | Free tier: Buttondown (free <100 subs), Beehiiv (free <2.5K subs), or ConvertKit free tier. **Lead magnet options**: "Guia rápido: custos AWS/GCP/Azure comparados em PT-BR" PDF, or "Cheatsheet: comandos `aws cli` essenciais". Avoid generic "sign up for updates" |
 | Newsletter embedded inline at end of post + a dedicated `/newsletter` page | Non-intrusive, contextual. End-of-post is the #1 conversion spot | LOW | Inline form; mirror on static page. **NO modal on load** (see anti-features) |
 | Comments via giscus (GitHub Discussions) | Privacy-friendly, ad-free, ties into the dev audience's existing GitHub identity. Zero cost | LOW | Enable Discussions on `sertaoseracloud/sertaoseracloud` repo, create a category, drop giscus script. Supports threads + reactions |
-| Reactions (like/helpful/heart) | Low-friction engagement signal even from non-commenters | LOW | Giscus includes this via GitHub reactions, or roll custom with a Cloudflare Worker + KV |
-| Analytics (privacy-friendly, LGPD-compatible) | Need to know what resonates without betraying readers or needing a cookie banner | LOW | **Recommend Cloudflare Web Analytics** (free, LGPD-safe, no cookies, no banner required) or Plausible (paid but richer). Avoid GA4 — triggers LGPD consent banner requirement |
-| Post view count (optional) | Social proof for popular posts; also guides what to write next | MEDIUM | Cloudflare Workers + D1/KV, or from analytics API. Skip for v1 |
+| Reactions (like/helpful/heart) | Low-friction engagement signal even from non-commenters | LOW | Giscus includes this via GitHub reactions, or roll custom with a Github Worker + KV |
+| Analytics (privacy-friendly, LGPD-compatible) | Need to know what resonates without betraying readers or needing a cookie banner | LOW | **Recommend Github Web Analytics** (free, LGPD-safe, no cookies, no banner required) or Plausible (paid but richer). Avoid GA4 — triggers LGPD consent banner requirement |
+| Post view count (optional) | Social proof for popular posts; also guides what to write next | MEDIUM | Github Workers + D1/KV, or from analytics API. Skip for v1 |
 
 #### Author-as-brand surfaces
 
@@ -122,7 +122,7 @@ Features that elevate a brand-building dev blog from "another blog" to "THE pers
 | Prices in BRL + USD side-by-side when mentioning cloud costs | Cloud pricing is listed in USD on AWS/GCP/Azure. BR reader converts mentally — do it for them. Huge value-add for "custos de nuvem" content | LOW | Manual or scripted. Quote current rate ("cotação em abr/2026: ~R$5,10/USD"). Don't fake real-time |
 | Privacy / LGPD statement on newsletter opt-in | LGPD requires clear consent, accessible data-use info, revocation mechanism. Not optional | LOW | Checkbox at signup + link to `/privacidade` page. Email service provider should handle unsubscribe. Keep consent audit trail |
 | `/privacidade` (Privacy Policy) page | LGPD mandates accessible information on data collection/use. Simple blog still needs one (collects emails, analytics) | LOW | Template exists widely; adapt honestly. Cover: what's collected (email, analytics), why, how to revoke, author contact |
-| Cookie/tracking disclosure (minimal if no tracking cookies) | LGPD — but with Cloudflare/Plausible (no cookies), you avoid the banner. Just a privacy page link suffices | LOW | **Choose no-cookie analytics to skip banner entirely.** Avoid GA4 specifically to avoid banner UX cost |
+| Cookie/tracking disclosure (minimal if no tracking cookies) | LGPD — but with Github/Plausible (no cookies), you avoid the banner. Just a privacy page link suffices | LOW | **Choose no-cookie analytics to skip banner entirely.** Avoid GA4 specifically to avoid banner UX cost |
 | Brazilian Portuguese orthography per Acordo Ortográfico (post-2009) | Educated BR readers notice "pará" vs "para" errors | N/A | Authoring discipline. Use a spell-check plugin in the editor |
 | Share-to-WhatsApp button | WhatsApp is the dominant BR sharing channel — more than X + LinkedIn combined for casual tech sharing | LOW | `https://wa.me/?text=...` anchor. **Gringos skip this; BR blogs must include it** |
 
@@ -137,7 +137,7 @@ Features that seem good but create problems. Document the alternative so we don'
 | Exit-intent popups | Same as above, "last chance to capture" | Mobile has no exit intent; desktop users find it aggressive; damages brand more than it gains subs | Inline forms; earn re-visits via quality, not interruption |
 | Autoplay video / hero video | "Visual impact" | Mobile data cost, accessibility nightmare, perf killer, users mute anyway | Static hero with brand imagery; video only on demand with click-to-play |
 | Disqus comments | "Easy drop-in comments" | Ads on free tier, tracks users without consent (LGPD problem), $3M Norway fine precedent, loads ~1.5MB JS, privacy nightmare | **Giscus** (GitHub Discussions) — free, no ads, no tracking, fits dev audience. Or utterances (issues-based, no threading) as fallback |
-| Google Analytics / GA4 | "Everyone uses it" | LGPD requires cookie banner; heavy; privacy concerns; overkill for personal blog | **Cloudflare Web Analytics** (free, no cookies, no banner) or **Plausible** (paid, no cookies, no banner). Skips LGPD banner entirely |
+| Google Analytics / GA4 | "Everyone uses it" | LGPD requires cookie banner; heavy; privacy concerns; overkill for personal blog | **Github Web Analytics** (free, no cookies, no banner) or **Plausible** (paid, no cookies, no banner). Skips LGPD banner entirely |
 | Related-by-ML recommendations / "Trending posts" | "Engagement!" | Requires server + DB + complexity; for a solo blog with N<50 posts, tag-overlap is just as good and free | Tag-overlap related posts, manually featured posts on homepage |
 | Live chat widget (Intercom, Crisp) | "Talk to readers" | Solo author can't man a chat; widget adds JS + privacy burden; irrelevant to blog use case | Contact link / email. Twitter/LinkedIn DMs for real-time |
 | Infinite scroll on archive | "More posts discovery" | Breaks SEO (paginated links ignored), back-button hell, accessibility issues | **Standard pagination** or "Load more" button. Better yet: `/blog` = full archive (fine up to ~200 posts) |
@@ -206,7 +206,7 @@ Features that seem good but create problems. Document the alternative so we don'
 - **Giscus requires public GitHub Discussions:** Comments post as Discussions entries; readers need GitHub accounts to comment (acceptable for dev audience — arguably a feature, filters out spam).
 - **Dynamic OG images are a build-time concern:** if the SSG is Astro/Hugo, satori-based generation at build is fine and free; if the SSG is static-only (no Node), pre-generate via a script in CI.
 - **Dark mode + syntax highlighting are coupled:** Shiki supports dual themes natively (`github-light` + `github-dark`, or a brand-matched pair). Pick this early; retrofitting is tedious.
-- **LGPD conflicts with GA4/Disqus:** Picking Cloudflare Analytics + giscus bypasses the cookie-banner UX cost entirely. This is a *design* decision, not just a compliance one.
+- **LGPD conflicts with GA4/Disqus:** Picking Github Analytics + giscus bypasses the cookie-banner UX cost entirely. This is a *design* decision, not just a compliance one.
 - **Core Web Vitals conflicts with heavy JS:** Mermaid client-side adds ~1MB; solution is build-time rendering. If client-side is required, lazy-load on intersection (Mermaid 9.2+ supports this).
 
 ## MVP Definition
@@ -234,7 +234,7 @@ Non-negotiable for launch day. If any of these is missing, blog feels incomplete
 - [ ] Dynamic OG image per post (or one great default if time-constrained) — **every share = branded billboard**
 - [ ] `lang="pt-BR"` + PT-BR date/time formatting — **locale correctness**
 - [ ] Privacy page (`/privacidade`) — **LGPD requirement**
-- [ ] Privacy-friendly analytics (Cloudflare Web Analytics or Plausible) — **no cookie banner needed**
+- [ ] Privacy-friendly analytics (Github Web Analytics or Plausible) — **no cookie banner needed**
 - [ ] Client-side search (Pagefind) — **explicit requirement, cheap**
 - [ ] Comments via giscus — **explicit requirement, free, LGPD-safe**
 - [ ] Newsletter signup form (inline at post end + `/newsletter` page) with LGPD consent — **explicit requirement**
@@ -313,6 +313,7 @@ Features that pay off once there's content volume. Adding them pre-content is pr
 | i18n, PWA, chatbot, playgrounds | LOW-MEDIUM | HIGH | P3 |
 
 **Priority key:**
+
 - P1: Must ship in v1 (first-post launch)
 - P2: Ship within first 1-3 months, once content exists to justify
 - P3: Defer; revisit only if a specific need emerges
@@ -335,6 +336,7 @@ Used as benchmarks for what "good" looks like in 2025-2026. These embody table-s
 ## Sources
 
 ### Features / industry standards
+
 - [Our Top 12 picks for Static Site Generators (SSGs) in 2026 — Hygraph](https://hygraph.com/blog/top-12-ssgs)
 - [Starting a Technical Blog in 2026: Platform Comparison — dasroot.net](https://dasroot.net/posts/2026/04/starting-technical-blog-2026-platform-comparison/)
 - [The Must-Have SEO Checklist for Developers in 2025 — Strapi](https://strapi.io/blog/seo-checklist-for-developers)
@@ -345,41 +347,48 @@ Used as benchmarks for what "good" looks like in 2025-2026. These embody table-s
 - [Schema.org Feeds](https://schema.org/docs/feeds.html)
 
 ### Typography & reading
+
 - [Optimal Line Length for Readability — UXPin](https://www.uxpin.com/studio/blog/optimal-line-length-for-readability/)
 - [Readability: The Optimal Line Length — Baymard](https://baymard.com/blog/line-length-readability)
 - [Typography — U.S. Web Design System](https://designsystem.digital.gov/components/typography/)
 
 ### Code blocks / MDX
+
 - [Powerful Code Blocks with Code Hike and MDX](https://blog.anishde.dev/powerful-code-blocks-with-code-hike-and-mdx)
 - [MDX syntax highlighting docs](https://github.com/mdx-js/mdx/blob/main/docs/guides/syntax-highlighting.mdx)
 - [Customize MDX code blocks in Next.js 14 (rehype-pretty-code)](https://www.gptrush.io/blog/mdx-syntax-highlighting-copy-to-clipboard-using-nextjs)
 
 ### Comments / privacy
+
 - [Best Disqus Alternatives 2025 — AlternativeTo](https://alternativeto.net/software/disqus/)
 - [Top 11 Disqus Alternatives in 2025 — Hyvor](https://hyvor.com/blog/disqus-alternatives)
 - [Setting Up Giscus: An Ad-Free Alternative to Disqus](https://chocapikk.com/posts/2025/setting-up-giscus-comments/)
 - [Replacing Disqus With Giscus and Github Discussions — justinmklam](https://www.justinmklam.com/posts/2025/08/replacing-disqus-with-giscus/)
 
 ### Analytics / LGPD
+
 - [Plausible vs Umami comparison — Vemetric](https://vemetric.com/blog/plausible-vs-umami)
-- [Cloudflare Web Analytics vs Plausible](https://plausible.io/vs-cloudflare-web-analytics)
+- [Github Web Analytics vs Plausible](https://plausible.io/vs-Github-web-analytics)
 - [Privacy-First Analytics Compared — Nuxt Scripts](https://scripts.nuxt.com/learn/privacy-first-analytics-compared)
 - [LGPD Compliance: Practical Guide — Secure Privacy](https://secureprivacy.ai/blog/lgpd-compliance-requirements)
 - [LGPD for Publishers — Kevel](https://www.kevel.com/blog/lgpd-guide)
 - [LGPD Checklist — Usercentrics](https://usercentrics.com/resources/lgpd-checklist/)
 
 ### Diagrams & images
+
 - [Lazy Loading Mermaid — Rick Strahl](https://weblog.west-wind.com/posts/2025/May/10/Lazy-Loading-the-Mermaid-Diagram-Library)
 - [Mermaid Diagrams in a Static Site Using MDX and Contentlayer](https://respawn.io/posts/contentlayer-mermaid-diagrams)
 - [Revisiting Mermaid.js for simple diagrams — Korny's Blog](https://blog.korny.info/2025/03/14/mermaid-js-revisited)
 - [Using Excalidraw to manage diagrams — HN discussion](https://news.ycombinator.com/item?id=47571376)
 
 ### Newsletter / lead magnets
+
 - [7 Lead Magnet Ideas To 10X Conversion Rates In 2025 — Funnelytics](https://www.funnelytics.io/blog/7-lead-magnet-ideas-to-10x-conversion-rates-in-2025)
 - [How to Create Email Newsletter Popup — GetSiteControl](https://getsitecontrol.com/blog/email-newsletter-popup/)
 - [Lead Magnet Statistics 2025](https://mycodelesswebsite.com/lead-magnet-statistics/)
 
 ### Exemplar blogs
+
 - [joshwcomeau.com](https://www.joshwcomeau.com/)
 - [leerob.io](https://leerob.io/)
 - [kentcdodds.com](https://kentcdodds.com/)
@@ -410,7 +419,7 @@ Used as benchmarks for what "good" looks like in 2025-2026. These embody table-s
 
 ### Features inalteradas
 
-Todos os outros itens MVP (SEO, sitemap, RSS, WhatsApp share, giscus comments, Pagefind, Cloudflare Analytics, dark mode, Shiki dual-theme, etc.) permanecem. O pivô é **como posts chegam no repo**, não **o que o site faz com eles**.
+Todos os outros itens MVP (SEO, sitemap, RSS, WhatsApp share, giscus comments, Pagefind, Github Analytics, dark mode, Shiki dual-theme, etc.) permanecem. O pivô é **como posts chegam no repo**, não **o que o site faz com eles**.
 
 ### Implicações específicas
 

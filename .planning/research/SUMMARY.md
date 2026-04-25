@@ -12,16 +12,17 @@
 AUTHOR escreve em dev.to (EN)  →  [Sync 24h]  →  Blog PT-BR em sertaoseracloud.com
          │                            │                      │
          │ canonical_url pro blog     │ Haiku + glossary      │ Astro + Shiki + Pagefind
-         │                            │ PR draft              │ Cloudflare Pages
+         │                            │ PR draft              │ Github Pages
          ▼                            ▼                      ▼
    Canal secundário EN          src/content/posts/*.md    Canal principal PT-BR
    (distribuição orgânica)       commitado pelo bot       (SEO + brand canonical)
 ```
 
 **Três time-axes independentes:**
+
 - **Author time** (no dev.to)
 - **Sync time** (GitHub Actions — novo)
-- **Build time** (Cloudflare Pages — Astro)
+- **Build time** (Github Pages — Astro)
 - **Runtime** (browser — JS mínimo)
 
 ---
@@ -36,8 +37,8 @@ AUTHOR escreve em dev.to (EN)  →  [Sync 24h]  →  Blog PT-BR em sertaoseraclo
 | Search | Pagefind | `^1.4` | Baixo (build-step isolado) |
 | Comments | Giscus | latest | Baixo (dados em GitHub Discussions, portáteis) |
 | Newsletter | Buttondown | free tier (<100 subs) | Baixo (export CSV funciona) |
-| Analytics | Cloudflare Web Analytics | hosted | Baixo (no vendor data) |
-| Hosting | Cloudflare Pages | hosted | Médio (deploy hooks específicos) |
+| Analytics | Github Web Analytics | hosted | Baixo (no vendor data) |
+| Hosting | Github Pages | hosted | Médio (deploy hooks específicos) |
 | Content source | dev.to (Forem API) | v1 | **Alto — escolha core de produto** |
 | Translation engine | Claude Haiku 4.5 via `@anthropic-ai/sdk` | `^0.40.x` | Médio (prompt portável, pode trocar engine) |
 | Sync compute | GitHub Actions | hosted | Baixo (YAML + script Node, portável) |
@@ -53,8 +54,10 @@ AUTHOR escreve em dev.to (EN)  →  [Sync 24h]  →  Blog PT-BR em sertaoseraclo
 **Regra de ouro:** primeiro post no ar antes de polir engajamento. Sugestão de slicing:
 
 ### v1.0 — "Ler" (first post published)
+
 Escopo mínimo que torna o blog *credivelmente publicado* com 1 post.
-- Astro scaffolded + Cloudflare Pages deploy em `sertaoseracloud.com`
+
+- Astro scaffolded + Github Pages deploy em `sertaoseracloud.com`
 - Sync pipeline básico (API dev.to → Haiku → markdown commitado manualmente no 1º round)
 - Content Collection + Zod schema (inclui campos `source.*` + `canonical_url`)
 - Layout base + typography + paleta semântica com CSS vars
@@ -64,10 +67,12 @@ Escopo mínimo que torna o blog *credivelmente publicado* com 1 post.
 - `lang="pt-BR"` + data PT-BR
 - 404 brandado
 - `/privacidade` stub (LGPD)
-- Analytics Cloudflare Web Analytics
+- Analytics Github Web Analytics
 
 ### v1.1 — "Sync automatizado"
+
 Tira a mão do autor da tradução.
+
 - GH Actions cron 24h
 - `peter-evans/create-pull-request` draft workflow
 - Circuit breaker (`MAX_TRANSLATIONS_PER_RUN`)
@@ -76,7 +81,9 @@ Tira a mão do autor da tradução.
 - Runbook de falhas em `docs/sync-pipeline.md`
 
 ### v1.2 — "Engajar"
+
 Features de retenção/captura.
+
 - Newsletter (Buttondown + double opt-in + `/privacidade` completa)
 - Giscus comments
 - Pagefind search
@@ -84,13 +91,16 @@ Features de retenção/captura.
 - Dark mode toggle com `prefers-color-scheme` + persistência
 
 ### v1.3 — "Polir"
+
 Brand amplifier + a11y refinement.
+
 - Dynamic OG image per post (satori / @vercel/og)
 - Tag landing pages com SEO editorial
 - About `/sobre` completa
 - A11y CI gate (axe/Lighthouse ≥95)
 
 ### v2+ — Diferenciadores
+
 TOC sticky, related posts, post series, Mermaid build-time, `/palestras`, `/projetos`, `/uses`, `/agora`, callouts/admonitions, lead magnet.
 
 ---
@@ -98,6 +108,7 @@ TOC sticky, related posts, post series, Mermaid build-time, `/palestras`, `/proj
 ## 4. Pitfalls críticos a enderenar no roadmap (19 total)
 
 **Do research original (1-14):**
+
 1. Pretty empty blog → v1.0 ships primeiro post obrigatoriamente
 2. Paleta vs WCAG → CSS vars semânticas + axe em CI
 3. LGPD newsletter → double opt-in + `/privacidade` + export CSV
@@ -132,10 +143,10 @@ TOC sticky, related posts, post series, Mermaid build-time, `/palestras`, `/proj
 | Comments | Giscus (GitHub Discussions) | Baixa — script tag |
 | Newsletter capture | Buttondown (free tier) | Baixa — form embed |
 | Newsletter compliance | **Nós** (LGPD é responsabilidade do controlador) | Média — `/privacidade` + double opt-in UX |
-| Analytics | Cloudflare Web Analytics | Zero — snippet |
+| Analytics | Github Web Analytics | Zero — snippet |
 | RSS | `@astrojs/rss` | Baixa — 1 arquivo |
 | Sitemap | `@astrojs/sitemap` | Zero — integration |
-| Hosting/CDN/SSL | Cloudflare Pages | Zero — git push |
+| Hosting/CDN/SSL | Github Pages | Zero — git push |
 | **Content ingestion** | **Nós** (Forem API + Haiku + PR bot) | **Alta — componente novo** |
 | **Translation pipeline** | **Nós** (script Node + Anthropic SDK + glossary enforcer) | **Alta — componente novo** |
 | Canonical coordination | **Nós** (template no dev.to + lint no sync + header no blog) | Média — processo autoral + código |
@@ -159,13 +170,14 @@ PRBuilder (GH Action workflow)
   ↓
 Astro layout + SEO + RSS + sitemap
   ↓
-Deploy em Cloudflare Pages com domínio custom
+Deploy em Github Pages com domínio custom
   ↓
 [v1.0 shipped — primeiro post no ar]
 ```
 
 **Blockers não-técnicos (autor precisa fazer):**
-- Conta Cloudflare Pages + conectar `sertaoseracloud.com` com SSL
+
+- Conta Github Pages + conectar `sertaoseracloud.com` com SSL
 - Conta Anthropic + gerar `ANTHROPIC_API_KEY`
 - Habilitar GitHub Discussions em `sertaoseracloud/sertaoseracloud`
 - Conta Buttondown + configurar domínio de envio
@@ -208,7 +220,7 @@ Não bloqueiam o roadmap, mas aparecerão:
 | Haiku traduz mal termo técnico em post public | Média | Alto (credibilidade) | Glossary + enforcer + PR review manual obrigatório |
 | Custo Haiku explode por bug | Baixa | Médio (5-70$/mês) | Circuit breaker + budget alert |
 | dev.to API muda contrato | Baixa | Alto (quebra sync) | Pin Forem API v1; monitor deprecation notices |
-| Cloudflare Pages ou CF Analytics descontinua free tier | Baixa | Alto (migrar) | Stack é portável: output estático, domínio próprio |
+| Github Pages ou CF Analytics descontinua free tier | Baixa | Alto (migrar) | Stack é portável: output estático, domínio próprio |
 | Autor não mantém `canonical_url` no dev.to | Média | Alto (SEO duplicate) | Sync lint abre GH Issue warning; template de post no dev.to |
 | Revisão manual de PR vira gargalo | Alta | Baixo (atrasa mas não quebra) | Aceitar latência de review como feature, não bug |
 | Autor publica diretamente no blog em markdown (sem passar pelo dev.to) | Baixa | Médio (ambiguidade de source) | Schema permite `source` ser optional; processo define dev.to como default |
@@ -219,7 +231,7 @@ Não bloqueiam o roadmap, mas aparecerão:
 
 **Phases sugeridas (proposta para o `ROADMAP.md`):**
 
-1. **Phase 0: Bootstrap & Fundações** — scaffold Astro, Cloudflare Pages + domínio, content collection schema, paleta semântica em CSS vars, layout base
+1. **Phase 0: Bootstrap & Fundações** — scaffold Astro, Github Pages + domínio, content collection schema, paleta semântica em CSS vars, layout base
 2. **Phase 1: Dev.to Sync Pipeline (MVP)** — Forem API client, DiffDetector, Translator (Haiku), GlossaryEnforcer, PRBuilder, GH Actions cron, runbook
 3. **Phase 2: SEO + RSS + Accessibility Foundation** — meta/OG/JSON-LD, sitemap, canonical bidirectional, a11y CI gate, lang, date formatting
 4. **Phase 3: Syntax highlighting + typography + dark mode** — Shiki dual-theme, reading typography, dark mode toggle, focus states, skip link
