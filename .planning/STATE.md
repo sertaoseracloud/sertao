@@ -2,13 +2,13 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-current_phase: 02-sync-pipeline (executing — Wave 4 of 4 complete, Wave 5 next)
+current_phase: 03-seo-rss-a11y (next)
 status: executing
-stopped_at: "Completed 02-04-PLAN.md — run-sync.ps1 wrapper, setup-scheduled-task.ps1, sync-devto.yml workflow_dispatch fallback"
-last_updated: "2026-04-25T03:21:45Z"
+stopped_at: "Completed 02-05-PLAN.md — runbook + E2E gate passed; Phase 2 complete (SYNC-01 through SYNC-11)"
+last_updated: "2026-04-25T03:26:40Z"
 progress:
   total_phases: 2
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 8
   completed_plans: 8
   percent: 100
@@ -17,19 +17,19 @@ progress:
 # Project State — O Sertão será Cloud
 
 **Last updated:** 2026-04-25
-**Status:** In Progress — Executing Phase 2
+**Status:** In Progress — Phase 2 complete; Phase 3 next
 
 ---
 
 ## Current Position
 
-- **Current Phase:** 02-sync-pipeline (executing — Wave 5 next: runbook + E2E gate)
-- **Previous Phase:** 01-bootstrap-fundacoes — COMPLETE (3/3 plans, 2026-04-24)
-- **Progress:** Phase 1 done; Phase 2 executing (4/5 plans complete)
+- **Current Phase:** 03-seo-rss-a11y (next — Phase 2 complete)
+- **Previous Phase:** 02-sync-pipeline — COMPLETE (5/5 plans, 2026-04-25)
+- **Progress:** Phase 1 done; Phase 2 done; Phase 3 next
 
 ```
 Progress: [####################] Phase 1: 3/3 plans complete ✓
-Progress: [################    ] Phase 2: 4/5 plans complete — Wave 5 next
+Progress: [####################] Phase 2: 5/5 plans complete ✓
 ```
 
 ---
@@ -77,13 +77,14 @@ Progress: [################    ] Phase 2: 4/5 plans complete — Wave 5 next
 | 02-sync-pipeline | 02 | 2min | 3 | 4 |
 | 02-sync-pipeline | 03 | 4min | 2 | 5 |
 | 02-sync-pipeline | 04 | 2min | 2 | 3 |
+| 02-sync-pipeline | 05 | 10min | 2 | 1 |
 
 ---
 
 ## Last Session
 
 - **Timestamp:** 2026-04-25
-- **Stopped at:** Completed 02-04-PLAN.md — run-sync.ps1 wrapper, setup-scheduled-task.ps1, sync-devto.yml workflow_dispatch fallback
-- **Resume file:** .planning/phases/02-sync-pipeline/02-05-PLAN.md
+- **Stopped at:** Completed 02-05-PLAN.md — runbook + E2E gate passed; Phase 2 complete (SYNC-01 through SYNC-11)
+- **Resume file:** .planning/phases/03-seo-rss-a11y/ (Phase 3 plans not yet created)
 - **Pending authorial action:** Enable GitHub Pages (Settings > Pages > GitHub Actions) + DNS A records for sertaoseracloud.com
-- **Pending authorial action (Phase 2 pre-execute):** Add ANTHROPIC_API_KEY secret to GitHub repo (Settings → Secrets → Actions)
+- **Pending authorial action:** Google Fonts import in src/styles/global.css must be replaced with self-hosted WOFF2 before Phase 5

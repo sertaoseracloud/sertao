@@ -86,23 +86,23 @@ Plans:
 - [x] 02-02-PLAN.md — DevToClient, DiffDetector, Translator, GlossaryEnforcer (Wave 2 core components)
 - [x] 02-03-PLAN.md — PRBuilder, sync-devto.ts orchestrator, circuit breaker (Wave 3)
 - [x] 02-04-PLAN.md — GH Actions workflow (workflow_dispatch-only fallback), Windows Task Scheduler local setup (run-sync.ps1 + setup-scheduled-task.ps1, semanal segunda-feira 09:00)
-- [ ] 02-05-PLAN.md — Runbook (docs/sync-pipeline.md) + E2E test checkpoint
+- [x] 02-05-PLAN.md — Runbook (docs/sync-pipeline.md) + E2E test checkpoint
 
 **Success criteria:**
 
-- [ ] Script `scripts/sync-devto.ts` (Node 22 + `fetch` nativo + `@anthropic-ai/sdk`)
-- [ ] DevToClient: `GET /api/articles?username=sertaoseracloud` + per-article fetch de `body_markdown`
-- [ ] DiffDetector: SHA-256 de `body_markdown` normalizado vs `source.hash` nos posts commitados
-- [ ] Translator: chamada Haiku 4.5 com `.planning/glossary.json` inlined no system prompt + chunking por parágrafo + retry 3x em erro
-- [ ] GlossaryEnforcer: valida preservação de todos os termos em `preserve_as_is` (contagem PT ≥ contagem EN); falha sync se drift
-- [ ] PRBuilder: escreve `src/content/posts/{slug}.md` com frontmatter completo + abre PR draft via GitHub REST API direto (não peter-evans — portabilidade com Claude Code agent; confirmado em planning)
-- [ ] Circuit breaker: `MAX_TRANSLATIONS_PER_RUN=5` respeitado
-- [ ] `.github/workflows/sync-devto.yml` com `workflow_dispatch` apenas (fallback manual — scheduling via Windows Task Scheduler local no PC do autor)
-- [ ] `scripts/run-sync.ps1` wrapper + `scripts/setup-scheduled-task.ps1` — cron semanal (segunda-feira 09:00) via Windows Task Scheduler; `StartWhenAvailable` para catchup se PC estava desligado
-- [ ] `ANTHROPIC_API_KEY` configurado como secret no repo
-- [ ] Budget alert $5/mês configurado na Anthropic console
-- [ ] `docs/sync-pipeline.md` runbook: falhas comuns (429, timeout, drift, overflow) + como corrigir
-- [ ] Teste end-to-end com 1 artigo real do dev.to → PR gerado → markdown traduzido revisável
+- [x] Script `scripts/sync-devto.ts` (Node 22 + `fetch` nativo + `@anthropic-ai/sdk`)
+- [x] DevToClient: `GET /api/articles?username=sertaoseracloud` + per-article fetch de `body_markdown`
+- [x] DiffDetector: SHA-256 de `body_markdown` normalizado vs `source.hash` nos posts commitados
+- [x] Translator: chamada Haiku 4.5 com `.planning/glossary.json` inlined no system prompt + chunking por parágrafo + retry 3x em erro
+- [x] GlossaryEnforcer: valida preservação de todos os termos em `preserve_as_is` (contagem PT ≥ contagem EN); falha sync se drift
+- [x] PRBuilder: escreve `src/content/posts/{slug}.md` com frontmatter completo + abre PR draft via GitHub REST API direto (não peter-evans — portabilidade com Claude Code agent; confirmado em planning)
+- [x] Circuit breaker: `MAX_TRANSLATIONS_PER_RUN=5` respeitado
+- [x] `.github/workflows/sync-devto.yml` com `workflow_dispatch` apenas (fallback manual — scheduling via Windows Task Scheduler local no PC do autor)
+- [x] `scripts/run-sync.ps1` wrapper + `scripts/setup-scheduled-task.ps1` — cron semanal (segunda-feira 09:00) via Windows Task Scheduler; `StartWhenAvailable` para catchup se PC estava desligado
+- [x] `ANTHROPIC_API_KEY` configurado como secret no repo
+- [x] Budget alert $5/mês configurado na Anthropic console
+- [x] `docs/sync-pipeline.md` runbook: falhas comuns (429, timeout, drift, overflow) + como corrigir
+- [x] Teste end-to-end com 1 artigo real do dev.to → PR gerado → markdown traduzido revisável
 
 **Scope in:**
 
