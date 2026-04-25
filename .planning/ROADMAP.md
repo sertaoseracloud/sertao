@@ -84,7 +84,7 @@ Plans:
 Plans:
 - [x] 02-01-PLAN.md — Package setup + test scaffold (deps install, 6 failing test files)
 - [x] 02-02-PLAN.md — DevToClient, DiffDetector, Translator, GlossaryEnforcer (Wave 2 core components)
-- [ ] 02-03-PLAN.md — PRBuilder, sync-devto.ts orchestrator, circuit breaker (Wave 3)
+- [x] 02-03-PLAN.md — PRBuilder, sync-devto.ts orchestrator, circuit breaker (Wave 3)
 - [ ] 02-04-PLAN.md — GH Actions workflow (workflow_dispatch-only fallback), Windows Task Scheduler local setup (run-sync.ps1 + setup-scheduled-task.ps1, semanal segunda-feira 09:00)
 - [ ] 02-05-PLAN.md — Runbook (docs/sync-pipeline.md) + E2E test checkpoint
 
