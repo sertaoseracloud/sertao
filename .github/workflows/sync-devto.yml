@@ -1,0 +1,56 @@
+name: Sync dev.to articles (manual)
+
+# SCHEDULING ARCHITECTURE:
+# Primary trigger: Windows Task Scheduler on developer's PC
+#   Script: scripts/run-sync.ps1 (weekly, Monday 09:00 local time)
+#   Requires: ANTHROPIC_API_KEY + GITHUB_TOKEN as Windows user environment variables
+#
+# This workflow is a MANUAL FALLBACK only — run from GitHub Actions UI when needed.
+# No cron trigger here.
+on:
+  workflow_dispatch:
+    inputs:
+      max_translations:
+        description: 'Max articles to translate (default: 5)'
+        required: false
+        default: '5'
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: sync-devto
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env:
+      MAX_TRANSLATIONS_PER_RUN: ${{ github.event.inputs.max_translations || '5' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run sync pipeline
+        run: pnpm sync:devto
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MAX_TRANSLATIONS_PER_RUN: ${{ env.MAX_TRANSLATIONS_PER_RUN }}
