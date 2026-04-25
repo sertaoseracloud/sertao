@@ -193,6 +193,7 @@ async function main(): Promise<void> {
       return {
         ...article,
         bodyMarkdown: article.body_markdown,
+        coverImageUrl: article.cover_image,
         hasChanged: existingHash !== newHash,
         manualOverride,
       };
