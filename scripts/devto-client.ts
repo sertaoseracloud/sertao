@@ -27,8 +27,7 @@ export class DevToClient {
     const url = `${BASE_URL}/articles?username=${encodeURIComponent(username)}&per_page=30`;
     const res = await this.fetchFn(url, { headers: HEADERS });
     if (!res.ok) {
-      console.error(`[DevToClient] listing failed: ${res.status} ${res.statusText}`);
-      return [];
+      throw new Error(`[DevToClient] listing failed: ${res.status} ${res.statusText}`);
     }
     return res.json() as Promise<DevToArticleSummary[]>;
   }
