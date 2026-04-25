@@ -144,7 +144,7 @@ Plans:
 **Plans:** 4 plans
 
 Plans:
-- [ ] 03-01-PLAN.md — SEO component (SEO.astro, PostLayout, [slug] route, BaseLayout update)
+- [x] 03-01-PLAN.md — SEO component (SEO.astro, PostLayout, [slug] route, BaseLayout update)
 - [ ] 03-02-PLAN.md — RSS feed + sitemap + robots.txt (markdown-it, sanitize-html, @astrojs/sitemap)
 - [ ] 03-03-PLAN.md — A11y primitives + pages (skip-link, focus ring, 404, /privacidade, format-date)
 - [ ] 03-04-PLAN.md — Schema enforcement + Lighthouse CI gate (D-16, D-17, test cases, deploy.yml)

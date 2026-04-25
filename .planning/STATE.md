@@ -2,34 +2,35 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-current_phase: 03-seo-rss-a11y (next)
-status: executing
-stopped_at: "Completed 02-05-PLAN.md — runbook + E2E gate passed; Phase 2 complete (SYNC-01 through SYNC-11)"
-last_updated: "2026-04-25T03:26:40Z"
+current_phase: 03-seo-rss-a11y (executing)
+status: in_progress
+stopped_at: "Phase 3 plan 01 complete — SEO component, PostLayout, [slug] route delivered"
+last_updated: "2026-04-25T22:07:00Z"
 progress:
-  total_phases: 2
+  total_phases: 3
   completed_phases: 2
-  total_plans: 8
-  completed_plans: 8
-  percent: 100
+  total_plans: 12
+  completed_plans: 9
+  percent: 75
 ---
 
 # Project State — O Sertão será Cloud
 
 **Last updated:** 2026-04-25
-**Status:** In Progress — Phase 2 complete; Phase 3 next
+**Status:** In Progress — Phase 3 executing (1/4 plans complete)
 
 ---
 
 ## Current Position
 
-- **Current Phase:** 03-seo-rss-a11y (next — Phase 2 complete)
+- **Current Phase:** 03-seo-rss-a11y — EXECUTING (1/4 plans done)
 - **Previous Phase:** 02-sync-pipeline — COMPLETE (5/5 plans, 2026-04-25)
-- **Progress:** Phase 1 done; Phase 2 done; Phase 3 next
+- **Progress:** Phase 1 done; Phase 2 done; Phase 3 plan 01 done
 
 ```
 Progress: [####################] Phase 1: 3/3 plans complete ✓
 Progress: [####################] Phase 2: 5/5 plans complete ✓
+Progress: [#####               ] Phase 3: 1/4 plans complete (25%)
 ```
 
 ---
@@ -58,6 +59,9 @@ Progress: [####################] Phase 2: 5/5 plans complete ✓
 - pr-builder.test.ts imports live Zod schema from src/content.config.js — schema drift triggers immediate test failure (02-01)
 - Translator.buildSystemPrompt() uses null-coalescing (?? []) for glossary fields to handle partial mocks in tests (02-02)
 - GlossaryEnforcer regex-escapes preserve_as_is terms for safe matching of terms with regex metacharacters (02-02)
+- SEO.astro is head-only (no html/body) — emits meta/link/script tags only; BaseLayout owns the shell (03-01)
+- canonicalUrl prop added to BaseLayout for explicit override so post canonical_url frontmatter flows to SEO (03-01)
+- PostLayout uses inline toLocaleDateString('pt-BR') instead of format-date import — avoids cross-plan dependency with 03-03 (03-01)
 
 ---
 
@@ -78,13 +82,14 @@ Progress: [####################] Phase 2: 5/5 plans complete ✓
 | 02-sync-pipeline | 03 | 4min | 2 | 5 |
 | 02-sync-pipeline | 04 | 2min | 2 | 3 |
 | 02-sync-pipeline | 05 | 10min | 2 | 1 |
+| 03-seo-rss-a11y | 01 | 6min | 2 | 4 |
 
 ---
 
 ## Last Session
 
-- **Timestamp:** 2026-04-25
-- **Stopped at:** Completed 02-05-PLAN.md — runbook + E2E gate passed; Phase 2 complete (SYNC-01 through SYNC-11)
-- **Resume file:** .planning/phases/03-seo-rss-a11y/ (Phase 3 plans not yet created)
+- **Timestamp:** 2026-04-25T22:07:00Z
+- **Stopped at:** Completed 03-01-PLAN.md — SEO component, PostLayout, [slug] route, BaseLayout updated (D-02, D-03, D-04, D-05)
+- **Resume file:** .planning/phases/03-seo-rss-a11y/03-02-PLAN.md (RSS feed + sitemap + robots.txt)
 - **Pending authorial action:** Enable GitHub Pages (Settings > Pages > GitHub Actions) + DNS A records for sertaoseracloud.com
 - **Pending authorial action:** Google Fonts import in src/styles/global.css must be replaced with self-hosted WOFF2 before Phase 5
