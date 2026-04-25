@@ -189,7 +189,7 @@ ${canonicalStatus}
 
     // Step 5: Open draft PR with reviewer
     const prTitle = `[sync] ${article.title} (dev.to #${article.id})`;
-    const prBody = this.buildPrBody(article);
+    const prBody = this.buildPrBody(article, article.canonicalIssueUrl ?? undefined);
     const prRes = await this.fetchFn(
       `https://api.github.com/repos/${repo}/pulls`,
       {

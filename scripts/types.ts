@@ -10,6 +10,7 @@ export interface SyncArticle {
   coverImageUrl: string | null;
   coverAlt: string | null;
   canonicalUrl: string | null;
+  canonicalIssueUrl?: string | null;
   bodyMarkdownHash: string;
   translatedBody: string;
   sectionsCount: number;
@@ -31,5 +32,5 @@ export interface PipelineHandlers {
   enforce: (enSource: string, ptOutput: string) => EnforcerResult;
   writePost: (article: SyncArticle) => Promise<void>;
   openPr: (article: SyncArticle) => Promise<string>;
-  openIssue: (title: string, body: string) => Promise<void>;
+  openIssue: (title: string, body: string) => Promise<string | undefined>;
 }

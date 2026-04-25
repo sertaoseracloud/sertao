@@ -107,6 +107,7 @@ export async function processArticles(
         coverImageUrl: article.coverImageUrl ?? null,
         coverAlt: article.coverAlt ?? null,
         canonicalUrl: canonicalUrl ?? null,
+        canonicalIssueUrl: canonicalIssueUrl ?? null,
         bodyMarkdownHash: hashMarkdown(article.bodyMarkdown ?? ''),
         translatedBody: translated,
         sectionsCount,
@@ -215,9 +216,9 @@ async function main(): Promise<void> {
     openIssue: async (title, body) => {
       if (!GITHUB_TOKEN) {
         console.log(`[sync-devto] No GITHUB_TOKEN — would open issue: ${title}`);
-        return;
+        return undefined;
       }
-      await prBuilder.openGitHubIssue(title, body, GITHUB_TOKEN, REPO);
+      return prBuilder.openGitHubIssue(title, body, GITHUB_TOKEN, REPO);
     },
   };
 
