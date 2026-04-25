@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Bash(choco install:*)",
+      "Bash(winget install:*)",
+      "Bash(pacman -Sy --noconfirm mingw-w64-x86_64-ripgrep)",
+      "Bash(pnpm:*)",
+      "Bash(export ANTHROPIC_API_KEY='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')",
+      "Bash(echo:*)",
+      "WebFetch(domain:dev.to)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ]
+  },
+  "enabledPlugins": {
+    "obsidian@obsidian-skills": true
+  }
+}
