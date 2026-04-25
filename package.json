@@ -15,7 +15,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "sync:devto": "tsx scripts/sync-devto.ts",
-    "test:sync": "node --import tsx/esm --test scripts/__tests__/**/*.test.ts",
+    "test:sync": "node --test scripts/__tests__/**/*.test.ts",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
