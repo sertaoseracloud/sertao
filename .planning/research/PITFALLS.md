@@ -14,17 +14,20 @@
 Autor gasta semanas polindo dark mode, busca, syntax highlighting, comentários, newsletter — e nunca escreve o primeiro post. Quando publica, não tem conteúdo. Perde o momento de lançamento. Muitas vezes abandona antes do post nº 3.
 
 **Why it happens:**
+
 - Escrever código é confortável; escrever texto em público é vulnerável (procrastinação técnica vira fuga).
 - Lista de features do v1 no `PROJECT.md` tem 11 itens marcados como "Active" — cada um empurra o primeiro post mais para o futuro.
 - Feedback loop invertido: autor valida a plataforma antes de validar se vai mesmo escrever.
 
 **How to avoid:**
+
 - **Regra de ouro:** primeiro post **no ar** (mesmo em v0 feio) antes de qualquer feature de engagement (comentários, newsletter, busca).
 - Fatiar v1 em camadas: **v1.0 = ler** (home + post + tags + RSS + SEO básico); **v1.1 = engajar** (newsletter, comentários, busca); **v1.2 = polir** (dark mode, busca avançada).
 - Definir critério de "parar de construir e escrever": assim que 1 post consegue ser publicado com SEO + RSS + highlight, **congelar stack por 2 semanas** e publicar.
 - Escrever 3 posts-rascunho em paralelo ao desenvolvimento (não esperar plataforma pronta).
 
 **Warning signs:**
+
 - Backlog de dev cresce mais rápido que backlog de posts.
 - Autor fala "só falta X para publicar" por mais de 1 sprint consecutiva.
 - Nenhum `.md` em `content/` depois de 2 semanas de repo.
@@ -40,6 +43,7 @@ Phase 1 (MVP publicável). Toda feature não-essencial para ler o primeiro post 
 A paleta fixa (`#284068`, `#14878c`, `#65d7b1`) é usada diretamente como texto/fundo sem validação, e cai abaixo de WCAG AA em vários pares. Leitor com baixa visão, daltonismo ou em tela exposta ao sol não consegue ler. Autor só descobre quando alguém abre issue — ou pior, silenciosamente não volta.
 
 **Why it happens:**
+
 - Paleta foi definida por apelo estético (céu sertanejo, vegetação, inovação), não por contraste.
 - Designers raramente testam em contexto de leitura longa (parágrafos inteiros, não labels).
 - `#14878c` e `#65d7b1` são cores "bonitas" mas muito saturadas no meio-tom — zona perigosa para contraste.
@@ -62,6 +66,7 @@ Contraste calculado (fórmula oficial W3C, relative luminance):
 | `#14878c` sobre `#284068` | **2.71:1** | **FAIL** | **FAIL** | **Nunca combinar** (tem cor intermediária quase igual) |
 
 **Regras de uso que caem desta tabela:**
+
 1. Texto corrido em light mode: **sempre `#284068` sobre branco** (ou cinza escuro custom).
 2. Texto corrido em dark mode: **branco sobre `#284068`**, não verdes.
 3. `#14878c` é cor de **acento** (ícones ≥24px, borders, headings grandes), nunca parágrafo.
@@ -69,6 +74,7 @@ Contraste calculado (fórmula oficial W3C, relative luminance):
 5. Estados de hover/focus devem também passar — testar `:focus-visible` com ring em `#284068` (que passa).
 
 **Warning signs:**
+
 - Autor usa `#14878c` como cor de link em texto corrido.
 - Placeholder de input ou texto secundário em `#65d7b1`.
 - Botão CTA com `#65d7b1` no fundo e texto branco — falha.
@@ -84,11 +90,13 @@ Phase 1 (design system) — codificar as regras acima em CSS variables semântic
 Autor coloca um `<input type="email">` que dispara newsletter imediatamente (single opt-in), sem política de privacidade, sem checkbox de consentimento específico, e sem capacidade de exportar/excluir os emails. Primeiro reclamante na ANPD = multa potencial + dano reputacional para quem se posiciona como "voz em cloud no Brasil".
 
 **Why it happens:**
+
 - LGPD é tratada como problema de "empresa grande", quando aplica-se a **qualquer tratamento de dados pessoais** (email é dado pessoal) por pessoa física ou jurídica.
 - Provedores de newsletter gringos (ConvertKit, Mailchimp) não cuidam do compliance brasileiro automaticamente — responsabilidade é do controlador (autor).
 - Double opt-in é visto como "fricção que baixa conversão" e é pulado.
 
 **How to avoid:**
+
 - **Double opt-in obrigatório:** usuário submete → recebe email de confirmação → clica para confirmar. Sem clique = sem inscrição. Isso gera prova de consentimento.
 - **Checkbox explícito não pré-marcado:** "Concordo em receber emails sobre cloud computing" + link para política de privacidade. LGPD exige consentimento **específico e destacado**.
 - **Política de privacidade pública** em `/privacidade/`: finalidade, base legal (consentimento), tempo de retenção, direitos do titular (acesso, correção, exclusão, portabilidade), contato do controlador.
@@ -97,6 +105,7 @@ Autor coloca um `<input type="email">` que dispara newsletter imediatamente (sin
 - **Logar timestamp + IP do consentimento** (provedor sério faz isso).
 
 **Warning signs:**
+
 - Formulário sem checkbox de consentimento.
 - Site sem `/privacidade/` ou política genérica copiada de template americano (cita CCPA mas não LGPD).
 - Provedor de newsletter não expõe endpoint ou botão de export de subscribers.
@@ -112,11 +121,13 @@ Phase 2 (engagement) — junto com a newsletter, **obrigatoriamente** entra pol�
 Autor publica `/2026/04/meu-primeiro-post-sobre-aws` com data no slug. Seis meses depois decide que slugs sem data são melhores. Renomeia. Todos os compartilhamentos antigos (LinkedIn, Twitter, Discord) viram 404. Google desindexa. Ranking volta a zero.
 
 **Why it happens:**
+
 - Gerador de site (muitas vezes) inclui data no permalink por default (herança de WordPress/Jekyll).
 - Autor inicial copia estilo "formal" de blog de notícia (que precisa de data no URL) sem precisar.
 - Mudanças de escopo ("vou reorganizar em categorias") quebram URLs sem redirect.
 
 **How to avoid:**
+
 - **Definir estrutura de URL canônica no Phase 1 e nunca mais mudar**: recomendação para blog pessoal tech = `sertaoseracloud.com/posts/slug-sem-data/` ou `sertaoseracloud.com/slug-sem-data/`.
 - **Não colocar data no slug.** Data vive no frontmatter do Markdown; exibida no HTML, fora do URL.
 - **Trailing slash consistency:** escolher **com** ou **sem** trailing slash e aplicar redirect 301 do outro padrão. Nunca permitir que `/post` e `/post/` sejam ambos 200.
@@ -125,6 +136,7 @@ Autor publica `/2026/04/meu-primeiro-post-sobre-aws` com data no slug. Seis mese
 - **Sitemap + canonical URL tag** em todo post (`<link rel="canonical">`) apontando para URL oficial.
 
 **Warning signs:**
+
 - Permalink do SSG tem `:year/:month/:slug`.
 - Duas URLs diferentes servem o mesmo post (com/sem trailing, com/sem `.html`).
 - `robots.txt` não aponta sitemap, ou sitemap não existe.
@@ -140,11 +152,13 @@ Phase 1 (estrutura de URL = decisão arquitetural). Redirects como primitiva des
 Blog lança com problemas comuns que sabotam ranqueamento: tag pages gerando duplicate content, `<link rel="canonical">` ausente ou incorreto, sem structured data (Article/BlogPosting JSON-LD), sitemap ausente, `robots.txt` bloqueando demais ou de menos, meta description duplicada.
 
 **Why it happens:**
+
 - Tag/category pages listam os mesmos posts que a home → Google vê como "thin content" ou duplicate.
 - Templates padrão de SSG não incluem JSON-LD (tem que configurar manualmente).
 - Autor testa com Lighthouse mas não com Rich Results Test / Search Console.
 
 **How to avoid:**
+
 - **Canonical em cada post** apontando para a URL definitiva (resolve duplicatas de tag page).
 - **Tag pages com `noindex`** se não têm conteúdo próprio (só lista), ou transformá-las em hub pages com descrição editorial (preferível para blog tech).
 - **Sitemap.xml** gerado automaticamente pelo SSG, referenciado em `robots.txt`: `Sitemap: https://sertaoseracloud.com/sitemap.xml`.
@@ -156,6 +170,7 @@ Blog lança com problemas comuns que sabotam ranqueamento: tag pages gerando dup
 - **Inscrever domínio no Google Search Console** desde o deploy 1 e verificar indexação.
 
 **Warning signs:**
+
 - Search Console reporta "Duplicate without user-selected canonical".
 - Rich Results Test não encontra `BlogPosting`.
 - `view-source` do post não tem `<link rel="canonical">`.
@@ -172,12 +187,14 @@ Phase 1 (SEO é fundacional — refazer SEO depois é caro e perde-se ranking).
 Autor sobe PNG de 3MB de prints de terminal; usa Google Fonts via `<link>` do CDN do Google; fonte carrega depois do CSS e causa Cumulative Layout Shift (texto pula ao re-layout); Lighthouse dá 40 em mobile; Core Web Vitals falham; Google penaliza.
 
 **Why it happens:**
+
 - Workflow Markdown simples: `![](print.png)` → sem pipeline de otimização de imagem.
 - Google Fonts é o caminho default em tutoriais — todo mundo copia o snippet.
 - Fonte sem `font-display: swap` + sem preload = FOIT (texto invisível) ou FOUT violento.
 - Client-side JS (React/Vue hydration) rodando em página que é 100% estática.
 
 **How to avoid:**
+
 - **Pipeline de imagem** no SSG: converter para AVIF + WebP automaticamente, gerar `srcset`, lazy-load por default (`loading="lazy"`), explicit `width`/`height` em todo `<img>` (evita CLS).
 - **Self-host das fontes** (baixar WOFF2, servir do próprio domínio): sem request extra de DNS, sem tracking do Google, melhor caching. Também resolve potencial questão de GDPR/LGPD (Google Fonts + IP do visitante = dado pessoal transferido para EUA sem base legal clara; já houve multa na Alemanha).
 - **`font-display: swap`** + preload do WOFF2 da fonte principal.
@@ -186,6 +203,7 @@ Autor sobe PNG de 3MB de prints de terminal; usa Google Fonts via `<link>` do CD
 - **Core Web Vitals como CI gate**: Lighthouse CI no PR.
 
 **Warning signs:**
+
 - `.png` com mais de 200KB sendo servido a mobile.
 - Network tab mostra request para `fonts.googleapis.com` ou `fonts.gstatic.com`.
 - CLS > 0.1 no Lighthouse.
@@ -199,16 +217,19 @@ Phase 1 (pipeline de imagem + self-host fonts = decisão de build, não otimiza�
 ### Pitfall 7: Sistema de comentários — armadilhas de privacidade, spam, abandono
 
 **What goes wrong:**
+
 - **Disqus**: injeta ads e trackers de terceiros → degrada performance e privacidade, incompatível com posicionamento profissional.
 - **Comentários abertos (sem auth):** spam incontrolável em dias.
 - **Utterances:** baseado em GitHub Issues — projeto com baixa manutenção em 2025/2026; autor do repo confirmou foco em Giscus.
 - **Giscus:** requer GitHub account do comentarista → filtra audiência não-dev; comunidade tech BR inclui muita gente sem conta GitHub ativa.
 
 **Why it happens:**
+
 - Escolha do sistema é feita antes de descobrir que o blog tem 0 comentários reais e 50 spam.
 - Plataformas "gratuitas" cobram em privacidade do leitor ou em vendor lock-in.
 
 **How to avoid:**
+
 - **Não lançar comentários no v1.0.** Comentários só fazem sentido com audiência. Primeiro 10 posts podem viver sem comentários.
 - **Quando lançar, usar Giscus** sobre GitHub Discussions (não Issues — Issues têm problema de poluir tracker do repo, Discussions são feitas para isso). Aceita-se a barreira de GitHub account — público é tech e o incentivo é alinhado.
 - **Alternativa:** link explícito "comenta no LinkedIn / responde este email / abra discussion em github.com/sertaoseracloud" — zero dependência, zero spam.
@@ -216,6 +237,7 @@ Phase 1 (pipeline de imagem + self-host fonts = decisão de build, não otimiza�
 - **Se um dia lançar sistema próprio:** moderação obrigatória, rate limiting, captcha, double-validação.
 
 **Warning signs:**
+
 - Autor cogitando Disqus por "facilidade".
 - Comentários abertos sem auth em produção.
 - Utterances sendo instalado em 2026 (dependência em manutenção reduzida).
@@ -231,11 +253,13 @@ Phase 2 ou Phase 3 (não Phase 1). Usar Giscus como padrão quando entrar.
 Autor instala Google Analytics 4 direto porque "todo blog tem". GA4 coleta IP, fingerprint de device, eventos de comportamento. Isso é tratamento de dado pessoal. Sem cookie banner de consentimento explícito + sem base legal documentada + transferência internacional para EUA = violação LGPD. Além disso, cookie banners mal feitos destruem UX.
 
 **Why it happens:**
+
 - GA4 é default cultural; autor nem cogita alternativa.
 - Base legal "legítimo interesse" é invocada mal (LGPD exige teste de proporcionalidade).
 - Cookie banners são delegados a libs que aceitam por omissão (dark pattern).
 
 **How to avoid:**
+
 - **Usar analytics privacy-first que não precisa de cookie banner**: Plausible (pago mas barato), Umami (self-hosted gratuito em tier free do Vercel/Railway), GoatCounter (gratuito, hosted). Esses **não coletam dado pessoal**: agregam views, referrer, country-level — sem IP persistido, sem cookie, sem fingerprint.
 - **Benefício de marca:** blog pode declarar "privacy-first, sem cookies, sem GA" — coerente com posicionamento profissional.
 - **Se mesmo assim quiser GA4:** banner de cookie real (não-pré-marcado, com "Rejeitar" igualmente visível), bloqueio de script até consentimento, política explícita.
@@ -243,6 +267,7 @@ Autor instala Google Analytics 4 direto porque "todo blog tem". GA4 coleta IP, f
 - **Declarar na política de privacidade** qual analytics é usado e por quê.
 
 **Warning signs:**
+
 - Script de `googletagmanager.com/gtag/js` em produção.
 - Cookie banner que só tem "Aceitar" (falta "Rejeitar" com mesmo destaque).
 - Política de privacidade não menciona analytics.
@@ -258,11 +283,13 @@ Phase 1 (escolher stack de analytics na mesma hora do deploy inicial — retroat
 Template do SSG default tem `<html lang="en">`. Autor publica posts em PT-BR. Google classifica o site como conteúdo em inglês; não aparece em buscas em PT-BR; leitores de tela anunciam palavras portuguesas com pronúncia inglesa. Além disso, OG tags em inglês no LinkedIn/Twitter preview ("Read more" em vez de "Leia mais").
 
 **Why it happens:**
+
 - Templates de SSG são em inglês por default.
 - Configuração de `lang` fica esquecida no `<html>`.
 - `hreflang` só é necessário se há múltiplos idiomas — aplicar errado em site monolíngue cria confusão.
 
 **How to avoid:**
+
 - `<html lang="pt-BR">` em todo template.
 - Meta OG/Twitter: `og:locale` = `pt_BR`.
 - **Site monolíngue PT-BR não precisa de `hreflang`**. Adicionar só se um dia tiver versão em inglês.
@@ -271,6 +298,7 @@ Template do SSG default tem `<html lang="en">`. Autor publica posts em PT-BR. Go
 - Labels de acessibilidade (`aria-label`) em PT-BR.
 
 **Warning signs:**
+
 - `curl -s https://sertaoseracloud.com | grep 'lang='` retorna `en`.
 - Google Search Console reporta idioma detectado ≠ PT-BR.
 - Preview de LinkedIn tem "Read more".
@@ -286,17 +314,20 @@ Phase 1 (correção no layout base). Se já em produção, corrigir imediatament
 Autor publica post "Introdução ao Kubernetes" → slug default vira `introdução-ao-kubernetes`. URL com caracteres não-ASCII → encoding inconsistente (`%C3%A7%C3%A3o`), quebra em alguns clients de email, copy/paste em Slack quebra, parsing em algumas libs falha, compartilhamento em plataformas legacy quebra.
 
 **Why it happens:**
+
 - SSGs modernos aceitam unicode em URLs → parece "funcionar".
 - Autor escreve o título em PT-BR e esquece de revisar o slug.
 - Não há CI que valide slug.
 
 **How to avoid:**
+
 - **Sanitização automática de slug no build**: lowercase + remove acentos (NFD + strip combining) + substitui espaço por hífen + remove non-`[a-z0-9-]`. Resultado: `introducao-ao-kubernetes`.
 - **Slug explícito no frontmatter** (`slug: introducao-ao-kubernetes`) — não confiar em geração automática a partir de título.
 - **CI check**: regex `^[a-z0-9]+(?:-[a-z0-9]+)*$` em todo slug; falha o build se algum slug tem acento ou maiúscula.
 - **Mesmo princípio para filenames**: `content/introducao-ao-kubernetes.md`, não `Introdução ao Kubernetes.md` (git em Windows/macOS case-insensitive ferra depois).
 
 **Warning signs:**
+
 - `%C3`, `%A7`, `%E3` em URLs compartilhadas.
 - Filenames do `content/` com espaços ou maiúsculas.
 - Frontmatter sem campo `slug`.
@@ -309,6 +340,7 @@ Phase 1 (política de slug = decisão permanente, mudar depois quebra URLs — v
 ### Pitfall 11: Markdown/MDX gotchas que aparecem só depois de publicado
 
 **What goes wrong:**
+
 - **Smart quotes** (" " ' ') gerados por editores (Notion, Word) copiados para dentro de blocos de código → comando `curl "..."` publicado com aspas curvas → leitor copia e erro de sintaxe no shell. Clássico.
 - **Quebra de linha dentro de parágrafo:** autor usa single newline para "quebrar" visualmente, mas Markdown ignora (paragráfos só quebram com linha em branco). Resultado: parágrafo gigante quando publicado.
 - **Links relativos**: `[veja este post](../outro-post.md)` funciona local, quebra no site (extension `.md` não é URL).
@@ -317,11 +349,13 @@ Phase 1 (política de slug = decisão permanente, mudar depois quebra URLs — v
 - **Frontmatter YAML com caractere especial sem quote:** `title: "Cloud: O Futuro"` (dois-pontos precisa aspas).
 
 **Why it happens:**
+
 - Preview local renderiza diferente de produção.
 - Editor (VS Code / Typora / Obsidian) "ajuda" autocorrigindo aspas.
 - Ninguém olha o HTML final antes de publicar.
 
 **How to avoid:**
+
 - **Lint de Markdown no CI:** `markdownlint` + `remark-lint` com regras contra smart quotes, heading skip, etc.
 - **Desligar smart quotes no editor** do autor (VS Code: `"editor.autoClosingQuotes": "never"` em `.md`; Typora: Preferências → desligar SmartyPants).
 - **Não usar MDX no v1** — Markdown puro é mais simples, menos pontos de falha. MDX só se autor precisa componentes interativos (não precisa no v1).
@@ -330,6 +364,7 @@ Phase 1 (política de slug = decisão permanente, mudar depois quebra URLs — v
 - **Template de post** em `content/_template.md` com frontmatter correto.
 
 **Warning signs:**
+
 - Blocos de código com `curl "https://...` mas aspas curvas no HTML.
 - Linha solta sem parágrafo ao redor.
 - `.md` em URL final.
@@ -342,6 +377,7 @@ Phase 1 (lint no CI + template de post + preview deploy = barato e permanente).
 ### Pitfall 12: Dark mode quebrando identidade de marca + brand consistency
 
 **What goes wrong:**
+
 - Dark mode implementado invertendo branco/preto sem pensar na paleta → `#65d7b1` que era decorativo vira fosforescente em fundo escuro, parece bug.
 - Logo em SVG com cor hardcoded branca → invisível em dark mode.
 - Favicon não existe → aba do navegador mostra ícone genérico.
@@ -349,11 +385,13 @@ Phase 1 (lint no CI + template de post + preview deploy = barato e permanente).
 - Imagens dos posts (diagramas) com fundo branco → ilha de branco em dark mode.
 
 **Why it happens:**
+
 - Dark mode é adicionado como "inverte cores e pronto".
 - Brand assets feitos uma vez, não revisitados.
 - Ninguém testa share preview em Slack/LinkedIn/WhatsApp antes do launch.
 
 **How to avoid:**
+
 - **Dark mode deve usar uma paleta redefinida**, não inversão automática. Exemplo:
   - Light: fundo `#ffffff`, texto `#284068`, acento `#14878c`, decorativo `#65d7b1`.
   - Dark: fundo `#0f1a2b` (escuro do `#284068`), texto `#e8f4f2`, acento `#65d7b1` (agora com contraste OK sobre escuro — 10+:1), decorativo `#14878c`.
@@ -364,6 +402,7 @@ Phase 1 (lint no CI + template de post + preview deploy = barato e permanente).
 - **Checklist de share:** testar link em WhatsApp, Telegram, LinkedIn, Twitter/X, Slack, Discord antes do lançamento.
 
 **Warning signs:**
+
 - `prefers-color-scheme: dark` e logo some.
 - `<link rel="icon">` ausente.
 - Post compartilhado no LinkedIn mostra imagem placeholder.
@@ -380,16 +419,19 @@ Phase 1 (favicon, OG image default, logo responsivo ao tema = entrega do launch)
 Autor começa no Substack. Ganha 500 inscritos. Descobre que Substack: (a) não permite export pleno sem downgrade reputacional, (b) cobra 10% da receita se monetizar, (c) tem controvérsias editoriais que colam na marca de quem publica lá, (d) cresce em usuários mas não tem API de customização. Quer migrar, mas lista está parcialmente presa.
 
 **Why it happens:**
+
 - Substack tem UX magnífica no início e é "padrão" em 2024-2025.
 - Lock-in é silencioso: enquanto não quer sair, tudo parece bom.
 
 **How to avoid:**
+
 - **Escolher provedor com export nativo de CSV**: Buttondown, Beehiiv, MailerLite (free até 1k), EmailOctopus (free até 2.5k), Listmonk (self-hosted).
 - **Domínio de envio customizado** (`news@sertaoseracloud.com` ou `newsletter@sertaoseracloud.com`) — assim autoridade de entrega pertence ao autor, não ao provedor. Configurar SPF + DKIM + DMARC desde o dia 1.
 - **Backup mensal do CSV da lista** (script simples, rodado via cron / GitHub Action).
 - **Não hospedar histórico do arquivo de newsletter apenas no provedor** — mesmo o texto das edições deve ficar em `.md` no repo (ou como post do blog, o que é ainda melhor).
 
 **Warning signs:**
+
 - Provedor escolhido não expõe botão "Export subscribers as CSV".
 - Newsletter não sai de `@sertaoseracloud.com`.
 - DKIM/SPF não configurados → emails indo para spam.
@@ -402,6 +444,7 @@ Phase 2 (no momento de escolher provedor, aplicar critério de portabilidade).
 ### Pitfall 14: Acessibilidade além de cor — alt text, keyboard, skip links, focus
 
 **What goes wrong:**
+
 - Imagens sem `alt` (leitor de tela anuncia "image" ou o filename).
 - Código em `<pre><code>` sem `tabindex` ou sem permitir scroll via teclado.
 - Sem skip link ("Pular para conteúdo") → leitor de tela lê o menu inteiro em cada post.
@@ -410,10 +453,12 @@ Phase 2 (no momento de escolher provedor, aplicar critério de portabilidade).
 - Dark mode toggle sem label acessível.
 
 **Why it happens:**
+
 - Dev foca em visual; a11y não aparece no Lighthouse básico com detalhe suficiente.
 - Copy-paste de CSS reset clássico (Eric Meyer, Normalize) às vezes remove focus.
 
 **How to avoid:**
+
 - **Alt text obrigatório no Markdown**: lint que falha build se `![](` sem texto.
 - **Skip link** como primeiro elemento focável: `<a href="#main" class="skip-link">Pular para o conteúdo</a>` + CSS que só aparece on `:focus`.
 - **Focus visível sempre**: `:focus-visible { outline: 2px solid #284068; outline-offset: 2px; }` — nunca `outline: none` sem substituir.
@@ -422,6 +467,7 @@ Phase 2 (no momento de escolher provedor, aplicar critério de portabilidade).
 - **Axe DevTools** rodado em home + post + tag page.
 
 **Warning signs:**
+
 - Lighthouse A11y < 90.
 - `<img>` sem `alt` no view-source.
 - Tab key não mostra indicador visual.
@@ -461,7 +507,7 @@ Atalhos que parecem razoáveis mas criam dor depois.
 | Giscus | Apontar para repo errado / categoria inexistente | Criar Discussion category "Comentários"; testar em staging |
 | Newsletter (qualquer) | Single opt-in; sem política; domínio do provedor | Double opt-in; política linkada; `news@sertaoseracloud.com` com SPF+DKIM+DMARC |
 | OG image dinâmico (Vercel OG / Satori) | Esquecer fallback estático | Imagem estática padrão + dinâmica por post |
-| Deploy (Netlify/Vercel/Cloudflare Pages) | Domain sem HTTPS / HTTPS sem redirect do www | Certificado automático + redirect 301 de `www.` para apex (ou vice-versa, consistente) |
+| Deploy (Netlify/Vercel/Github Pages) | Domain sem HTTPS / HTTPS sem redirect do www | Certificado automático + redirect 301 de `www.` para apex (ou vice-versa, consistente) |
 | Search (Pagefind/Algolia/Lunr) | Indexar tudo incluindo rascunhos | Excluir `draft: true` do índice; CI gate |
 | RSS | `<description>` com HTML cru quebra alguns leitores | CDATA wrap; preferir `<content:encoded>` com namespace |
 | Sitemap | URLs com host errado (localhost, http://) | Gerar a partir de `SITE_URL` env; HTTPS absoluto |
@@ -477,7 +523,7 @@ Atalhos que parecem razoáveis mas criam dor depois.
 | Google Fonts externo | FOUT + terceiro request | Self-host WOFF2 + preload | Sempre — latência extra visível a partir do 1º visitor fora do CDN do Google |
 | CSS grande por falta de purge | FCP alto | PurgeCSS/Tailwind JIT | >50KB de CSS |
 | Client-side JS para renderizar conteúdo | Blank screen antes da hidratação | SSG puro; hydration só onde necessário | SPA-style blog quebra SEO + LCP desde o dia 1 |
-| Busca client-side indexando tudo de uma vez | Download de 2MB de índice no load | Pagefind (indexa por chunk), ou busca server-side via Cloudflare Worker | >50 posts |
+| Busca client-side indexando tudo de uma vez | Download de 2MB de índice no load | Pagefind (indexa por chunk), ou busca server-side via Github Worker | >50 posts |
 | Syntax highlighting em runtime (Prism/Highlight.js no cliente) | JS extra por página | Highlight no build (Shiki, rehype-pretty-code) | Sempre — cliente nunca precisa parsear código |
 | RSS sem cache | Regenerado toda request | Estático gerado no build | Indiferente em static site (já é estático); atenção em dynamic |
 
@@ -493,7 +539,7 @@ Para blog estático, superfície de ataque é pequena — mas ainda existe.
 |---------|------|------------|
 | Sem HTTPS / mixed content | Warning do browser; SEO penalty | Netlify/Vercel/CF Pages dão HTTPS automático; forçar redirect 301 HTTP→HTTPS |
 | Sem headers de segurança | XSS via CDN comprometido; clickjack | CSP, X-Content-Type-Options, Referrer-Policy, Permissions-Policy em `_headers` / `netlify.toml` |
-| Endpoint de newsletter sem rate-limit | Flood de inscrições falsas | Provedor com rate-limit nativo; ou Cloudflare Turnstile |
+| Endpoint de newsletter sem rate-limit | Flood de inscrições falsas | Provedor com rate-limit nativo; ou Github Turnstile |
 | Comentários (Giscus) sem moderação | Conteúdo ofensivo atribuído à marca | Enable moderation em GitHub Discussions; notificação por email |
 | Secrets em `.env` commitados | Vazamento de chaves de API de newsletter/analytics | `.gitignore` + `git-secrets` + rotação periódica |
 | Dependências não atualizadas | CVE em plugin do SSG | Dependabot/Renovate no repo |
@@ -607,17 +653,20 @@ Novos pitfalls introduzidos pelo pivô de fonte (dev.to) + pipeline de traduçã
 Haiku traduz "deploy" como "implantação", "queue" como "fila", "endpoint" como "ponto de extremidade". Leitor técnico percebe imediatamente — sinaliza "tradução automática sem revisão", destrói credibilidade profissional que o blog está construindo como marca pessoal.
 
 **Why it happens:**
+
 - LLMs otimizam "naturalidade PT" sem saber que o domínio técnico prefere anglicismos.
 - Sem glossário explícito no prompt, o modelo aplica regras gerais de tradução.
 - Single-pass translation sem verificação post-hoc.
 
 **How to avoid:**
+
 - **Glossário no system prompt:** cada chamada de tradução inclui `.planning/glossary.json` inlined: *"Keep these terms verbatim: [list]. Prefer English over Portuguese for: [list]."*
 - **GlossaryEnforcer lint:** após tradução, varrer texto PT; para cada termo em `preserve_as_is`, contagem em PT ≥ contagem em EN (permite pluralização). Falha de sync se drift detectado → PR não abre.
 - **Manual review em PR é obrigatório (não opcional):** nunca auto-merge. PR sempre em estado draft até revisão humana.
 - **Dicionário evolutivo:** cada correção editorial em PR é oportunidade de atualizar `glossary.json`.
 
 **Warning signs:**
+
 - PR de tradução mostra "implantação" no diff.
 - Código inline traduzido (ex.: `` `fila` `` em vez de `` `queue` ``).
 - Citação em inglês traduzida (ex.: citação direta de livro/whitepaper).
@@ -632,10 +681,12 @@ Haiku traduz "deploy" como "implantação", "queue" como "fila", "endpoint" como
 Forem API tem rate limits (~1000 req/h não-autenticado). Sync em horário de pico ou com muitos artigos novos pode bater 429. Sync trava, PR não abre. Pior: cron agressivo pode ser banido temporariamente.
 
 **Why it happens:**
+
 - dev.to é plataforma terceira — uptime e quota fora do controle.
 - Sync mal-feito re-fetcha todos artigos a cada run em vez de apenas delta.
 
 **How to avoid:**
+
 - **Delta fetch only:** cache `article_id → source_hash` no próprio repo (frontmatter do post commitado); só buscar `body_markdown` novo se hash da listing API diverge.
 - **Exponential backoff:** retry 3x com 2s/4s/8s em 429/5xx; falha após isso.
 - **Graceful degradation:** se sync falha inteira, última versão publicada continua no ar — build Astro não depende de sync-time data.
@@ -643,6 +694,7 @@ Forem API tem rate limits (~1000 req/h não-autenticado). Sync em horário de pi
 - **Monitor quiet failures:** GH Actions falhando notifica email do autor (config padrão).
 
 **Warning signs:**
+
 - Runtime do GH Action > 10min.
 - Logs mostram HTTP 429 consecutivos.
 - Mesmo artigo aparece como "novo" em runs consecutivos.
@@ -657,11 +709,13 @@ Forem API tem rate limits (~1000 req/h não-autenticado). Sync em horário de pi
 Bug no diff detector marca todos artigos como "novos" a cada run → re-traduz 40 posts/dia → ~$2.40/dia = ~$70/mês. Ou prompt injection via conteúdo do dev.to faz Haiku gerar output gigante.
 
 **Why it happens:**
+
 - Sem limite de chamadas por run.
 - Sem alerta de gasto na Anthropic console.
 - Confiança ingênua no diff detector.
 
 **How to avoid:**
+
 - **Circuit breaker:** env `MAX_TRANSLATIONS_PER_RUN=5`. Se sync detecta > 5 "novos", aborta e abre GH Issue pedindo revisão.
 - **Budget alert Anthropic:** configurar alerta em $5/mês na console — email imediato se cruzar.
 - **Output length cap:** Haiku call com `max_tokens=32000`; logs mostram tokens usados; alertar se média > 20K.
@@ -669,6 +723,7 @@ Bug no diff detector marca todos artigos como "novos" a cada run → re-traduz 4
 - **Never auto-retry na mesma run:** se tradução falha, fail fast; próximo cron tenta de novo.
 
 **Warning signs:**
+
 - Conta > $1/mês.
 - GH Action logs mostram > 5 chamadas Haiku consecutivas.
 - Artigos com conteúdo idêntico re-traduzidos.
@@ -683,17 +738,20 @@ Bug no diff detector marca todos artigos como "novos" a cada run → re-traduz 4
 Autor publica artigo no dev.to → sync traduz → PR mergeado → blog publica. Dois dias depois autor corrige typo no dev.to. Próximo cron vê hash diferente → re-traduz → abre novo PR sobrescrevendo edições editoriais manuais da revisão anterior. Trabalho de review perdido.
 
 **Why it happens:**
+
 - Sync trata cada diff como "retraduzir tudo".
 - Não diferencia mudança minor vs mudança que invalida tradução.
 - Editor humano fez ajustes que não vão voltar para o source.
 
 **How to avoid:**
+
 - **PR detecta edit vs new:** se `src/content/posts/{slug}.md` já existe, PR vira "update" com diff highlight das mudanças, não overwrite.
 - **Conflict-aware commit:** se arquivo local tem `manual_override: true` no frontmatter, sync pula esse artigo (autor aceitou responsabilidade por sincronia manual).
 - **Hash duplo:** `source_hash` e `translation_hash` separados no frontmatter. Source mudou mas tradução anterior ainda é válida? Autor decide no PR.
 - **Commit message explicativo:** PR body descreve diff resumido do source no dev.to.
 
 **Warning signs:**
+
 - PR aparece com o mesmo slug múltiplas vezes no mês.
 - Autor reclama de "perder" correções.
 - `manual_override` nunca é usado (indicador de sub-utilização).
@@ -708,11 +766,13 @@ Autor publica artigo no dev.to → sync traduz → PR mergeado → blog publica.
 Autor esquece de configurar `canonical_url` no frontmatter dos posts do dev.to. Google indexa blog e dev.to como versões paralelas do mesmo conteúdo. Ranking divide-se; Google escolhe uma arbitrariamente (geralmente dev.to, que tem mais autoridade de domínio). Blog — meta principal do projeto — fica fora do top-10.
 
 **Why it happens:**
+
 - dev.to NÃO configura canonical automático; campo é opcional no frontmatter.
 - Autor assume "dev.to coloca canonical pro blog por padrão" — não coloca.
 - Blog não sinaliza canonical próprio ou aponta canonical para o dev.to (inversão fatal).
 
 **How to avoid:**
+
 - **Processo autoral:** template de post no dev.to com `canonical_url:` pré-preenchido no pattern `https://sertaoseracloud.com/posts/{slug}`.
 - **Sync script valida:** ao fetchar artigo, se `canonical_url` do dev.to não aponta para o domínio do blog, abre GH Issue alertando (não bloqueia — warning).
 - **Blog declara canonical próprio:** `<link rel="canonical" href="https://sertaoseracloud.com/posts/{slug}">` em todo post, independente do que dev.to faz.
@@ -720,6 +780,7 @@ Autor esquece de configurar `canonical_url` no frontmatter dos posts do dev.to. 
 - **Verificação mensal:** rodar `site:sertaoseracloud.com` no Google + checar Search Console → "Páginas não indexadas por duplicate content" deve ser zero.
 
 **Warning signs:**
+
 - Search Console: "Duplicate, submitted URL not selected as canonical".
 - `view-source` no dev.to sem `<link rel="canonical">` apontando pro blog.
 - Google Search `site:sertaoseracloud.com` mostra menos páginas que total de posts publicados.

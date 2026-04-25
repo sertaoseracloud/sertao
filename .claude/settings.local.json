@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:api.anthropic.com)",
+      "Bash(grep -oE \"\\(\\\\.site-nav|\\\\.site-brand|\\\\.nav-link|\\\\.logo\\)[^\\\\\\\\\\\\\\\\<]{30,800}\" \"blog-design-system/Blog Design System.html\")",
+      "Bash(grep -oE \"\\(\\\\.featured|\\\\.feat-|\\\\.hero\\)[^\\\\\\\\\\\\\\\\<]{30,800}\" \"blog-design-system/Blog Design System.html\")",
+      "Bash(grep -oE \"\\(\\\\.prose|\\\\.reading|article\\\\.post\\)[^\\\\\\\\\\\\\\\\<]{30,800}\" \"blog-design-system/Blog Design System.html\")",
+      "Bash(grep -oE \"\\(\\\\.callout|\\\\.toc|\\\\.tag-chip|\\\\.badge|\\\\.category\\)[^\\\\\\\\\\\\\\\\<]{30,600}\" \"blog-design-system/Blog Design System.html\")",
+      "Bash(grep -oE \"\\\\.callout[^\\\\\\\\\\\\\\\\<]{30,600}\" \"blog-design-system/Blog Design System.html\")",
+      "Bash(grep -oE \"\\(\\\\.tag-chip|tag-row|\\\\.chip|\\\\.cat-tag|\\\\.category-tag\\)[^\\\\\\\\\\\\\\\\<]{20,400}\" \"blog-design-system/Blog Design System.html\")",
+      "Bash(grep -oE \"\\(\\\\.tag|\\\\.chip\\)[^\\\\\\\\\\\\\\\\<]{20,400}\" \"blog-design-system/Blog Design System.html\")",
+      "Bash(grep -oE \"\\\\.footer[^\\\\\\\\\\\\\\\\<]{30,600}\" \"blog-design-system/Blog Design System.html\")",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Skill(gsd:execute-phase)",
+      "Bash(git commit *)",
+      "Bash(git *)"
+    ]
+  },
+  "enabledPlugins": {
+    "obsidian@obsidian-skills": true
+  }
+}
