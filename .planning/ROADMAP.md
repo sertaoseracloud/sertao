@@ -145,8 +145,8 @@ Plans:
 
 Plans:
 - [x] 03-01-PLAN.md — SEO component (SEO.astro, PostLayout, [slug] route, BaseLayout update)
-- [ ] 03-02-PLAN.md — RSS feed + sitemap + robots.txt (markdown-it, sanitize-html, @astrojs/sitemap)
-- [ ] 03-03-PLAN.md — A11y primitives + pages (skip-link, focus ring, 404, /privacidade, format-date)
+- [x] 03-02-PLAN.md — RSS feed + sitemap + robots.txt (markdown-it, sanitize-html, @astrojs/sitemap)
+- [x] 03-03-PLAN.md — A11y primitives + pages (skip-link, focus ring, 404, /privacidade, format-date)
 - [ ] 03-04-PLAN.md — Schema enforcement + Lighthouse CI gate (D-16, D-17, test cases, deploy.yml)
 
 **Success criteria:**
@@ -157,14 +157,14 @@ Plans:
 - [ ] `public/robots.txt` referenciando sitemap
 - [ ] `src/pages/rss.xml.ts` produz feed Atom-compatible; `<language>pt-BR</language>` explícito; full content ou summary+link
 - [ ] Canonical URL coerente em todo post: `<link rel="canonical" href="https://sertaoseracloud.com/posts/{slug}">`
-- [ ] Data PT-BR via helper `formatDatePtBr()` em `src/lib/format-date.ts` (timezone `America/Sao_Paulo`)
-- [ ] 404 page brandada em `src/pages/404.astro`
-- [ ] Skip-link "Pular para conteúdo" em `BaseLayout`
-- [ ] Focus visible em todo `:focus-visible` (custom ring em `#284068`)
+- [x] Data PT-BR via helper `formatDatePtBr()` em `src/lib/format-date.ts` (timezone `America/Sao_Paulo`)
+- [x] 404 page brandada em `src/pages/404.astro`
+- [x] Skip-link "Pular para conteúdo" em `BaseLayout`
+- [x] Focus visible em todo `:focus-visible` (custom ring em `--nucleo-eletrico` #00FFFF — corrects `#284068` from early planning; dark-first design system)
 - [ ] Alt text obrigatório no schema Zod de imagens do post (Zod required)
 - [ ] Lighthouse A11y ≥95 em `/`, `/posts/exemplo` e `/404`
 - [ ] Github Web Analytics snippet em `BaseLayout` (sem cookie banner necessário)
-- [ ] `/privacidade` stub inicial (LGPD: descrição de analytics, ausência de cookies, contato do controlador)
+- [x] `/privacidade` stub inicial (LGPD: descrição de analytics, ausência de cookies, contato do controlador)
 
 **Scope in:**
 

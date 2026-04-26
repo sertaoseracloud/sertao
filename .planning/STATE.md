@@ -4,33 +4,33 @@ milestone: v1.0
 milestone_name: milestone
 current_phase: 03-seo-rss-a11y (executing)
 status: in_progress
-stopped_at: "Phase 3 plan 01 complete — SEO component, PostLayout, [slug] route delivered"
-last_updated: "2026-04-25T22:07:00Z"
+stopped_at: "Phase 3 plan 03 complete — format-date, skip-link, focus ring, 404, /privacidade delivered"
+last_updated: "2026-04-26T06:03:00Z"
 progress:
   total_phases: 3
   completed_phases: 2
   total_plans: 12
-  completed_plans: 9
-  percent: 75
+  completed_plans: 11
+  percent: 92
 ---
 
 # Project State — O Sertão será Cloud
 
-**Last updated:** 2026-04-25
-**Status:** In Progress — Phase 3 executing (1/4 plans complete)
+**Last updated:** 2026-04-26
+**Status:** In Progress — Phase 3 executing (3/4 plans complete)
 
 ---
 
 ## Current Position
 
-- **Current Phase:** 03-seo-rss-a11y — EXECUTING (1/4 plans done)
+- **Current Phase:** 03-seo-rss-a11y — EXECUTING (3/4 plans done)
 - **Previous Phase:** 02-sync-pipeline — COMPLETE (5/5 plans, 2026-04-25)
-- **Progress:** Phase 1 done; Phase 2 done; Phase 3 plan 01 done
+- **Progress:** Phase 1 done; Phase 2 done; Phase 3 plans 01+02+03 done
 
 ```
 Progress: [####################] Phase 1: 3/3 plans complete ✓
 Progress: [####################] Phase 2: 5/5 plans complete ✓
-Progress: [#####               ] Phase 3: 1/4 plans complete (25%)
+Progress: [###############     ] Phase 3: 3/4 plans complete (75%)
 ```
 
 ---
@@ -62,6 +62,9 @@ Progress: [#####               ] Phase 3: 1/4 plans complete (25%)
 - SEO.astro is head-only (no html/body) — emits meta/link/script tags only; BaseLayout owns the shell (03-01)
 - canonicalUrl prop added to BaseLayout for explicit override so post canonical_url frontmatter flows to SEO (03-01)
 - PostLayout uses inline toLocaleDateString('pt-BR') instead of format-date import — avoids cross-plan dependency with 03-03 (03-01)
+- Focus ring uses --nucleo-eletrico (#00FFFF) NOT #284068 — dark-first design system; #284068 on #0A0F1E yields ~1.5:1 (fails WCAG); #00FFFF yields 16.5:1 (WCAG AAA) (03-03)
+- privacidade.astro last-updated date hardcoded as string — avoids format-date cross-plan import dependency in static file (03-03)
+- D-01 (no analytics) implemented by omission — no script analytics tags in any new file (03-03)
 
 ---
 
@@ -83,13 +86,14 @@ Progress: [#####               ] Phase 3: 1/4 plans complete (25%)
 | 02-sync-pipeline | 04 | 2min | 2 | 3 |
 | 02-sync-pipeline | 05 | 10min | 2 | 1 |
 | 03-seo-rss-a11y | 01 | 6min | 2 | 4 |
+| 03-seo-rss-a11y | 03 | 3min | 2 | 5 |
 
 ---
 
 ## Last Session
 
-- **Timestamp:** 2026-04-25T22:07:00Z
-- **Stopped at:** Completed 03-01-PLAN.md — SEO component, PostLayout, [slug] route, BaseLayout updated (D-02, D-03, D-04, D-05)
-- **Resume file:** .planning/phases/03-seo-rss-a11y/03-02-PLAN.md (RSS feed + sitemap + robots.txt)
+- **Timestamp:** 2026-04-26T06:03:00Z
+- **Stopped at:** Completed 03-03-PLAN.md — format-date helper, skip-link, focus ring, 404 page, /privacidade stub (D-01, D-11, D-12, D-13, D-14, D-18)
+- **Resume file:** .planning/phases/03-seo-rss-a11y/03-04-PLAN.md (Schema enforcement + Lighthouse CI gate)
 - **Pending authorial action:** Enable GitHub Pages (Settings > Pages > GitHub Actions) + DNS A records for sertaoseracloud.com
 - **Pending authorial action:** Google Fonts import in src/styles/global.css must be replaced with self-hosted WOFF2 before Phase 5
