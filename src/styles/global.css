@@ -153,6 +153,43 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* ── Focus Ring — WCAG AA+ global ─────────────────────────────────────── */
+/* #00FFFF (--nucleo-eletrico) on #0A0F1E (--abismo-profundo) = 16.5:1 (AAA) */
+:focus-visible {
+  outline: 2px solid var(--nucleo-eletrico);
+  outline-offset: 3px;
+}
+
+/* Suppress browser default outline only where we've replaced it */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ── Skip Link — WCAG 2.1 SC 2.4.1 ───────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(-100%);
+  transition: transform 0.15s ease;
+  background: var(--sub-nivel);
+  color: var(--nucleo-eletrico);
+  border: 1px solid var(--hairline-strong);
+  padding: 12px 20px;
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  z-index: 9999;
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid var(--nucleo-eletrico);
+  outline-offset: 3px;
+}
+
 /* ------------------------------------------------------------------ */
 /* 05 · Ambient Background                                             */
 /*     Radial gradient blobs + CSS grid overlay + scanlines            */
