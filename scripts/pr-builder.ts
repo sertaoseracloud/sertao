@@ -12,6 +12,7 @@ export interface PostFrontmatter {
   pubDate: Date;
   draft: boolean;
   tags: string[];
+  coverImageUrl?: string;
   coverAlt?: string;
   source: {
     platform: 'dev.to';
@@ -60,8 +61,9 @@ export class PRBuilder {
     if (article.canonicalUrl) {
       fm.canonical_url = article.canonicalUrl;
     }
-    if (article.coverAlt) {
-      fm.coverAlt = article.coverAlt;
+    if (article.coverImageUrl) {
+      fm.coverImageUrl = article.coverImageUrl;
+      fm.coverAlt = article.coverAlt ?? article.title;
     }
     return fm;
   }
@@ -272,6 +274,7 @@ ${canonicalStatus}
     lines.push(`pubDate: ${this.formatDate(fm.pubDate)}`);
     lines.push(`draft: ${fm.draft}`);
     lines.push(`tags: ${JSON.stringify(fm.tags)}`);
+    if (fm.coverImageUrl) lines.push(`coverImageUrl: ${JSON.stringify(fm.coverImageUrl)}`);
     if (fm.coverAlt) lines.push(`coverAlt: ${JSON.stringify(fm.coverAlt)}`);
     lines.push(`source:`);
     lines.push(`  platform: ${fm.source.platform}`);

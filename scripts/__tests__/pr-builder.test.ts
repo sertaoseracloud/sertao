@@ -1,7 +1,13 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
+import { z } from 'astro/zod';
 import { PRBuilder } from '../pr-builder.ts';
 import { collections } from '../../src/content.config.js';
+
+// TypeScript resolves content.config.js to the .ts type via moduleResolution:Bundler,
+// making `schema` appear as Astro's CollectionConfig.schema union. Cast to ZodTypeAny
+// so tests can call .safeParse() — the runtime value is always a plain ZodObject.
+const postsSchema = collections.posts.schema as z.ZodTypeAny;
 
 const mockArticle = {
   id: 12345,
@@ -25,7 +31,7 @@ describe('PRBuilder', () => {
   it('buildFrontmatter produces output that satisfies the Zod schema', () => {
     const builder = new PRBuilder('/tmp/posts', '/tmp/images');
     const frontmatter = builder.buildFrontmatter(mockArticle);
-    const result = collections.posts.schema.safeParse(frontmatter);
+    const result = postsSchema.safeParse(frontmatter);
     assert.ok(result.success, `Zod validation failed: ${JSON.stringify(result.error?.issues)}`);
   });
 
@@ -66,5 +72,61 @@ describe('PRBuilder', () => {
     const builder = new PRBuilder('/tmp/posts', '/tmp/images');
     const body = builder.buildPrBody(mockArticle);
     assert.ok(body.includes('✓'), 'missing ✓ in canonical lint section');
+  });
+
+  // D-17: coverAlt fallback — article has coverImageUrl but no explicit coverAlt
+  it('D-17: buildFrontmatter sets coverAlt to article.title when coverImageUrl present and coverAlt null', () => {
+    const builder = new PRBuilder('/tmp/posts', '/tmp/images');
+    const articleWithCover = {
+      ...mockArticle,
+      coverImageUrl: 'https://dev.to/image.jpg',
+      coverAlt: null,
+    };
+    const frontmatter = builder.buildFrontmatter(articleWithCover);
+    assert.equal(frontmatter.coverAlt, articleWithCover.title);
+  });
+
+  // D-17: explicit coverAlt is preserved when provided
+  it('D-17: buildFrontmatter preserves explicit coverAlt when provided', () => {
+    const builder = new PRBuilder('/tmp/posts', '/tmp/images');
+    const articleWithAlt = {
+      ...mockArticle,
+      coverImageUrl: 'https://dev.to/image.jpg',
+      coverAlt: 'Screenshot of AWS console',
+    };
+    const frontmatter = builder.buildFrontmatter(articleWithAlt);
+    assert.equal(frontmatter.coverAlt, 'Screenshot of AWS console');
+  });
+
+  // D-16: schema rejects coverImageUrl present with coverAlt absent
+  it('D-16: schema rejects post with coverImageUrl present but coverAlt absent', () => {
+    const result = postsSchema.safeParse({
+      title: 'Test',
+      description: 'Test description',
+      pubDate: new Date(),
+      draft: false,
+      tags: [],
+      coverImageUrl: 'https://example.com/image.jpg',
+      // coverAlt intentionally absent
+      manual_override: false,
+    });
+    assert.equal(result.success, false);
+    const hasAltIssue = result.error?.issues.some((i: { path: unknown[] }) => i.path.includes('coverAlt'));
+    assert.ok(hasAltIssue, 'expected Zod issue on coverAlt path');
+  });
+
+  // D-16: schema accepts post with coverImageUrl and coverAlt both present
+  it('D-16: schema accepts post with coverImageUrl and coverAlt both present', () => {
+    const result = postsSchema.safeParse({
+      title: 'Test',
+      description: 'Test description',
+      pubDate: new Date(),
+      draft: false,
+      tags: [],
+      coverImageUrl: 'https://example.com/image.jpg',
+      coverAlt: 'A descriptive alt text',
+      manual_override: false,
+    });
+    assert.ok(result.success, `unexpected Zod failure: ${JSON.stringify(result.error?.issues)}`);
   });
 });
