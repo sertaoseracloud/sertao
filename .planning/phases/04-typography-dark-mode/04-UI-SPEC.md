@@ -65,7 +65,7 @@ Source: `src/styles/global.css` spacing declarations; 04-CONTEXT.md D-10.
 | Prose h1 | clamp(32px, 2.8vw, 44px) | 700 | 1.15 | Space Grotesk |
 | Prose h2 | 26px | 600 | 1.15 | Space Grotesk |
 | Prose h3 | 20px | 600 | 1.15 | Space Grotesk |
-| Prose h4 | 17px | 600 | 1.15 | Space Grotesk |
+| Prose h4 | 18px | 600 | 1.15 | Space Grotesk |
 | Code block | 14px | 400 | 1.6 | JetBrains Mono |
 | Inline code | 0.85em (~15px) | 400 | inherit | JetBrains Mono |
 | Code block title label | 12px | 500 | 1.4 | JetBrains Mono |
@@ -82,8 +82,8 @@ Source: `src/styles/global.css` spacing declarations; 04-CONTEXT.md D-10.
 | ThemeToggle icon | 20px SVG | — | — | — |
 
 Rules:
-- Maximum 4 type sizes in prose: 14px (code), 18px (body), 20px (h3), 26px (h2) — h1 uses clamp and is display-only.
-- Maximum 2 prose weights: 400 (body) and 600 (headings/strong).
+- Maximum 4 type sizes in prose: 14px (code), 18px (body/h4), 20px (h3), 26px (h2) — h1 uses clamp and is display-only (excluded from prose size count).
+- h1 is display-only — excluded from prose weight count (uses 700 for display impact). Prose content weights: 400 (body) and 600 (headings/strong).
 - Prose max-width: 68ch (`--prose-measure`) — flush-left within `.stage`.
 - No text wrapping inside `<pre>` blocks; `overflow-x: auto` on mobile.
 
@@ -214,7 +214,7 @@ Rendered as: a `<div class="code-title">` inserted before `<pre>`, containing th
 | Font | JetBrains Mono, 12px, weight 500 |
 | Color | `--texto-secundario` |
 | Background | `--sub-nivel` with a bottom border `1px solid --hairline` |
-| Padding | 6px 16px |
+| Padding | 8px 16px |
 | Letter spacing | 0.08em |
 
 ---
