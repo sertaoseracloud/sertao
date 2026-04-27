@@ -1,0 +1,38 @@
+---
+// CopyCode.astro — Astro island (client:visible)
+// Appends a "Copiar" button to every code block in .prose on this page.
+// CSS class .copy-code-btn is defined in global.css (not here) because
+// scoped styles cannot reach DOM-injected elements (RESEARCH.md Pitfall 6).
+// No props — queries the DOM on mount.
+---
+
+<script>
+  // Runs client-side after the component becomes visible in the viewport.
+  document.querySelectorAll<HTMLPreElement>('.prose pre.astro-code').forEach((pre) => {
+    const btn = document.createElement('button');
+    btn.className = 'copy-code-btn';
+    btn.textContent = 'Copiar';
+    btn.setAttribute('aria-label', 'Copiar código');
+
+    btn.addEventListener('click', async () => {
+      const code = pre.querySelector('code')?.innerText ?? pre.innerText;
+      try {
+        await navigator.clipboard.writeText(code);
+        btn.textContent = '✓';
+        btn.setAttribute('aria-label', 'Código copiado');
+        setTimeout(() => {
+          btn.textContent = 'Copiar';
+          btn.setAttribute('aria-label', 'Copiar código');
+        }, 1500);
+      } catch {
+        btn.textContent = 'Erro';
+        setTimeout(() => {
+          btn.textContent = 'Copiar';
+          btn.setAttribute('aria-label', 'Copiar código');
+        }, 1500);
+      }
+    });
+
+    pre.appendChild(btn);
+  });
+</script>
