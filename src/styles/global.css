@@ -707,6 +707,118 @@ body {
 }
 
 /* ------------------------------------------------------------------ */
+/* 10b · Shiki Dual-Theme Activation                                   */
+/* Source: shiki.style/guide/dual-themes + docs.astro.build            */
+/* Use .astro-code NOT .shiki — Astro renames the class                */
+/* ------------------------------------------------------------------ */
+
+/* Dark mode default (no data-theme attribute = dark) */
+.astro-code,
+.astro-code span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
+}
+
+/* Light mode override */
+[data-theme="light"] .astro-code,
+[data-theme="light"] .astro-code span {
+  color: var(--shiki-light) !important;
+  background-color: var(--shiki-light-bg) !important;
+  font-style: var(--shiki-light-font-style) !important;
+  font-weight: var(--shiki-light-font-weight) !important;
+  text-decoration: var(--shiki-light-text-decoration) !important;
+}
+
+/* ------------------------------------------------------------------ */
+/* 10c · Shiki Transformer Annotation Classes                          */
+/* ------------------------------------------------------------------ */
+
+/* Diff annotations (transformerNotationDiff) */
+.prose pre .diff {
+  display: inline-block;
+  width: 100%;
+}
+.prose pre .diff.add {
+  background: rgba(107, 255, 180, 0.12);
+  border-left: 2px solid #6BFFB4;
+}
+.prose pre .diff.remove {
+  background: rgba(255, 107, 214, 0.12);
+  border-left: 2px solid #FF6BD6;
+}
+
+/* Focus annotations (transformerNotationFocus) */
+.prose pre.has-focused .line {
+  opacity: 0.35;
+  filter: blur(0.5px);
+  transition: opacity 0.2s, filter 0.2s;
+}
+.prose pre.has-focused .focused {
+  opacity: 1;
+  filter: none;
+}
+.prose pre:hover .line {
+  opacity: 1;
+  filter: none;
+}
+
+/* Highlight annotation (transformerNotationHighlight + transformerMetaHighlight) */
+.prose pre .highlighted {
+  background: rgba(0, 255, 255, 0.08);
+}
+
+/* ------------------------------------------------------------------ */
+/* 10d · Code Block Title (rehype-code-titles output)                  */
+/* ------------------------------------------------------------------ */
+
+.rehype-code-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--texto-secundario);
+  background: var(--sub-nivel);
+  border: 1px solid var(--hairline);
+  border-bottom: none;
+  padding: 8px 16px;
+}
+
+/* ------------------------------------------------------------------ */
+/* 10e · Copy-Code Button Positioning (global — DOM-injected element)  */
+/* Button styles appended by CopyCode.astro island (Plan 03)          */
+/* ------------------------------------------------------------------ */
+
+/* position:relative required for absolute-positioned copy button */
+.prose pre.astro-code {
+  position: relative;
+}
+
+/* .copy-code-btn is appended via document.createElement in CopyCode.astro */
+.copy-code-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: var(--sub-nivel);
+  border: 1px solid var(--hairline);
+  color: var(--texto-secundario);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+  z-index: 1;
+}
+
+.copy-code-btn:hover {
+  border-color: var(--hairline-strong);
+  color: var(--nucleo-eletrico);
+}
+
+/* ------------------------------------------------------------------ */
 /* 11 · Callout Component  (Section 06)                                */
 /* ------------------------------------------------------------------ */
 
