@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-current_phase: 04-typography-dark-mode (next)
-status: executing
-stopped_at: "Phase 3 complete — SEO/RSS/A11y/Lighthouse CI gate delivered; 6 pages build; Lighthouse UAT pending deploy"
-last_updated: "2026-04-27T08:30:00Z"
+current_phase: 04-typography-dark-mode (ready to execute)
+status: planned
+stopped_at: "Phase 4 planned — 3 plans in 2 waves (fonts/light-theme, Shiki/ThemeToggle, CopyCode/Perf gate)"
+last_updated: "2026-04-27T12:00:00Z"
 progress:
-  total_phases: 3
+  total_phases: 4
   completed_phases: 3
-  total_plans: 12
+  total_plans: 15
   completed_plans: 12
-  percent: 100
+  percent: 80
 ---
 
 # Project State — O Sertão será Cloud
