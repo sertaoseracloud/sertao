@@ -2,36 +2,36 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-current_phase: 04-typography-dark-mode (in progress)
+current_phase: 04-typography-dark-mode (COMPLETE)
 status: in-progress
-stopped_at: "04-02 complete — ThemeToggle component, Shiki dual-theme (houston/github-light), 4 transformers, code block CSS; 04-03 next (CopyCode island)"
-last_updated: "2026-04-27T21:25:00Z"
+stopped_at: "04-03 complete — CopyCode island (Copiar/checkmark/Erro), Lighthouse Performance+CLS CI gate; Phase 4 ALL 3 plans done; Phase 5 next (First Post Shipped)"
+last_updated: "2026-04-25T18:35:00Z"
 progress:
-  total_phases: 4
-  completed_phases: 3
+  total_phases: 5
+  completed_phases: 4
   total_plans: 15
-  completed_plans: 14
-  percent: 93
+  completed_plans: 15
+  percent: 100
 ---
 
 # Project State — O Sertão será Cloud
 
-**Last updated:** 2026-04-27
-**Status:** In Progress — Phase 4 in progress (2/3 plans complete)
+**Last updated:** 2026-04-25
+**Status:** In Progress — Phase 4 COMPLETE (3/3 plans); Phase 5 next (First Post Shipped gate)
 
 ---
 
 ## Current Position
 
-- **Current Phase:** 04-typography-dark-mode (in progress — plans 01 and 02 complete)
-- **Previous Phase:** 03-seo-rss-a11y — COMPLETE (4/4 plans, 2026-04-27)
-- **Progress:** Phase 1 done; Phase 2 done; Phase 3 done; Phase 4 plans 01-02 done
+- **Current Phase:** Phase 5 — First Post Shipped (next)
+- **Previous Phase:** 04-typography-dark-mode — COMPLETE (3/3 plans, 2026-04-25)
+- **Progress:** Phase 1 done; Phase 2 done; Phase 3 done; Phase 4 done
 
 ```
 Progress: [####################] Phase 1: 3/3 plans complete ✓
 Progress: [####################] Phase 2: 5/5 plans complete ✓
 Progress: [####################] Phase 3: 4/4 plans complete ✓
-Progress: [#############       ] Phase 4: 2/3 plans complete (in progress)
+Progress: [####################] Phase 4: 3/3 plans complete ✓
 ```
 
 ---
@@ -78,6 +78,8 @@ Progress: [#############       ] Phase 4: 2/3 plans complete (in progress)
 - Pre-existing sync-pipeline.test.ts TS errors (3x ts(2322) openIssue mock type mismatch) confirmed out-of-scope — predates Phase 4, not introduced by 04-02 (04-02)
 - .copy-code-btn CSS added in Plan 02 alongside other code block styles in global.css — Plan 03 CopyCode.astro will inject the DOM element that uses this class (04-02)
 - Shiki dual-theme pattern: dark is CSS default (no selector), light uses [data-theme="light"] selector — never @media prefers-color-scheme (04-02)
+- client:visible removed from <CopyCode /> — Astro component <script> tags run client-side automatically; client:visible is only for framework components (React/Svelte/etc.) and produces a build warning when applied to Astro components (04-03)
+- lighthouserc.json Performance and CLS use warn not error — network-dependent scores in CI cause false failures; warn flags catastrophic regressions without blocking deploys on minor variance (04-03)
 
 ---
 
@@ -102,12 +104,13 @@ Progress: [#############       ] Phase 4: 2/3 plans complete (in progress)
 | 03-seo-rss-a11y | 03 | 3min | 2 | 5 |
 | 04-typography-dark-mode | 01 | 5min | 3 | 12 |
 | 04-typography-dark-mode | 02 | 6min | 3 | 5 |
+| 04-typography-dark-mode | 03 | 5min | 2 | 3 |
 
 ---
 
 ## Last Session
 
-- **Timestamp:** 2026-04-27T21:25:00Z
-- **Stopped at:** Completed 04-02-PLAN.md — ThemeToggle component, Shiki dual-theme (houston/github-light, defaultColor: false), 4 transformers, code block CSS (D-09, D-10, D-11, D-12, D-13, D-14, D-15, D-16, D-19)
-- **Resume file:** .planning/phases/04-typography-dark-mode/04-03-PLAN.md (CopyCode island)
+- **Timestamp:** 2026-04-25T18:35:00Z
+- **Stopped at:** Completed 04-03-PLAN.md — CopyCode.astro island (Copiar/checkmark/Erro button, clipboard API, 1.5s reset), PostLayout.astro wired, lighthouserc.json Performance+CLS CI gate (D-17, D-20). Phase 4 COMPLETE.
+- **Resume file:** .planning/phases/05-first-post-shipped/ (Phase 5 — First Post Shipped gate)
 - **Pending authorial action:** Enable GitHub Pages (Settings > Pages > GitHub Actions) + DNS A records for sertaoseracloud.com

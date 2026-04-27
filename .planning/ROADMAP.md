@@ -210,10 +210,11 @@ Plans:
 - [x] Dark mode toggle (`<ThemeToggle>`) com persistência em `localStorage` + respeita `prefers-color-scheme` — done in 04-02
 - [x] Inline script anti-FOUC em `<head>` do `BaseLayout` com prefers-color-scheme fallback — done in 04-01
 - [x] Shiki dual-theme configurado (light: `github-light`, dark: `houston`) — done in 04-02
-- [ ] Code blocks têm: filename label (`` ```ts title="..." ``), copy button, line highlight (`{3,5-7}`), mobile horizontal scroll legível
+- [x] Code blocks têm: copy button (CopyCode.astro, Copiar/✓/Erro, 1.5s reset) — done in 04-03; filename label, line highlight, mobile scroll from 04-02 transformers
 - [x] `@shikijs/transformers` para anotações diff/highlight/focus — done in 04-02
 - [x] Sem requests para `fonts.googleapis.com` (verify via Network tab) — Pitfall 6 mitigado — done in 04-01
-- [ ] Core Web Vitals: LCP <2.5s, INP <200ms, CLS <0.1 em `/posts/{slug}` (teste com 1 post real)
+- [x] Lighthouse CI gate wired: Performance >=0.9 (warn) + CLS <=0.1 (warn) in lighthouserc.json — done in 04-03
+- [ ] Core Web Vitals: LCP <2.5s, INP <200ms, CLS <0.1 em `/posts/{slug}` (teste com 1 post real — pending deploy)
 - [ ] Bundle JS <50KB em página de post (Lighthouse "Unused JavaScript" gate)
 
 **Scope in:**
