@@ -2,35 +2,36 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-current_phase: 04-typography-dark-mode (ready to execute)
-status: planned
-stopped_at: "Phase 4 planned — 3 plans in 2 waves (fonts/light-theme, Shiki/ThemeToggle, CopyCode/Perf gate)"
-last_updated: "2026-04-27T12:00:00Z"
+current_phase: 04-typography-dark-mode (in progress)
+status: in-progress
+stopped_at: "04-01 complete — fonts self-hosted, light theme tokens, typography plugin, FOUC extended; 04-02 next (ThemeToggle + Shiki)"
+last_updated: "2026-04-27T21:15:27Z"
 progress:
   total_phases: 4
   completed_phases: 3
   total_plans: 15
-  completed_plans: 12
-  percent: 80
+  completed_plans: 13
+  percent: 87
 ---
 
 # Project State — O Sertão será Cloud
 
 **Last updated:** 2026-04-27
-**Status:** In Progress — Phase 3 complete; Phase 4 next
+**Status:** In Progress — Phase 4 in progress (1/3 plans complete)
 
 ---
 
 ## Current Position
 
-- **Current Phase:** 04-typography-dark-mode (next)
+- **Current Phase:** 04-typography-dark-mode (in progress — plan 01 complete)
 - **Previous Phase:** 03-seo-rss-a11y — COMPLETE (4/4 plans, 2026-04-27)
-- **Progress:** Phase 1 done; Phase 2 done; Phase 3 done; Phase 4 next
+- **Progress:** Phase 1 done; Phase 2 done; Phase 3 done; Phase 4 plan 01 done
 
 ```
 Progress: [####################] Phase 1: 3/3 plans complete ✓
 Progress: [####################] Phase 2: 5/5 plans complete ✓
 Progress: [####################] Phase 3: 4/4 plans complete ✓
+Progress: [######              ] Phase 4: 1/3 plans complete (in progress)
 ```
 
 ---
@@ -69,12 +70,16 @@ Progress: [####################] Phase 3: 4/4 plans complete ✓
 - coverAlt D-16 superRefine uses `astro:content` z (not `astro/zod`) because `collectionsBackwardsCompat` mode requires the original import path (03-04)
 - BaseLayout and PostLayout needed `type` prop threaded through to SEO.astro — JSON-LD BlogPosting was not rendering on post pages until this was added (03-04)
 - Synced posts (event-driven, practical-guide) had frontmatter exceeding schema limits: description 217 > max(200), title 102 > max(80) — fixed inline; PRBuilder already truncates correctly for future syncs (03-04)
+- Fontsource packages used as devDeps only — WOFF2 binaries copied to public/fonts/; no CSS imports from Fontsource (04-01)
+- Only space-grotesk-400.woff2 is preloaded (critical path); other 8 fonts load async via font-display: swap — FOUT tradeoff accepted per T-04-03 (04-01)
+- Dark mode is CSS default (no data-theme attribute = dark); FOUC script only sets data-theme for stored localStorage value or light system preference (04-01)
+- Google Fonts CDN blocker (Pitfall 6, STATE.md) is now resolved — zero fonts.googleapis.com refs in dist/ output (04-01)
 
 ---
 
 ## Blockers
 
-- Google Fonts import in `src/styles/global.css` must be replaced with self-hosted WOFF2 before production deploy (Pitfall 6). Tracked in global.css TODO comment. Must be resolved before Phase 5 (First Post Shipped).
+- ~~Google Fonts import in `src/styles/global.css` must be replaced with self-hosted WOFF2 before production deploy (Pitfall 6).~~ **RESOLVED in 04-01** — 9 WOFF2 files self-hosted; zero fonts.googleapis.com refs in dist/.
 
 ---
 
@@ -91,13 +96,13 @@ Progress: [####################] Phase 3: 4/4 plans complete ✓
 | 02-sync-pipeline | 05 | 10min | 2 | 1 |
 | 03-seo-rss-a11y | 01 | 6min | 2 | 4 |
 | 03-seo-rss-a11y | 03 | 3min | 2 | 5 |
+| 04-typography-dark-mode | 01 | 5min | 3 | 12 |
 
 ---
 
 ## Last Session
 
-- **Timestamp:** 2026-04-26T06:03:00Z
-- **Stopped at:** Completed 03-03-PLAN.md — format-date helper, skip-link, focus ring, 404 page, /privacidade stub (D-01, D-11, D-12, D-13, D-14, D-18)
-- **Resume file:** .planning/phases/03-seo-rss-a11y/03-04-PLAN.md (Schema enforcement + Lighthouse CI gate)
+- **Timestamp:** 2026-04-27T21:15:27Z
+- **Stopped at:** Completed 04-01-PLAN.md — self-hosted fonts, [data-theme=light] tokens, @tailwindcss/typography plugin, font preload, extended FOUC script (D-01–D-08, D-11, D-12, D-18)
+- **Resume file:** .planning/phases/04-typography-dark-mode/04-02-PLAN.md (ThemeToggle + Shiki dual-theme)
 - **Pending authorial action:** Enable GitHub Pages (Settings > Pages > GitHub Actions) + DNS A records for sertaoseracloud.com
-- **Pending authorial action:** Google Fonts import in src/styles/global.css must be replaced with self-hosted WOFF2 before Phase 5
