@@ -1,0 +1,80 @@
+---
+// ThemeToggle.astro
+// No props — reads current theme from document.documentElement data-theme attribute.
+// Plain <script> (Astro-bundled, TypeScript) — NOT client: directive, NOT is:inline.
+// See: RESEARCH.md Pattern 3 — FOUC-Safe ThemeToggle
+---
+
+<button
+  id="theme-toggle"
+  aria-label="Mudar para modo claro"
+  style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:none;border:none;cursor:pointer;color:var(--nucleo-eletrico);padding:0;"
+>
+  <!-- Sun SVG — shown in dark mode (click to switch to light) -->
+  <svg
+    id="icon-sun"
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <circle cx="12" cy="12" r="5"/>
+    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+  </svg>
+  <!-- Moon SVG — shown in light mode (click to switch to dark) -->
+  <svg
+    id="icon-moon"
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+    style="display:none;"
+  >
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+  </svg>
+</button>
+
+<script>
+  const btn = document.getElementById('theme-toggle') as HTMLButtonElement;
+  const iconSun = document.getElementById('icon-sun') as HTMLElement;
+  const iconMoon = document.getElementById('icon-moon') as HTMLElement;
+  const html = document.documentElement;
+
+  function getTheme(): string {
+    return html.getAttribute('data-theme') || 'dark';
+  }
+
+  function applyTheme(theme: string): void {
+    html.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    if (theme === 'light') {
+      iconSun.style.display = 'none';
+      iconMoon.style.display = 'block';
+      btn.setAttribute('aria-label', 'Mudar para modo escuro');
+    } else {
+      iconSun.style.display = 'block';
+      iconMoon.style.display = 'none';
+      btn.setAttribute('aria-label', 'Mudar para modo claro');
+    }
+  }
+
+  // Sync icon state on mount — SSG HTML always renders dark-default;
+  // this corrects the icon when the user has a stored or system light preference.
+  applyTheme(getTheme());
+
+  btn.addEventListener('click', () => {
+    applyTheme(getTheme() === 'dark' ? 'light' : 'dark');
+  });
+</script>
