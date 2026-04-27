@@ -1,8 +1,14 @@
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import tailwindcss from '@tailwindcss/vite';
-
 import sitemap from '@astrojs/sitemap';
+import rehypeCodeTitles from 'rehype-code-titles';
+import {
+  transformerNotationDiff,
+  transformerNotationHighlight,
+  transformerNotationFocus,
+  transformerMetaHighlight,
+} from '@shikijs/transformers';
 
 // https://astro.build/config
 export default defineConfig({
@@ -12,7 +18,20 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   markdown: {
-    // Phase 4 will add dual-theme Shiki config; default Shiki is fine for Phase 1.
+    rehypePlugins: [rehypeCodeTitles],
+    shikiConfig: {
+      themes: {
+        light: 'github-light',
+        dark: 'houston',
+      },
+      defaultColor: false,
+      transformers: [
+        transformerNotationDiff(),
+        transformerNotationHighlight(),
+        transformerNotationFocus(),
+        transformerMetaHighlight(),
+      ],
+    },
   },
   legacy: {
     collectionsBackwardsCompat: true,
