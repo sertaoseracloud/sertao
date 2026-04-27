@@ -143,6 +143,21 @@ None — no external service configuration required. All fonts are served from t
 - Google Fonts CDN blocker is resolved — production deploy is unblocked on the font side
 - The `[data-theme="light"]` block uses warm paper palette (#F5F0E8 background, #0A0F1E text, #284068 accents) — Plan 02 ThemeToggle must set `data-theme="light"` to activate these tokens
 
+## Self-Check: PASSED
+
+| Item | Status |
+|------|--------|
+| `public/fonts/space-grotesk-400.woff2` | FOUND |
+| `public/fonts/jetbrains-mono-400-italic.woff2` | FOUND |
+| `04-01-SUMMARY.md` | FOUND |
+| commit `a65f056` (Task 1) | FOUND |
+| commit `c8817f1` (Task 2) | FOUND |
+| commit `cbefcd0` (Task 3) | FOUND |
+| commit `63320bc` (metadata) | FOUND |
+| `pnpm build` exits 0 | PASSED |
+| Zero `fonts.googleapis.com` in dist/ | PASSED |
+| 9 WOFF2 files in public/fonts/ | PASSED |
+
 ---
 *Phase: 04-typography-dark-mode*
 *Completed: 2026-04-27*
