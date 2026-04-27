@@ -2,7 +2,7 @@
 title: "Hello, Sertão!"
 description: "Bem-vindo ao O Sertão será Cloud — um blog sobre cloud computing em português."
 pubDate: 2026-04-24
-draft: true
+draft: false
 tags: ["cloud", "arq"]
 source:
   platform: dev.to
