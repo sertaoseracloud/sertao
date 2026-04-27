@@ -2,35 +2,35 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-current_phase: 03-seo-rss-a11y (executing)
-status: in_progress
-stopped_at: "Phase 3 plan 03 complete — format-date, skip-link, focus ring, 404, /privacidade delivered"
-last_updated: "2026-04-26T06:03:00Z"
+current_phase: 04-typography-dark-mode (next)
+status: executing
+stopped_at: "Phase 3 complete — SEO/RSS/A11y/Lighthouse CI gate delivered; 6 pages build; Lighthouse UAT pending deploy"
+last_updated: "2026-04-27T08:30:00Z"
 progress:
   total_phases: 3
-  completed_phases: 2
+  completed_phases: 3
   total_plans: 12
-  completed_plans: 11
-  percent: 92
+  completed_plans: 12
+  percent: 100
 ---
 
 # Project State — O Sertão será Cloud
 
-**Last updated:** 2026-04-26
-**Status:** In Progress — Phase 3 executing (3/4 plans complete)
+**Last updated:** 2026-04-27
+**Status:** In Progress — Phase 3 complete; Phase 4 next
 
 ---
 
 ## Current Position
 
-- **Current Phase:** 03-seo-rss-a11y — EXECUTING (3/4 plans done)
-- **Previous Phase:** 02-sync-pipeline — COMPLETE (5/5 plans, 2026-04-25)
-- **Progress:** Phase 1 done; Phase 2 done; Phase 3 plans 01+02+03 done
+- **Current Phase:** 04-typography-dark-mode (next)
+- **Previous Phase:** 03-seo-rss-a11y — COMPLETE (4/4 plans, 2026-04-27)
+- **Progress:** Phase 1 done; Phase 2 done; Phase 3 done; Phase 4 next
 
 ```
 Progress: [####################] Phase 1: 3/3 plans complete ✓
 Progress: [####################] Phase 2: 5/5 plans complete ✓
-Progress: [###############     ] Phase 3: 3/4 plans complete (75%)
+Progress: [####################] Phase 3: 4/4 plans complete ✓
 ```
 
 ---
@@ -65,6 +65,10 @@ Progress: [###############     ] Phase 3: 3/4 plans complete (75%)
 - Focus ring uses --nucleo-eletrico (#00FFFF) NOT #284068 — dark-first design system; #284068 on #0A0F1E yields ~1.5:1 (fails WCAG); #00FFFF yields 16.5:1 (WCAG AAA) (03-03)
 - privacidade.astro last-updated date hardcoded as string — avoids format-date cross-plan import dependency in static file (03-03)
 - D-01 (no analytics) implemented by omission — no script analytics tags in any new file (03-03)
+- Astro 6 requires `legacy.collectionsBackwardsCompat: true` in astro.config.mjs for `type: 'content'` content collections to load — default is false; without this, getCollection returns empty silently (03-04)
+- coverAlt D-16 superRefine uses `astro:content` z (not `astro/zod`) because `collectionsBackwardsCompat` mode requires the original import path (03-04)
+- BaseLayout and PostLayout needed `type` prop threaded through to SEO.astro — JSON-LD BlogPosting was not rendering on post pages until this was added (03-04)
+- Synced posts (event-driven, practical-guide) had frontmatter exceeding schema limits: description 217 > max(200), title 102 > max(80) — fixed inline; PRBuilder already truncates correctly for future syncs (03-04)
 
 ---
 
