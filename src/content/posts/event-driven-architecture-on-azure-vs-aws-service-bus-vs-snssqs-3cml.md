@@ -1,6 +1,6 @@
 ---
 title: "Event-Driven Architecture on Azure vs AWS: Service Bus vs SNS/SQS"
-description: "Your OrderService does six things when a customer clicks Place Order. It writes to the orders table, reserves inventory, charges the card, enqueues the shipping label, emails the receipt, and logs the analytics event."
+description: "Your OrderService does six things when a customer clicks Place Order: writes to orders table, reserves inventory, charges card, queues shipping, emails receipt, logs analytics."
 pubDate: "2026-04-21"
 draft: false
 tags: ["aws","azure","cloud","eventdriven"]

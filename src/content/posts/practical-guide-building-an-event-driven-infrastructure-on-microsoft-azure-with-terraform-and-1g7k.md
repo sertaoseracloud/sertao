@@ -1,5 +1,5 @@
 ---
-title: "Practical Guide: Building an Event-Driven Infrastructure on Microsoft Azure with Terraform and Python"
+title: "Practical Guide: Event-Driven Infrastructure on Azure with Terraform"
 description: "Event-driven architectures decouple system components, replacing direct synchronous communication with a highly scalable publish-subscribe model."
 pubDate: "2026-04-19"
 draft: false

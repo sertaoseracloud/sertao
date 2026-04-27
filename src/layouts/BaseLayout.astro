@@ -8,7 +8,9 @@ interface Props {
   description?: string;
   image?: string;
   pubDate?: Date;
+  updatedDate?: Date;
   canonicalUrl?: string;
+  type?: 'website' | 'article';
 }
 
 const {
@@ -16,7 +18,9 @@ const {
   description = 'Blog sobre cloud computing em português — O Sertão será Cloud.',
   image,
   pubDate,
+  updatedDate,
   canonicalUrl,
+  type = 'website',
 } = Astro.props;
 
 const canonicalURL = canonicalUrl
@@ -36,7 +40,9 @@ const canonicalURL = canonicalUrl
       description={description}
       {image}
       {pubDate}
+      {updatedDate}
       canonicalUrl={canonicalURL.href}
+      {type}
     />
     <link rel="alternate" type="application/rss+xml" title="O Sertão será Cloud — RSS" href="/rss.xml" />
 

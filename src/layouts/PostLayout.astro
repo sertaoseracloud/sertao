@@ -15,7 +15,7 @@ interface Props {
 const { title, description, pubDate, updatedDate, image, canonicalUrl } = Astro.props;
 ---
 
-<BaseLayout {title} {description} {image} {pubDate} {canonicalUrl}>
+<BaseLayout {title} {description} {image} {pubDate} {updatedDate} {canonicalUrl} type="article">
   <Header slot="header" />
 
   <div class="stage">

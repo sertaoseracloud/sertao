@@ -14,4 +14,7 @@ export default defineConfig({
   markdown: {
     // Phase 4 will add dual-theme Shiki config; default Shiki is fine for Phase 1.
   },
+  legacy: {
+    collectionsBackwardsCompat: true,
+  },
 });
