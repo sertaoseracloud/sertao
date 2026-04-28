@@ -308,7 +308,7 @@ Plans:
 
 Plans:
 - [x] 06-01-PLAN.md — Pagefind deps + Phase 6 CSS + ThemeToggle Giscus bridge + CommentsEmbed component
-- [ ] 06-02-PLAN.md — Search component + Header wiring + PostLayout CommentsEmbed + tag chips
+- [x] 06-02-PLAN.md — Search component + Header wiring + PostLayout CommentsEmbed + tag chips
 - [ ] 06-03-PLAN.md — /tags/ index page + /tags/[tag] dynamic route + homepage span→a upgrade
 
 **Success criteria:**

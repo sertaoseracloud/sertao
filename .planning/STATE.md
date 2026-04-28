@@ -2,10 +2,10 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: milestone
-current_phase: 06-comments-search (IN PROGRESS — Plan 01 complete)
+current_phase: 06-comments-search (IN PROGRESS — Plan 02 complete)
 status: in_progress
-stopped_at: "Completed 06-01-PLAN.md (2026-04-28). Pagefind installed, Phase 6 CSS added, ThemeToggle Giscus bridge added, CommentsEmbed created. Awaiting authorial action: enable GitHub Discussions + obtain Giscus IDs before testing comments."
-last_updated: "2026-04-28T20:57:14Z"
+stopped_at: "Completed 06-02-PLAN.md (2026-04-28). Search.astro created with Ctrl+K modal and Pagefind lazy init. Header wired with Search. CommentsEmbed and tag chips in PostLayout. pnpm build succeeds with dist/pagefind/ populated. Authorial action still pending: enable GitHub Discussions + obtain Giscus IDs."
+last_updated: "2026-04-28T21:15:00Z"
 progress:
   total_phases: 9
   completed_phases: 5
@@ -33,9 +33,9 @@ All 5 phases complete. Blog is live at sertaoseracloud.com. First post published
 
 ## Current Position
 
-- **Current Phase:** Phase 6 — Comments + Search — IN PROGRESS (Plan 01/03 complete)
-- **Previous Phase:** 06-comments-search plan 01 — COMPLETE (2026-04-28)
-- **Progress:** Phase 6 Wave 1 foundations complete
+- **Current Phase:** Phase 6 — Comments + Search — IN PROGRESS (Plan 02/03 complete)
+- **Previous Phase:** 06-comments-search plan 02 — COMPLETE (2026-04-28)
+- **Progress:** Phase 6 Wave 2 complete — Search.astro, Header wired, CommentsEmbed + tag chips in PostLayout
 
 ```
 Progress: [####################] Phase 1: 3/3 plans complete ✓
@@ -43,7 +43,7 @@ Progress: [####################] Phase 2: 5/5 plans complete ✓
 Progress: [####################] Phase 3: 4/4 plans complete ✓
 Progress: [####################] Phase 4: 3/3 plans complete ✓
 Progress: [####################] Phase 5: 2/2 plans complete ✓
-Progress: [######              ] Phase 6: 1/3 plans complete (Wave 1 done)
+Progress: [############        ] Phase 6: 2/3 plans complete (Wave 2 done)
 ```
 
 ---
@@ -97,6 +97,9 @@ Progress: [######              ] Phase 6: 1/3 plans complete (Wave 1 done)
 - CommentsEmbed uses is:inline (not client: directive) — Astro strips data-* on non-inline scripts; data-loading=lazy is Giscus native lazy mechanism (06-01)
 - postMessage targetOrigin hardcoded to 'https://giscus.app' (never '*') per T-06-01 threat mitigation (06-01)
 - CommentsEmbed placeholder IDs (REPLACE_WITH_REPO_ID / REPLACE_WITH_CATEGORY_ID) pending authorial GitHub Discussions setup (06-01)
+- rollupOptions.external added for /pagefind/pagefind-ui.js — Rollup cannot resolve at compile time (file only exists post-build); externalizing is idiomatic fix (06-02)
+- CommentsEmbed wired into PostLayout.astro without client: directive — is:inline Giscus script handles lazy load natively (06-02)
+- tag.toLowerCase() applied at render time for tag chip hrefs — ensures lowercase /tags/ paths matching getStaticPaths (06-02)
 
 ---
 
@@ -122,12 +125,13 @@ Progress: [######              ] Phase 6: 1/3 plans complete (Wave 1 done)
 | 04-typography-dark-mode | 01 | 5min | 3 | 12 |
 | 04-typography-dark-mode | 02 | 6min | 3 | 5 |
 | 04-typography-dark-mode | 03 | 5min | 2 | 3 |
+| 06-comments-search | 02 | 15min | 2 | 5 |
 
 ---
 
 ## Last Session
 
 - **Timestamp:** 2026-04-28T20:57:14Z
-- **Stopped at:** Completed 06-01-PLAN.md — Wave 1 foundations (Pagefind, Phase 6 CSS, ThemeToggle bridge, CommentsEmbed). Pending authorial action: enable GitHub Discussions + obtain Giscus IDs.
-- **Resume file:** .planning/phases/06-comments-search/06-02-PLAN.md
+- **Stopped at:** Completed 06-02-PLAN.md — Wave 2 (Search.astro, Header wired, CommentsEmbed + tag chips in PostLayout, pnpm build passing). Authorial action still pending: enable GitHub Discussions + obtain Giscus IDs.
+- **Resume file:** .planning/phases/06-comments-search/06-03-PLAN.md
 - **Pending authorial action:** Enable GitHub Discussions on sertaoseracloud/sertao, create "Comments" category, visit giscus.app to obtain data-repo-id and data-category-id, substitute placeholders in CommentsEmbed.astro.
