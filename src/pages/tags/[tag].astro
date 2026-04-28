@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+// D-14: dynamic route for each unique tag
+// D-15: normalize to lowercase + dedup in getStaticPaths
+// D-16: tags from content.config.ts tags field
+export const getStaticPaths: GetStaticPaths = async () => {
+  const posts = await getCollection('posts', ({ data }) =>
+    import.meta.env.PROD ? !data.draft : true,
+  );
+
+  // Build map: normalized tag → posts containing it
+  const tagMap = new Map<string, typeof posts>();
+  for (const post of posts) {
+    for (const raw of (post.data.tags ?? [])) {
+      const tag = raw.toLowerCase(); // D-15: normalize
+      if (!tagMap.has(tag)) tagMap.set(tag, []);
+      tagMap.get(tag)!.push(post);
+    }
+  }
+
+  // One static path per unique tag; posts sorted newest first
+  return Array.from(tagMap.entries()).map(([tag, tagPosts]) => ({
+    params: { tag },
+    props: {
+      posts: tagPosts.sort(
+        (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+      ),
+    },
+  }));
+};
+
+interface Props {
+  posts: Awaited<ReturnType<typeof getCollection<'posts'>>>;
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+---
+
+<BaseLayout
+  title={`#${tag} · O Sertão será Cloud`}
+  description={`Posts sobre ${tag} no blog O Sertão será Cloud.`}
+>
+  <Header slot="header" />
+
+  <div class="stage">
+    <!-- Page header -->
+    <section style="padding:64px 0 32px;">
+      <a
+        href="/tags/"
+        style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--texto-secundario);text-decoration:none;letter-spacing:0.08em;display:inline-block;margin-bottom:16px;transition:color 0.2s;"
+        onmouseover="this.style.color='var(--texto-principal)'"
+        onmouseout="this.style.color='var(--texto-secundario)'"
+      >
+        ← Todas as tags
+      </a>
+      <h1 style="font-size:clamp(28px,2.8vw,36px);font-weight:600;line-height:1.2;margin-bottom:8px;">
+        Posts com <code style="font-family:'Chakra Petch',sans-serif;color:var(--nucleo-eletrico);font-size:0.9em;">#{tag}</code>
+      </h1>
+    </section>
+
+    <!-- Post cards — identical markup to index.astro -->
+    <section>
+      <div class="cards">
+        {posts.map((post) => (
+          <a href={`/posts/${post.id.replace(/\.[^.]+$/, '')}`} class="card" style="text-decoration:none;">
+            <div class={`card-media p-${post.data.tags?.[0]?.toLowerCase() ?? 'arq'}`}></div>
+            <div class="card-body">
+              <div class="tag-row" style="margin-bottom:8px;">
+                {post.data.tags?.slice(0, 3).map((t: string) => (
+                  <a href={`/tags/${t.toLowerCase()}`} class="tag">
+                    <span class="hash" aria-hidden="true">#</span>{t.toLowerCase()}
+                  </a>
+                ))}
+              </div>
+              <h3>{post.data.title}</h3>
+              <p class="card-meta">
+                {new Date(post.data.pubDate).toLocaleDateString('pt-BR', { dateStyle: 'medium' })}
+              </p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>
