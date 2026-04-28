@@ -59,6 +59,7 @@ jobs:
           urls: |
             ${{ steps.deployment.outputs.page_url }}
             ${{ steps.deployment.outputs.page_url }}posts/hello-sertao
+            ${{ steps.deployment.outputs.page_url }}posts/practical-guide-building-a-cell-based-architecture-on-aws-with-terraform-and-python-n1p
             ${{ steps.deployment.outputs.page_url }}404
           configPath: ./lighthouserc.json
           uploadArtifacts: true
