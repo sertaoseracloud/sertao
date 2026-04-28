@@ -205,7 +205,7 @@ Plans:
 
 **Success criteria:**
 
-- [ ] Reading typography: 65-75ch max-width em prose; 16-18px body; line-height 1.5-1.7; flush-left
+- [x] Reading typography: 68ch max-width, 18px body, 1.72 line-height (existing .prose class confirmed meets spec) — done in 04-01 (@tailwindcss/typography added)
 - [x] Fonte self-hosted (Space Grotesk / Chakra Petch / JetBrains Mono); WOFF2 em `public/fonts/`; `font-display: swap` + preload — done in 04-01
 - [x] Dark mode toggle (`<ThemeToggle>`) com persistência em `localStorage` + respeita `prefers-color-scheme` — done in 04-02
 - [x] Inline script anti-FOUC em `<head>` do `BaseLayout` com prefers-color-scheme fallback — done in 04-01

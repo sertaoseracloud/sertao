@@ -2,10 +2,10 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-current_phase: 04-typography-dark-mode (COMPLETE)
-status: in-progress
-stopped_at: "04-03 complete — CopyCode island (Copiar/checkmark/Erro), Lighthouse Performance+CLS CI gate; Phase 4 ALL 3 plans done; Phase 5 next (First Post Shipped)"
-last_updated: "2026-04-25T18:35:00Z"
+current_phase: 05-first-post-shipped (next)
+status: executing
+stopped_at: "Phase 4 complete — fonts self-hosted, ThemeToggle, Shiki houston+github-light, CopyCode, Lighthouse Perf gate; 5 human UAT items pending browser testing; Phase 5 next"
+last_updated: "2026-04-27T00:00:00Z"
 progress:
   total_phases: 5
   completed_phases: 4
