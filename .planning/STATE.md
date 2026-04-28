@@ -2,22 +2,22 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: milestone
-current_phase: 06-comments-search (IN PROGRESS — Plan 02 complete)
+current_phase: 06-comments-search (COMPLETE — all 3 plans done)
 status: in_progress
-stopped_at: "Completed 06-02-PLAN.md (2026-04-28). Search.astro created with Ctrl+K modal and Pagefind lazy init. Header wired with Search. CommentsEmbed and tag chips in PostLayout. pnpm build succeeds with dist/pagefind/ populated. Authorial action still pending: enable GitHub Discussions + obtain Giscus IDs."
-last_updated: "2026-04-28T21:15:00Z"
+stopped_at: "Completed 06-03-PLAN.md (2026-04-28). Tag chips converted to <a> links, /tags/ index with sorted tag cloud, /tags/[tag] dynamic routes generating 13 static pages. pnpm build 24 pages, pagefind 2180 words indexed. Phase 6 feature scope complete. Authorial action still pending: enable GitHub Discussions + obtain Giscus IDs."
+last_updated: "2026-04-28T21:07:12Z"
 progress:
   total_phases: 9
-  completed_phases: 5
+  completed_phases: 6
   total_plans: 20
-  completed_plans: 18
-  percent: 58
+  completed_plans: 19
+  percent: 65
 ---
 
 # Project State — O Sertão será Cloud
 
 **Last updated:** 2026-04-28
-**Status:** Phase 6 planned — Ready to execute
+**Status:** Phase 6 complete — all 3 plans shipped
 
 ---
 
@@ -33,9 +33,9 @@ All 5 phases complete. Blog is live at sertaoseracloud.com. First post published
 
 ## Current Position
 
-- **Current Phase:** Phase 6 — Comments + Search — IN PROGRESS (Plan 02/03 complete)
-- **Previous Phase:** 06-comments-search plan 02 — COMPLETE (2026-04-28)
-- **Progress:** Phase 6 Wave 2 complete — Search.astro, Header wired, CommentsEmbed + tag chips in PostLayout
+- **Current Phase:** Phase 6 — Comments + Search — COMPLETE (all 3 plans done 2026-04-28)
+- **Previous Phase:** 06-comments-search plan 03 — COMPLETE (2026-04-28)
+- **Progress:** Phase 6 all waves complete — Giscus, Search, Tag pages fully shipped
 
 ```
 Progress: [####################] Phase 1: 3/3 plans complete ✓
@@ -43,7 +43,7 @@ Progress: [####################] Phase 2: 5/5 plans complete ✓
 Progress: [####################] Phase 3: 4/4 plans complete ✓
 Progress: [####################] Phase 4: 3/3 plans complete ✓
 Progress: [####################] Phase 5: 2/2 plans complete ✓
-Progress: [############        ] Phase 6: 2/3 plans complete (Wave 2 done)
+Progress: [####################] Phase 6: 3/3 plans complete ✓
 ```
 
 ---
@@ -100,6 +100,9 @@ Progress: [############        ] Phase 6: 2/3 plans complete (Wave 2 done)
 - rollupOptions.external added for /pagefind/pagefind-ui.js — Rollup cannot resolve at compile time (file only exists post-build); externalizing is idiomatic fix (06-02)
 - CommentsEmbed wired into PostLayout.astro without client: directive — is:inline Giscus script handles lazy load natively (06-02)
 - tag.toLowerCase() applied at render time for tag chip hrefs — ensures lowercase /tags/ paths matching getStaticPaths (06-02)
+- tag.toLowerCase() applied in THREE locations: getStaticPaths param, index.astro href, [tag].astro href — prevents Pitfall 5 (404 from case mismatch) per T-06-09 (06-03)
+- Set<string> per-post dedup in /tags/ index prevents double-counting a tag appearing twice in post.data.tags (06-03)
+- card-media prefix uses tags?.[0]?.toLowerCase() ?? 'arq' to avoid p-AWS class with no CSS match (06-03)
 
 ---
 
@@ -126,12 +129,13 @@ Progress: [############        ] Phase 6: 2/3 plans complete (Wave 2 done)
 | 04-typography-dark-mode | 02 | 6min | 3 | 5 |
 | 04-typography-dark-mode | 03 | 5min | 2 | 3 |
 | 06-comments-search | 02 | 15min | 2 | 5 |
+| 06-comments-search | 03 | 2min | 2 | 3 |
 
 ---
 
 ## Last Session
 
-- **Timestamp:** 2026-04-28T20:57:14Z
-- **Stopped at:** Completed 06-02-PLAN.md — Wave 2 (Search.astro, Header wired, CommentsEmbed + tag chips in PostLayout, pnpm build passing). Authorial action still pending: enable GitHub Discussions + obtain Giscus IDs.
-- **Resume file:** .planning/phases/06-comments-search/06-03-PLAN.md
+- **Timestamp:** 2026-04-28T21:07:12Z
+- **Stopped at:** Completed 06-03-PLAN.md — Phase 6 complete. Tag chips as <a> links, /tags/ cloud index, /tags/[tag] dynamic routes (13 tags). 24 pages built, pagefind indexed 2180 words.
+- **Resume file:** None — Phase 6 fully complete. Next: Phase 7 (if planned).
 - **Pending authorial action:** Enable GitHub Discussions on sertaoseracloud/sertao, create "Comments" category, visit giscus.app to obtain data-repo-id and data-category-id, substitute placeholders in CommentsEmbed.astro.
