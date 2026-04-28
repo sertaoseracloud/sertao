@@ -1,0 +1,106 @@
+---
+// Search.astro — plain Astro component (NO client: directive).
+// Search icon button + modal overlay + Pagefind default-ui initialization.
+// CSS vars for Pagefind UI theming are declared in global.css (#pagefind-search).
+// Pagefind index only exists after pnpm build — search unavailable in pnpm dev.
+---
+
+<!-- Pagefind UI CSS — loaded from the CLI-generated output (version-matched) -->
+<link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+
+<!-- Search toggle button in header -->
+<button
+  id="search-toggle"
+  aria-label="Abrir busca"
+  style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:none;border:none;cursor:pointer;color:var(--nucleo-eletrico);padding:0;"
+>
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <circle cx="11" cy="11" r="8"/>
+    <path d="M21 21l-4.35-4.35"/>
+  </svg>
+</button>
+<span class="search-kbd-hint" aria-hidden="true">Ctrl+K</span>
+
+<!-- Search modal overlay -->
+<div
+  id="search-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Busca"
+  style="display:none;position:fixed;inset:0;z-index:9000;background:rgba(10,15,30,0.88);backdrop-filter:blur(4px);"
+>
+  <div
+    id="search-panel"
+    style="position:absolute;top:15%;left:50%;transform:translateX(-50%);width:min(640px,90vw);background:var(--sub-nivel);border:1px solid var(--hairline-strong);padding:var(--space-5);"
+  >
+    <div id="pagefind-search"></div>
+  </div>
+</div>
+
+<script>
+  const toggleBtn = document.getElementById('search-toggle') as HTMLButtonElement;
+  const modal = document.getElementById('search-modal') as HTMLElement;
+  let pagefindInitialized = false;
+
+  function openSearch(): void {
+    modal.style.display = 'block';
+    toggleBtn.setAttribute('aria-label', 'Fechar busca');
+    if (!pagefindInitialized) {
+      pagefindInitialized = true;
+      // Dynamic import from CLI-generated output — not available during pnpm dev.
+      import('/pagefind/pagefind-ui.js').then((mod: any) => {
+        const PagefindUI = mod.PagefindUI;
+        new PagefindUI({
+          element: '#pagefind-search',
+          showSubResults: false,
+          translations: {
+            placeholder: 'Buscar posts...',
+            zero_results: 'Nenhum resultado para "[SEARCH_TERM]"',
+          },
+        });
+        setTimeout(() => {
+          const input = document.querySelector<HTMLInputElement>('#pagefind-search input');
+          input?.focus();
+        }, 50);
+      });
+    } else {
+      const input = document.querySelector<HTMLInputElement>('#pagefind-search input');
+      input?.focus();
+    }
+  }
+
+  function closeSearch(): void {
+    modal.style.display = 'none';
+    toggleBtn.setAttribute('aria-label', 'Abrir busca');
+    toggleBtn.focus();
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    modal.style.display === 'none' ? openSearch() : closeSearch();
+  });
+
+  document.addEventListener('keydown', (e: KeyboardEvent) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      e.preventDefault();
+      modal.style.display === 'none' ? openSearch() : closeSearch();
+    }
+    if (e.key === 'Escape' && modal.style.display !== 'none') {
+      closeSearch();
+    }
+  });
+
+  // Close modal on backdrop click (click outside the panel)
+  modal.addEventListener('click', (e: MouseEvent) => {
+    if (e.target === modal) closeSearch();
+  });
+</script>
