@@ -2,9 +2,9 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: milestone
-current_phase: 06-comments-search (COMPLETE — all 3 plans done)
-status: in_progress
-stopped_at: "Completed 06-03-PLAN.md (2026-04-28). Tag chips converted to <a> links, /tags/ index with sorted tag cloud, /tags/[tag] dynamic routes generating 13 static pages. pnpm build 24 pages, pagefind 2180 words indexed. Phase 6 feature scope complete. Authorial action still pending: enable GitHub Discussions + obtain Giscus IDs."
+current_phase: 06-comments-search (VERIFIED — human UAT approved 2026-04-28)
+status: ready_to_execute
+stopped_at: "Phase 6 complete and human-approved (2026-04-28). Pagefind search + tag pages fully functional. Giscus pending authorial GitHub Discussions setup (placeholder IDs in CommentsEmbed.astro). Next: Phase 7 Newsletter + LGPD."
 last_updated: "2026-04-28T21:07:12Z"
 progress:
   total_phases: 9

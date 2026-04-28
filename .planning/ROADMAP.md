@@ -313,15 +313,15 @@ Plans:
 
 **Success criteria:**
 
-- [ ] GitHub Discussions habilitado em `sertaoseracloud/sertaoseracloud`, categoria "Comments" criada
-- [ ] Giscus instalado via [giscus.app](https://giscus.app/) config
-- [ ] `<CommentsEmbed client:visible>` no `PostLayout` (lazy hydrate)
-- [ ] Giscus config match: categoria, mapping `og:title`, theme inherit do dark mode toggle
-- [ ] Pagefind configurado: `pagefind --site dist` rodando no build após Astro
-- [ ] UI de busca (`<Search>`) com atalho `/` ou `Ctrl+K` + modal overlay
-- [ ] Resultado de busca respeita `lang="pt-BR"` (Pagefind detecta)
-- [ ] Tag pages: `/tags/` index + `/tags/{tag}` filter — tags vêm de `tag_list` do dev.to via frontmatter
-- [ ] Tag normalization: lowercase + dedup no build
+- [ ] GitHub Discussions habilitado em `sertaoseracloud/sertaoseracloud`, categoria "Comments" criada — PENDING AUTHORIAL ACTION
+- [ ] Giscus instalado via [giscus.app](https://giscus.app/) config — PENDING AUTHORIAL ACTION (placeholder IDs in CommentsEmbed.astro)
+- [x] `CommentsEmbed` no `PostLayout` com lazy load via `data-loading="lazy"` (Giscus native — sem `client:visible`)
+- [x] Giscus config match: categoria, mapping `og:title`, theme inherit do dark mode toggle (postMessage bridge em ThemeToggle)
+- [x] Pagefind configurado: `pagefind --site dist` rodando no build após Astro
+- [x] UI de busca (`<Search>`) com atalho `Ctrl+K` + modal overlay
+- [x] Resultado de busca respeita `lang="pt-BR"` (Pagefind detecta via BaseLayout)
+- [x] Tag pages: `/tags/` index + `/tags/{tag}` filter — tags vêm de `tags` field via frontmatter (13 tags, 13 static pages)
+- [x] Tag normalization: lowercase + dedup no build
 
 **Scope in:**
 
