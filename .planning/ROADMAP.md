@@ -253,17 +253,17 @@ Plans:
 **Plans:** 2 plans
 
 Plans:
-- [ ] 05-01-PLAN.md — Pre-flight, first sync, PR review, glossary update, merge
+- [x] 05-01-PLAN.md — Pre-flight, first sync, PR review, glossary update, merge
 - [ ] 05-02-PLAN.md — Post-deploy verification: SEO signals, Lighthouse CI gates, GSC, OG cards, v1.0 post-mortem
 
 **Success criteria:**
 
-- [ ] Um artigo real do dev.to foi selecionado para primeiro deploy (autor escolhe qual)
-- [ ] Autor adicionou `canonical_url: https://sertaoseracloud.com/posts/{slug}` no frontmatter desse artigo no dev.to
-- [ ] Sync pipeline rodou (manualmente via `workflow_dispatch` ou pelo cron)
-- [ ] PR draft foi aberto automaticamente com tradução
-- [ ] Autor revisou a tradução, corrigiu 0-N termos, mergeou
-- [ ] Github Pages buildou e deployou
+- [x] Um artigo real do dev.to foi selecionado para primeiro deploy — `practical-guide-building-a-cell-based-architecture-on-aws-with-terraform-and-python-n1p`
+- [x] Autor adicionou `canonical_url: https://sertaoseracloud.com/posts/{slug}` no frontmatter desse artigo no dev.to
+- [x] Sync pipeline rodou (manualmente via `workflow_dispatch` ou pelo cron)
+- [x] PR draft foi aberto automaticamente com tradução
+- [x] Autor revisou a tradução, corrigiu 0-N termos, mergeou (0 correções necessárias)
+- [x] Github Pages buildou e deployou
 - [ ] Post acessível em `sertaoseracloud.com/posts/{slug}` com HTTPS
 - [ ] View-source do post contém: `<link rel="canonical">` (pro blog), JSON-LD `BlogPosting` válido, OG tags completas
 - [ ] Post está no sitemap XML

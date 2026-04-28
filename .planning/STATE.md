@@ -2,36 +2,37 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-current_phase: 05-first-post-shipped (ready to execute)
-status: planned
-stopped_at: "Phase 5 planned — 2 plans (first sync + post-deploy verification); ready to execute"
+current_phase: 05-first-post-shipped (in progress — plan 01 complete)
+status: in_progress
+stopped_at: "Phase 5 Plan 01 complete — first post merged and deployed; Plan 02 (post-deploy verification) next"
 last_updated: "2026-04-27T00:00:00Z"
 progress:
   total_phases: 5
   completed_phases: 4
   total_plans: 17
-  completed_plans: 15
-  percent: 88
+  completed_plans: 16
+  percent: 94
 ---
 
 # Project State — O Sertão será Cloud
 
-**Last updated:** 2026-04-25
-**Status:** In Progress — Phase 4 COMPLETE (3/3 plans); Phase 5 next (First Post Shipped gate)
+**Last updated:** 2026-04-27
+**Status:** In Progress — Phase 5 Plan 01 COMPLETE; Plan 02 (post-deploy verification) next
 
 ---
 
 ## Current Position
 
-- **Current Phase:** Phase 5 — First Post Shipped (next)
-- **Previous Phase:** 04-typography-dark-mode — COMPLETE (3/3 plans, 2026-04-25)
-- **Progress:** Phase 1 done; Phase 2 done; Phase 3 done; Phase 4 done
+- **Current Phase:** Phase 5 — First Post Shipped (plan 02 next)
+- **Previous Phase:** 05-first-post-shipped plan 01 — COMPLETE (2026-04-27)
+- **Progress:** Phase 1 done; Phase 2 done; Phase 3 done; Phase 4 done; Phase 5 in progress (1/2)
 
 ```
 Progress: [####################] Phase 1: 3/3 plans complete ✓
 Progress: [####################] Phase 2: 5/5 plans complete ✓
 Progress: [####################] Phase 3: 4/4 plans complete ✓
 Progress: [####################] Phase 4: 3/3 plans complete ✓
+Progress: [##########          ] Phase 5: 1/2 plans complete
 ```
 
 ---
@@ -80,6 +81,7 @@ Progress: [####################] Phase 4: 3/3 plans complete ✓
 - Shiki dual-theme pattern: dark is CSS default (no selector), light uses [data-theme="light"] selector — never @media prefers-color-scheme (04-02)
 - client:visible removed from <CopyCode /> — Astro component <script> tags run client-side automatically; client:visible is only for framework components (React/Svelte/etc.) and produces a build warning when applied to Astro components (04-03)
 - lighthouserc.json Performance and CLS use warn not error — network-dependent scores in CI cause false failures; warn flags catastrophic regressions without blocking deploys on minor variance (04-03)
+- Phase 5 first post shipped: practical-guide-building-a-cell-based-architecture-on-aws-with-terraform-and-python-n1p deployed on 2026-04-27. Translation quality: approved with no corrections needed. Glossary corrections: 0 terms added.
 
 ---
 
@@ -110,7 +112,7 @@ Progress: [####################] Phase 4: 3/3 plans complete ✓
 
 ## Last Session
 
-- **Timestamp:** 2026-04-25T18:35:00Z
-- **Stopped at:** Completed 04-03-PLAN.md — CopyCode.astro island (Copiar/checkmark/Erro button, clipboard API, 1.5s reset), PostLayout.astro wired, lighthouserc.json Performance+CLS CI gate (D-17, D-20). Phase 4 COMPLETE.
-- **Resume file:** .planning/phases/05-first-post-shipped/ (Phase 5 — First Post Shipped gate)
-- **Pending authorial action:** Enable GitHub Pages (Settings > Pages > GitHub Actions) + DNS A records for sertaoseracloud.com
+- **Timestamp:** 2026-04-27T00:00:00Z
+- **Stopped at:** Completed 05-01-PLAN.md — first post `practical-guide-building-a-cell-based-architecture-on-aws-with-terraform-and-python-n1p` merged and deployed. Translation approved with zero glossary corrections. Deploy workflow triggered automatically on merge.
+- **Resume file:** .planning/phases/05-first-post-shipped/05-02-PLAN.md (post-deploy verification)
+- **Pending authorial action:** None
