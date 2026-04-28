@@ -15,7 +15,7 @@ source:
   hash: ""
   synced_at: 2026-04-27
   translated_by: cli-model
-canonical_url: https://sertaoseracloud.com/posts/practical-guide-building-a-cell-based-architecture-on-aws-with-terraform-and-python
+canonical_url: https://sertaoseracloud.com/posts/practical-guide-building-a-cell-based-architecture-on-aws-with-terraform-and-python-n1p
 manual_override: false
 ---
 

@@ -15,7 +15,7 @@ source:
   hash: ae9418c3b8fa5ebe0ca10a7ef962da39fd056b78cdf3269d04ea459d7663d49a
   synced_at: 2026-04-27
   translated_by: cli-model
-canonical_url: https://sertaoseracloud.com/posts/practical-guide-building-a-cell-based-architecture-on-azure-with-terraform-and-python
+canonical_url: https://sertaoseracloud.com/posts/practical-guide-building-a-cell-based-architecture-on-azure-with-terraform-and-python-1h04
 manual_override: false
 ---
 

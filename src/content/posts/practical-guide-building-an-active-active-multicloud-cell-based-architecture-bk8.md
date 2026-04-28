@@ -15,7 +15,7 @@ source:
   hash: 69c68b3c5cdf8ef1ba4b84421681cb9042fde591bc0bfaa89f272843f58b4e63
   synced_at: 2026-04-27
   translated_by: cli-model
-canonical_url: https://sertaoseracloud.com/posts/practical-guide-building-an-active-active-multicloud-cell-based-architecture
+canonical_url: https://sertaoseracloud.com/posts/practical-guide-building-an-active-active-multicloud-cell-based-architecture-bk8
 manual_override: false
 ---
 
