@@ -1,6 +1,6 @@
 ---
 title: "Practical Guide: Building an Active-Active Multicloud Cell-Based Architecture"
-description: "A multicloud cell-based architecture represents the pinnacle of fault isolation and vendor neutrality. By distributing autonomous \"cells\" across different cloud providers, such as placing Cell Alpha in AWS and Cell Beta in Azure, you eliminate the risk of a single provider's regional or global outage taking down your entire application. This architecture prevents vendor lock-in by enforcing an agnostic ingress layer and requires Domain-Driven Design principles to maintain isolated domain boundaries."
+description: "A multicloud cell-based architecture represents the pinnacle of fault isolation and vendor neutrality, distributing autonomous cells across cloud providers to eliminate single-provider outages."
 pubDate: "2025-02-20"
 draft: false
 tags:

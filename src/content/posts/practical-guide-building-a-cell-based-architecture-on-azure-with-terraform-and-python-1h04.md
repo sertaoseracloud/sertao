@@ -1,6 +1,6 @@
 ---
-title: "Practical Guide: Building a Cell-Based Architecture on Azure with Terraform and Python"
-description: "As cloud applications scale to serve global audiences, relying on a single centralized infrastructure stack introduces critical vulnerabilities. A localized failure or a noisy neighbor can trigger a systemic outage. Cell-Based Architecture mitigates this by partitioning the system into isolated, identical, and self-contained units called \"cells.\""
+title: "Practical Guide: Building a Cell-Based Architecture on Azure with Terraform"
+description: "As cloud applications scale globally, a single centralized stack introduces critical vulnerabilities. Cell-Based Architecture mitigates this by partitioning into isolated, self-contained units."
 pubDate: "2026-04-21"
 draft: false
 tags:

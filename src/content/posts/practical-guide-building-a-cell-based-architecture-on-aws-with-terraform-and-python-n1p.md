@@ -1,6 +1,6 @@
 ---
-title: "Practical Guide: Building a Cell-Based Architecture on AWS with Terraform and Python"
-description: "In cloud-native systems, failures in centralized components risk global outages. Cell-Based Architecture isolates failures by dividing systems into identical, standalone cells. Terraform provisions uniform cells, and Python routes traffic via partition keys, minimizing blast radii."
+title: "Practical Guide: Building a Cell-Based Architecture on AWS with Terraform"
+description: "In cloud-native systems, failures in centralized components risk global outages. Cell-Based Architecture isolates failures by dividing systems into identical, standalone cells."
 pubDate: "2026-04-20"
 draft: false
 tags:
