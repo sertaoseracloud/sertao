@@ -1,5 +1,6 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
+import Search from './Search.astro';
 const navLinks = [
   { href: '/', label: 'Início' },
   { href: '/posts', label: 'Posts' },
@@ -35,6 +36,7 @@ const currentPath = Astro.url.pathname;
 
     <!-- Actions -->
     <div class="nav-actions" aria-label="Ações">
+      <Search />
       <ThemeToggle />
     </div>
   </nav>

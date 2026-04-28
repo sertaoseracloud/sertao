@@ -22,6 +22,7 @@ const { Content } = await render(post);
   updatedDate={post.data.updatedDate}
   image={(post.data as any).coverImageUrl ?? undefined}
   canonicalUrl={post.data.canonical_url}
+  tags={post.data.tags}
 >
   <Content />
 </PostLayout>

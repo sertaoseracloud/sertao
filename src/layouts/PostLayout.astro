@@ -3,6 +3,7 @@ import BaseLayout from './BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CopyCode from '../components/CopyCode.astro';
+import CommentsEmbed from '../components/CommentsEmbed.astro';
 
 interface Props {
   title: string;
@@ -11,9 +12,10 @@ interface Props {
   updatedDate?: Date;
   image?: string;
   canonicalUrl?: string;
+  tags?: string[];
 }
 
-const { title, description, pubDate, updatedDate, image, canonicalUrl } = Astro.props;
+const { title, description, pubDate, updatedDate, image, canonicalUrl, tags } = Astro.props;
 ---
 
 <BaseLayout {title} {description} {image} {pubDate} {updatedDate} {canonicalUrl} type="article">
@@ -26,6 +28,15 @@ const { title, description, pubDate, updatedDate, image, canonicalUrl } = Astro.
           {new Date(pubDate).toLocaleDateString('pt-BR', { dateStyle: 'long' })}
         </p>
         <h1>{title}</h1>
+        {tags && tags.length > 0 && (
+          <div class="tag-row" style="margin-top:12px;">
+            {tags.map((tag: string) => (
+              <a href={`/tags/${tag.toLowerCase()}`} class="tag">
+                <span class="hash" aria-hidden="true">#</span>{tag.toLowerCase()}
+              </a>
+            ))}
+          </div>
+        )}
         {updatedDate && (
           <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--texto-secundario);margin-top:8px;">
             Atualizado em {new Date(updatedDate).toLocaleDateString('pt-BR', { dateStyle: 'long' })}
@@ -35,6 +46,15 @@ const { title, description, pubDate, updatedDate, image, canonicalUrl } = Astro.
       <slot />
     </article>
     <CopyCode />
+    <section class="comments-section" aria-labelledby="comments-heading">
+      <h2
+        id="comments-heading"
+        style="font-family:'Chakra Petch',sans-serif;font-size:13px;letter-spacing:0.2em;text-transform:uppercase;color:var(--texto-secundario);margin-bottom:var(--space-5);margin-top:var(--space-8);"
+      >
+        Comentários
+      </h2>
+      <CommentsEmbed />
+    </section>
   </div>
 
   <Footer slot="footer" />
