@@ -68,6 +68,16 @@
       iconMoon.style.display = 'none';
       btn.setAttribute('aria-label', 'Mudar para modo claro');
     }
+    // Giscus theme bridge — D-04
+    // Optional chain is a no-op on pages without Giscus iframe.
+    // targetOrigin must be 'https://giscus.app' (never '*').
+    const giscusFrame = document.querySelector<HTMLIFrameElement>('iframe.giscus-frame');
+    if (giscusFrame?.contentWindow) {
+      giscusFrame.contentWindow.postMessage(
+        { giscus: { setConfig: { theme: theme === 'light' ? 'light' : 'dark' } } },
+        'https://giscus.app'
+      );
+    }
   }
 
   // Sync icon state on mount — SSG HTML always renders dark-default;

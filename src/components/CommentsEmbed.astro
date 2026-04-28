@@ -1,0 +1,42 @@
+---
+// CommentsEmbed.astro — plain Astro component (NO client: directive).
+// Giscus comment embed. data-loading="lazy" defers iframe creation until
+// the comments section scrolls into view (Giscus native lazy support).
+//
+// SETUP REQUIRED (one-time authorial action):
+// 1. Enable GitHub Discussions on sertaoseracloud/sertao (repo Settings → Features)
+// 2. Create a "Comments" category in Discussions
+// 3. Visit https://giscus.app, configure repo, copy data-repo-id and data-category-id
+// 4. Replace REPLACE_WITH_REPO_ID and REPLACE_WITH_CATEGORY_ID below with real values
+---
+
+<script
+  is:inline
+  src="https://giscus.app/client.js"
+  data-repo="sertaoseracloud/sertao"
+  data-repo-id="REPLACE_WITH_REPO_ID"
+  data-category="Comments"
+  data-category-id="REPLACE_WITH_CATEGORY_ID"
+  data-mapping="og:title"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="dark"
+  data-lang="pt"
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async
+></script>
+
+<script is:inline>
+  // Dynamic initial theme — corrects the Giscus default 'dark' if user
+  // has stored 'light' preference. Runs before Giscus iframe is created.
+  (function() {
+    const stored = localStorage.getItem('theme');
+    if (stored && stored !== 'dark') {
+      const giscusScripts = document.querySelectorAll('script[data-repo="sertaoseracloud/sertao"]');
+      giscusScripts.forEach(function(s) { s.setAttribute('data-theme', stored); });
+    }
+  })();
+</script>
