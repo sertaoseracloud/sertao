@@ -97,8 +97,8 @@ These are the only sizes introduced by Phase 6. Executor must not add further si
 | Tag index heading (`<h1>`) | Space Grotesk | 28px desktop / 22px mobile | 600 | 1.2 | `/tags/` — "Explorar por tag" |
 | Tag count in tag cloud | JetBrains Mono | 10px | 400 | — | Post count in tag cloud, e.g. "(5)" |
 | Search input (Pagefind UI) | Space Grotesk | 16px | 400 | — | Overrides Pagefind default via `--pagefind-ui-font` |
-| Search result title (Pagefind UI) | Space Grotesk | 15px | 600 | 1.3 | Via Pagefind CSS var override |
-| Search result excerpt (Pagefind UI) | Space Grotesk | 13px | 400 | 1.5 | Via Pagefind CSS var override |
+| Search result title (Pagefind UI) | Space Grotesk | 16px | 600 | 1.3 | Via Pagefind CSS var override |
+| Search result excerpt (Pagefind UI) | Space Grotesk | 14px | 400 | 1.5 | Via Pagefind CSS var override |
 
 **Weight usage rules:**
 
@@ -256,7 +256,7 @@ Each chip in the tag cloud shows tag name + count. Uses the existing `.tag` clas
 
 ```css
 .tag--cloud {
-  padding: 5px 12px;   /* slightly more padding than card chips for click comfort */
+  padding: 4px 12px;   /* 4px = --space-1; 12px = --space-3 — both on spacing scale */
 }
 
 .tag-count {
