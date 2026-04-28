@@ -4,7 +4,7 @@ milestone: v1.2
 milestone_name: milestone
 current_phase: 06-comments-search (VERIFIED — human UAT approved 2026-04-28)
 status: ready_to_execute
-stopped_at: "Phase 6 complete and human-approved (2026-04-28). Pagefind search + tag pages fully functional. Giscus pending authorial GitHub Discussions setup (placeholder IDs in CommentsEmbed.astro). Next: Phase 7 Newsletter + LGPD."
+stopped_at: "Phase 7 context gathered (2026-04-28). Newsletter: custom form + inline success, Buttondown sub-processor, minimal /newsletter page. Next: plan phase 7."
 last_updated: "2026-04-28T21:07:12Z"
 progress:
   total_phases: 9
