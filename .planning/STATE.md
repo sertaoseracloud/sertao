@@ -1,23 +1,23 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.0
+milestone: v1.2
 milestone_name: milestone
-current_phase: 05-first-post-shipped (COMPLETE)
-status: complete
-stopped_at: "MILESTONE v1.0 SHIPPED — Phase 5 complete. First post live, GSC verified, OG validated. 2026-04-28."
-last_updated: "2026-04-28T00:00:00Z"
+current_phase: 06-comments-search (IN PROGRESS — Plan 01 complete)
+status: in_progress
+stopped_at: "Completed 06-01-PLAN.md (2026-04-28). Pagefind installed, Phase 6 CSS added, ThemeToggle Giscus bridge added, CommentsEmbed created. Awaiting authorial action: enable GitHub Discussions + obtain Giscus IDs before testing comments."
+last_updated: "2026-04-28T20:57:14Z"
 progress:
-  total_phases: 5
+  total_phases: 9
   completed_phases: 5
-  total_plans: 17
-  completed_plans: 17
-  percent: 100
+  total_plans: 20
+  completed_plans: 18
+  percent: 58
 ---
 
 # Project State — O Sertão será Cloud
 
 **Last updated:** 2026-04-28
-**Status:** COMPLETE — MILESTONE v1.0 SHIPPED
+**Status:** Phase 6 planned — Ready to execute
 
 ---
 
@@ -33,9 +33,9 @@ All 5 phases complete. Blog is live at sertaoseracloud.com. First post published
 
 ## Current Position
 
-- **Current Phase:** Phase 5 — First Post Shipped — COMPLETE
-- **Previous Phase:** 05-first-post-shipped plan 02 — COMPLETE (2026-04-28)
-- **Progress:** All phases done; v1.0 milestone achieved
+- **Current Phase:** Phase 6 — Comments + Search — IN PROGRESS (Plan 01/03 complete)
+- **Previous Phase:** 06-comments-search plan 01 — COMPLETE (2026-04-28)
+- **Progress:** Phase 6 Wave 1 foundations complete
 
 ```
 Progress: [####################] Phase 1: 3/3 plans complete ✓
@@ -43,6 +43,7 @@ Progress: [####################] Phase 2: 5/5 plans complete ✓
 Progress: [####################] Phase 3: 4/4 plans complete ✓
 Progress: [####################] Phase 4: 3/3 plans complete ✓
 Progress: [####################] Phase 5: 2/2 plans complete ✓
+Progress: [######              ] Phase 6: 1/3 plans complete (Wave 1 done)
 ```
 
 ---
@@ -93,6 +94,9 @@ Progress: [####################] Phase 5: 2/2 plans complete ✓
 - lighthouserc.json Performance and CLS use warn not error — network-dependent scores in CI cause false failures; warn flags catastrophic regressions without blocking deploys on minor variance (04-03)
 - Phase 5 first post shipped: practical-guide-building-a-cell-based-architecture-on-aws-with-terraform-and-python-n1p deployed on 2026-04-27. Translation quality: approved with no corrections needed. Glossary corrections: 0 terms added.
 - MILESTONE v1.0 COMPLETE (2026-04-28): Phase 5 plan 02 — GSC verified + sitemap submitted + OG cards validated on LinkedIn/X/WhatsApp. v1.0 ("Ler") milestone closed. Next: Phase 6 (Comments + Search).
+- CommentsEmbed uses is:inline (not client: directive) — Astro strips data-* on non-inline scripts; data-loading=lazy is Giscus native lazy mechanism (06-01)
+- postMessage targetOrigin hardcoded to 'https://giscus.app' (never '*') per T-06-01 threat mitigation (06-01)
+- CommentsEmbed placeholder IDs (REPLACE_WITH_REPO_ID / REPLACE_WITH_CATEGORY_ID) pending authorial GitHub Discussions setup (06-01)
 
 ---
 
@@ -123,7 +127,7 @@ Progress: [####################] Phase 5: 2/2 plans complete ✓
 
 ## Last Session
 
-- **Timestamp:** 2026-04-28T00:00:00Z
-- **Stopped at:** MILESTONE v1.0 SHIPPED — Completed 05-02-PLAN.md. Google Search Console verified, sitemap submitted, OG cards validated. All 5 phases complete. v1.0 ("Ler") milestone closed.
-- **Resume file:** None — v1.0 milestone complete. Next milestone: v1.2 (Phase 6: Comments + Search).
-- **Pending authorial action:** None
+- **Timestamp:** 2026-04-28T20:57:14Z
+- **Stopped at:** Completed 06-01-PLAN.md — Wave 1 foundations (Pagefind, Phase 6 CSS, ThemeToggle bridge, CommentsEmbed). Pending authorial action: enable GitHub Discussions + obtain Giscus IDs.
+- **Resume file:** .planning/phases/06-comments-search/06-02-PLAN.md
+- **Pending authorial action:** Enable GitHub Discussions on sertaoseracloud/sertao, create "Comments" category, visit giscus.app to obtain data-repo-id and data-category-id, substitute placeholders in CommentsEmbed.astro.
