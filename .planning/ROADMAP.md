@@ -250,6 +250,12 @@ Plans:
 
 **Goal:** **MARCO CRÍTICO.** Primeiro post real do dev.to é sincronizado, revisado, mergeado, publicado, indexado no Google e compartilhável. Encerra ship v1.0.
 
+**Plans:** 2 plans
+
+Plans:
+- [ ] 05-01-PLAN.md — Pre-flight, first sync, PR review, glossary update, merge
+- [ ] 05-02-PLAN.md — Post-deploy verification: SEO signals, Lighthouse CI gates, GSC, OG cards, v1.0 post-mortem
+
 **Success criteria:**
 
 - [ ] Um artigo real do dev.to foi selecionado para primeiro deploy (autor escolhe qual)
