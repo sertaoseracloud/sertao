@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+// Aggregate all unique normalized tags with post counts.
+// D-15: lowercase + dedup. Posts with empty tags silently skipped.
+// D-16: data from content.config.ts tags field.
+const posts = await getCollection('posts', ({ data }) =>
+  import.meta.env.PROD ? !data.draft : true,
+);
+
+const tagCounts = new Map<string, number>();
+for (const post of posts) {
+  const seen = new Set<string>();
+  for (const raw of (post.data.tags ?? [])) {
+    const tag = raw.toLowerCase(); // D-15: normalize
+    if (!seen.has(tag)) {
+      seen.add(tag);
+      tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
+    }
+  }
+}
+
+// Sort by count descending, then alphabetically for equal counts.
+const sortedTags = Array.from(tagCounts.entries())
+  .sort(([a, ca], [b, cb]) => cb - ca || a.localeCompare(b));
+---
+
+<BaseLayout
+  title="Tags · O Sertão será Cloud"
+  description="Explore os posts do blog por tag. Cloud computing, DevOps, arquitetura e mais, em português."
+>
+  <Header slot="header" />
+
+  <div class="stage">
+    <section style="padding:64px 0 32px;max-width:720px;">
+      <h1 style="font-size:clamp(28px,2.8vw,36px);font-weight:600;line-height:1.2;margin-bottom:8px;">
+        Explorar por tag
+      </h1>
+      <p style="font-size:16px;color:var(--texto-secundario);max-width:60ch;font-weight:400;line-height:1.6;">
+        Navegue pelos posts organizados por tópico.
+      </p>
+    </section>
+
+    <section>
+      <div class="tag-cloud">
+        {sortedTags.map(([tag, count]) => (
+          <a href={`/tags/${tag}`} class="tag tag--cloud">
+            <span class="hash" aria-hidden="true">#</span>{tag}
+            <span class="tag-count">({count})</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>
