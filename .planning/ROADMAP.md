@@ -304,6 +304,13 @@ Plans:
 
 **Goal:** Leitores podem comentar (via GitHub identity) e buscar posts por texto livre. Nenhuma interação precisa de backend próprio.
 
+**Plans:** 3 plans
+
+Plans:
+- [ ] 06-01-PLAN.md — Pagefind deps + Phase 6 CSS + ThemeToggle Giscus bridge + CommentsEmbed component
+- [ ] 06-02-PLAN.md — Search component + Header wiring + PostLayout CommentsEmbed + tag chips
+- [ ] 06-03-PLAN.md — /tags/ index page + /tags/[tag] dynamic route + homepage span→a upgrade
+
 **Success criteria:**
 
 - [ ] GitHub Discussions habilitado em `sertaoseracloud/sertaoseracloud`, categoria "Comments" criada
