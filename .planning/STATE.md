@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-current_phase: 05-first-post-shipped (next)
-status: executing
-stopped_at: "Phase 4 complete — fonts self-hosted, ThemeToggle, Shiki houston+github-light, CopyCode, Lighthouse Perf gate; 5 human UAT items pending browser testing; Phase 5 next"
+current_phase: 05-first-post-shipped (ready to execute)
+status: planned
+stopped_at: "Phase 5 planned — 2 plans (first sync + post-deploy verification); ready to execute"
 last_updated: "2026-04-27T00:00:00Z"
 progress:
   total_phases: 5
   completed_phases: 4
-  total_plans: 15
+  total_plans: 17
   completed_plans: 15
-  percent: 100
+  percent: 88
 ---
 
 # Project State — O Sertão será Cloud
