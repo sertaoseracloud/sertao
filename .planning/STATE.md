@@ -2,37 +2,47 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-current_phase: 05-first-post-shipped (in progress — plan 01 complete)
-status: in_progress
-stopped_at: "Phase 5 Plan 01 complete — first post merged and deployed; Plan 02 (post-deploy verification) next"
-last_updated: "2026-04-27T00:00:00Z"
+current_phase: 05-first-post-shipped (COMPLETE)
+status: complete
+stopped_at: "MILESTONE v1.0 SHIPPED — Phase 5 complete. First post live, GSC verified, OG validated. 2026-04-28."
+last_updated: "2026-04-28T00:00:00Z"
 progress:
   total_phases: 5
-  completed_phases: 4
+  completed_phases: 5
   total_plans: 17
-  completed_plans: 16
-  percent: 94
+  completed_plans: 17
+  percent: 100
 ---
 
 # Project State — O Sertão será Cloud
 
-**Last updated:** 2026-04-27
-**Status:** In Progress — Phase 5 Plan 01 COMPLETE; Plan 02 (post-deploy verification) next
+**Last updated:** 2026-04-28
+**Status:** COMPLETE — MILESTONE v1.0 SHIPPED
 
 ---
 
+## MILESTONE v1.0 — SHIPPED
+
+**Date:** 2026-04-28
+**Status:** COMPLETE
+**First post:** `practical-guide-building-a-cell-based-architecture-on-aws-with-terraform-and-python-n1p`
+**Ship date:** 2026-04-28
+**Verification:** Google Search Console verified + sitemap submitted; OG cards validated on LinkedIn/X/WhatsApp
+
+All 5 phases complete. Blog is live at sertaoseracloud.com. First post published, indexed, and shareable. Pipeline operational for ongoing syncs.
+
 ## Current Position
 
-- **Current Phase:** Phase 5 — First Post Shipped (plan 02 next)
-- **Previous Phase:** 05-first-post-shipped plan 01 — COMPLETE (2026-04-27)
-- **Progress:** Phase 1 done; Phase 2 done; Phase 3 done; Phase 4 done; Phase 5 in progress (1/2)
+- **Current Phase:** Phase 5 — First Post Shipped — COMPLETE
+- **Previous Phase:** 05-first-post-shipped plan 02 — COMPLETE (2026-04-28)
+- **Progress:** All phases done; v1.0 milestone achieved
 
 ```
 Progress: [####################] Phase 1: 3/3 plans complete ✓
 Progress: [####################] Phase 2: 5/5 plans complete ✓
 Progress: [####################] Phase 3: 4/4 plans complete ✓
 Progress: [####################] Phase 4: 3/3 plans complete ✓
-Progress: [##########          ] Phase 5: 1/2 plans complete
+Progress: [####################] Phase 5: 2/2 plans complete ✓
 ```
 
 ---
@@ -82,6 +92,7 @@ Progress: [##########          ] Phase 5: 1/2 plans complete
 - client:visible removed from <CopyCode /> — Astro component <script> tags run client-side automatically; client:visible is only for framework components (React/Svelte/etc.) and produces a build warning when applied to Astro components (04-03)
 - lighthouserc.json Performance and CLS use warn not error — network-dependent scores in CI cause false failures; warn flags catastrophic regressions without blocking deploys on minor variance (04-03)
 - Phase 5 first post shipped: practical-guide-building-a-cell-based-architecture-on-aws-with-terraform-and-python-n1p deployed on 2026-04-27. Translation quality: approved with no corrections needed. Glossary corrections: 0 terms added.
+- MILESTONE v1.0 COMPLETE (2026-04-28): Phase 5 plan 02 — GSC verified + sitemap submitted + OG cards validated on LinkedIn/X/WhatsApp. v1.0 ("Ler") milestone closed. Next: Phase 6 (Comments + Search).
 
 ---
 
@@ -112,7 +123,7 @@ Progress: [##########          ] Phase 5: 1/2 plans complete
 
 ## Last Session
 
-- **Timestamp:** 2026-04-27T00:00:00Z
-- **Stopped at:** Completed 05-01-PLAN.md — first post `practical-guide-building-a-cell-based-architecture-on-aws-with-terraform-and-python-n1p` merged and deployed. Translation approved with zero glossary corrections. Deploy workflow triggered automatically on merge.
-- **Resume file:** .planning/phases/05-first-post-shipped/05-02-PLAN.md (post-deploy verification)
+- **Timestamp:** 2026-04-28T00:00:00Z
+- **Stopped at:** MILESTONE v1.0 SHIPPED — Completed 05-02-PLAN.md. Google Search Console verified, sitemap submitted, OG cards validated. All 5 phases complete. v1.0 ("Ler") milestone closed.
+- **Resume file:** None — v1.0 milestone complete. Next milestone: v1.2 (Phase 6: Comments + Search).
 - **Pending authorial action:** None

@@ -34,11 +34,11 @@ Plans:
 
 - [x] `pnpm dev` roda localmente em <5s — confirmed 3777ms (HUMAN-UAT 2026-04-24)
 - [x] `pnpm build` produz `dist/` estático sem warnings — confirmed 3.45s, noise-only warning (HUMAN-UAT 2026-04-24)
-- [ ] `sertaoseracloud.com` retorna HTTP 200 com SSL válido via Github Pages — **PENDING authorial action** (enable GitHub Pages in Settings + DNS A records)
+- [x] `sertaoseracloud.com` retorna HTTP 200 com SSL válido via Github Pages — confirmed live (Phase 5 pre-flight)
 - [x] Paleta semântica em CSS vars (`--color-text-primary`, `--color-accent`, `--color-decorative`) + fallbacks neutros para texto — aliases added in 01-03
 - [x] `src/content.config.ts` com schema Zod incluindo `source.*`, `canonical_url`, `manual_override` — done in 01-02
 - [x] `lang="pt-BR"` em `<html>` via `BaseLayout.astro` — done in 01-02
-- [ ] Domínio `sertaoseracloud.com` apontando pro deploy (DNS configurado) — **PENDING authorial action**
+- [x] Domínio `sertaoseracloud.com` apontando pro deploy (DNS configurado) — confirmed live (Phase 5 pre-flight)
 - [x] `package.json` scripts: `dev`, `build`, `preview`, `sync:devto` (stub) — **DONE in 01-01**
 
 **Scope in:**
@@ -162,7 +162,7 @@ Plans:
 - [x] Skip-link "Pular para conteúdo" em `BaseLayout`
 - [x] Focus visible em todo `:focus-visible` (custom ring em `--nucleo-eletrico` #00FFFF — corrects `#284068` from early planning; dark-first design system)
 - [x] Alt text obrigatório no schema Zod de imagens do post (Zod required) — superRefine D-16
-- [ ] Lighthouse A11y ≥95 em `/`, `/posts/exemplo` e `/404` — gate wired; pending deploy (authorial action: enable GitHub Pages)
+- [x] Lighthouse A11y ≥95 em `/`, `/posts/exemplo` e `/404` — gate wired; verified post-deploy (GitHub Pages live)
 - [ ] Github Web Analytics snippet em `BaseLayout` — deferred to Phase 9 per D-01
 - [x] `/privacidade` stub inicial (LGPD: descrição de analytics, ausência de cookies, contato do controlador)
 
@@ -214,8 +214,8 @@ Plans:
 - [x] `@shikijs/transformers` para anotações diff/highlight/focus — done in 04-02
 - [x] Sem requests para `fonts.googleapis.com` (verify via Network tab) — Pitfall 6 mitigado — done in 04-01
 - [x] Lighthouse CI gate wired: Performance >=0.9 (warn) + CLS <=0.1 (warn) in lighthouserc.json — done in 04-03
-- [ ] Core Web Vitals: LCP <2.5s, INP <200ms, CLS <0.1 em `/posts/{slug}` (teste com 1 post real — pending deploy)
-- [ ] Bundle JS <50KB em página de post (Lighthouse "Unused JavaScript" gate)
+- [x] Core Web Vitals: LCP <2.5s, INP <200ms, CLS <0.1 em `/posts/{slug}` (verificado via Lighthouse CI gate — post live)
+- [x] Bundle JS <50KB em página de post (Lighthouse CI gate passing — verified post-deploy)
 
 **Scope in:**
 
@@ -254,7 +254,7 @@ Plans:
 
 Plans:
 - [x] 05-01-PLAN.md — Pre-flight, first sync, PR review, glossary update, merge
-- [ ] 05-02-PLAN.md — Post-deploy verification: SEO signals, Lighthouse CI gates, GSC, OG cards, v1.0 post-mortem
+- [x] 05-02-PLAN.md — Post-deploy verification: SEO signals, Lighthouse CI gates, GSC, OG cards, v1.0 post-mortem
 
 **Success criteria:**
 
@@ -264,14 +264,14 @@ Plans:
 - [x] PR draft foi aberto automaticamente com tradução
 - [x] Autor revisou a tradução, corrigiu 0-N termos, mergeou (0 correções necessárias)
 - [x] Github Pages buildou e deployou
-- [ ] Post acessível em `sertaoseracloud.com/posts/{slug}` com HTTPS
-- [ ] View-source do post contém: `<link rel="canonical">` (pro blog), JSON-LD `BlogPosting` válido, OG tags completas
-- [ ] Post está no sitemap XML
-- [ ] Post está no RSS feed
-- [ ] Google Search Console verificado para o domínio + sitemap submetido
-- [ ] Lighthouse mobile ≥90 em todos os scores no post
-- [ ] Compartilhamento em LinkedIn/X/WhatsApp mostra OG correto
-- [ ] Glossário atualizado com N termos descobertos durante review (se aplicável)
+- [x] Post acessível em `sertaoseracloud.com/posts/{slug}` com HTTPS
+- [x] View-source do post contém: `<link rel="canonical">` (pro blog), JSON-LD `BlogPosting` válido, OG tags completas
+- [x] Post está no sitemap XML
+- [x] Post está no RSS feed
+- [x] Google Search Console verificado para o domínio + sitemap submetido
+- [x] Lighthouse mobile ≥90 em todos os scores no post
+- [x] Compartilhamento em LinkedIn/X/WhatsApp mostra OG correto
+- [x] Glossário atualizado com N termos descobertos durante review (se aplicável) — 0 correções necessárias
 
 **Scope in:**
 
@@ -296,7 +296,7 @@ Plans:
 
 **Estimate:** S (maior parte é verificação + review; bugs encontrados alimentam back-to-Phase 2-4)
 
-**🚢 SHIP: v1.0 released.**
+**SHIP: v1.0 released 2026-04-28.**
 
 ---
 
