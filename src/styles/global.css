@@ -959,3 +959,63 @@ body {
 
 .text-nucleo { color: var(--nucleo-eletrico); }
 .text-muted  { color: var(--texto-secundario); }
+
+/* ------------------------------------------------------------------ */
+/* 15 · Phase 6 — Comments + Search                                    */
+/* ------------------------------------------------------------------ */
+
+/* Comments section wrapper */
+.comments-section {
+  margin-top: var(--space-8); /* 64px — clear visual break from prose */
+}
+
+/* Tag cloud layout for /tags/ index page */
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3); /* 12px */
+  padding: var(--space-5) 0; /* 24px top/bottom */
+}
+
+/* Tag cloud chip — extends base .tag with more padding */
+.tag--cloud {
+  padding: 4px 12px;
+}
+
+/* Post count annotation inside tag cloud chips */
+.tag-count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--texto-secundario);
+  margin-left: 4px;
+}
+
+/* Keyboard shortcut hint "Ctrl+K" — desktop only */
+.search-kbd-hint {
+  display: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--texto-secundario);
+  letter-spacing: 0.06em;
+}
+
+@media (min-width: 768px) {
+  .search-kbd-hint {
+    display: inline;
+  }
+}
+
+/* Pagefind default-ui CSS variable overrides — map design tokens */
+#pagefind-search {
+  --pagefind-ui-scale: 1;
+  --pagefind-ui-primary: var(--nucleo-eletrico);
+  --pagefind-ui-text: var(--texto-principal);
+  --pagefind-ui-background: var(--sub-nivel);
+  --pagefind-ui-border: var(--hairline-strong);
+  --pagefind-ui-tag: var(--sub-nivel);
+  --pagefind-ui-border-width: 2px;
+  --pagefind-ui-border-radius: 8px;
+  --pagefind-ui-image-border-radius: 8px;
+  --pagefind-ui-image-box-ratio: 3 / 2;
+  --pagefind-ui-font: 'Space Grotesk', system-ui, sans-serif;
+}
