@@ -1048,12 +1048,12 @@ body {
   color: var(--texto-principal);
   font-family: 'Space Grotesk', system-ui, sans-serif;
   font-size: 18px;
-  outline: none;
+  /* outline: none removed — global :focus-visible rule now fires correctly */
 }
 
 .newsletter-field-row input[type="email"]:focus-visible {
   border-color: var(--nucleo-eletrico);
-  /* global :focus-visible outline applies automatically */
+  /* global :focus-visible outline applies — outline: none removed from base rule */
 }
 
 .newsletter-field-row input[type="email"]::placeholder {
