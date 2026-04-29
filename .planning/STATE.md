@@ -142,6 +142,6 @@ Progress: [--------------------] Phase 8: 0/? plans (not started)
 ## Last Session
 
 - **Timestamp:** 2026-04-29T12:30:00Z
-- **Stopped at:** Phase 7 complete — all code verified (10/10). 9 human/authorial items in 07-HUMAN-UAT.md. Code review: 4 warnings (WR-04 keyboard focus notable), 0 critical.
-- **Resume file:** None — Phase 7 complete. Next: /gsd-discuss-phase 8.
+- **Stopped at:** Phase 8 context captured (2026-04-29). OG template, share buttons, /sobre discussed. Ready for /gsd-plan-phase 8.
+- **Resume file:** .planning/phases/08-share-og-about/08-CONTEXT.md
 - **Pending authorial action:** (1) Buttondown account setup + replace REPLACE_WITH_BUTTONDOWN_USERNAME in NewsletterEmbed.astro + newsletter.astro. (2) GitHub Discussions + Giscus IDs in CommentsEmbed.astro (pre-existing from Phase 6).
