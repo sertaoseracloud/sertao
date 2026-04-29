@@ -356,18 +356,18 @@ Plans:
 
 Plans:
 - [x] 07-01-PLAN.md — CSS + NewsletterEmbed component + PostLayout wiring (2026-04-29)
-- [ ] 07-02-PLAN.md — /newsletter page + /privacidade LGPD update + Footer link + human checkpoint
+- [x] 07-02-PLAN.md — /newsletter page + /privacidade LGPD update + Footer link + human checkpoint (2026-04-29)
 
 **Success criteria:**
 
 - [ ] Conta Buttondown criada + domínio `news@sertaoseracloud.com` configurado (SPF/DKIM/DMARC)
-- [ ] Formulário inline no fim do post (MDX component `<Newsletter>`) + em `/newsletter` standalone
+- [x] Formulário inline no fim do post + em `/newsletter` standalone — verified 2026-04-29
 - [ ] Double opt-in habilitado no Buttondown
-- [ ] Checkbox de consentimento NÃO pré-marcado + link pra `/privacidade`
-- [ ] `/privacidade` completa: finalidade, base legal (consentimento), tempo de retenção, direitos do titular (LGPD Art. 18), contato do controlador (email), revocation mechanism (link em todo email)
+- [x] Checkbox de consentimento NÃO pré-marcado + link pra `/privacidade` — verified 2026-04-29
+- [x] `/privacidade` completa: todos 7 itens LGPD (finalidade, base legal, dados, sub-processador, retenção, Art. 18, revogação) — verified 2026-04-29
 - [ ] Teste de export CSV da lista de subscribers (valida portabilidade)
 - [ ] RSS-to-email ativo no Buttondown (post novo dispara newsletter automaticamente)
-- [ ] **Anti-feature confirmado:** sem popup modal ao carregar página; sem exit-intent
+- [x] **Anti-feature confirmado:** sem popup modal ao carregar página; sem exit-intent — verified 2026-04-29
 
 **Scope in:**
 
