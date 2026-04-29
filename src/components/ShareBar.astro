@@ -1,0 +1,94 @@
+---
+interface Props {
+  title: string;
+  url: string;
+}
+const { title, url } = Astro.props;
+
+// Build share URLs at build time — encodeURIComponent prevents open redirect
+const xUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`;
+const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(title + ' ' + url)}`;
+---
+
+<nav class="share-bar" aria-label="Compartilhar este artigo">
+  <!-- X -->
+  <a
+    href={xUrl}
+    class="share-btn"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Compartilhar no X"
+  >
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
+      <path d="M12.6 1.5h2.3L9.7 7.1 15.5 14.5H11L7.2 9.8 2.8 14.5H0.5L6 8.5 0.5 1.5H5.1L8.5 5.8 12.6 1.5ZM11.8 13.1H13L4.3 2.9H3L11.8 13.1Z" fill="currentColor"/>
+    </svg>
+    X
+  </a>
+
+  <!-- LinkedIn -->
+  <a
+    href={linkedinUrl}
+    class="share-btn"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Compartilhar no LinkedIn"
+  >
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
+      <rect x="1" y="1" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/>
+      <path d="M4.5 6.5V12M4.5 4.5V4.6M7.5 12V9c0-1.4 1-2.5 2.5-2.5S12 7.6 12 9V12M7.5 6.5V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    LinkedIn
+  </a>
+
+  <!-- WhatsApp -->
+  <a
+    href={whatsappUrl}
+    class="share-btn"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Compartilhar no WhatsApp"
+  >
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
+      <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5" fill="none"/>
+      <path d="M5 8c0 1.7 1.3 3 3 3 .6 0 1.1-.2 1.6-.5l1.9.5-.5-1.9c.3-.5.5-1 .5-1.6C11.5 5.8 9.9 4.5 8 4.5S5 5.8 5 8Z" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linejoin="round"/>
+    </svg>
+    WhatsApp
+  </a>
+
+  <!-- Copy link — <button> not <a>; is:inline handles both top+bottom instances -->
+  <button
+    class="share-btn share-copy-btn"
+    type="button"
+    aria-label="Copiar link do artigo"
+  >
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
+      <path d="M6 10l4-4M9 4h3v3M7 12H4a1 1 0 01-1-1V4a1 1 0 011-1h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Copiar link
+  </button>
+</nav>
+
+<script is:inline>
+  (function () {
+    // Use querySelectorAll — PostLayout renders TWO ShareBar instances (top+bottom).
+    // getElementById would only find the first; class-based selection handles both.
+    var btns = document.querySelectorAll('.share-copy-btn');
+    btns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        navigator.clipboard.writeText(window.location.href).then(function () {
+          btn.textContent = 'Copiado! ✓';
+          btn.setAttribute('aria-label', 'Link copiado');
+          btn.classList.add('share-btn--copied');
+          setTimeout(function () {
+            btn.textContent = 'Copiar link';
+            btn.setAttribute('aria-label', 'Copiar link do artigo');
+            btn.classList.remove('share-btn--copied');
+          }, 2000);
+        }).catch(function () {
+          // Silent failure — clipboard API unavailable; button does nothing
+        });
+      });
+    });
+  })();
+</script>

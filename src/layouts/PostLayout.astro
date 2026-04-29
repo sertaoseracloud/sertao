@@ -5,6 +5,8 @@ import Footer from '../components/Footer.astro';
 import CopyCode from '../components/CopyCode.astro';
 import CommentsEmbed from '../components/CommentsEmbed.astro';
 import NewsletterEmbed from '../components/NewsletterEmbed.astro';
+import ShareBar from '../components/ShareBar.astro';
+import { SITE_URL } from '../lib/consts';
 
 interface Props {
   title: string;
@@ -23,6 +25,7 @@ const { title, description, pubDate, updatedDate, image, canonicalUrl, tags } = 
   <Header slot="header" />
 
   <div class="stage">
+    <ShareBar title={title} url={canonicalUrl ?? `${SITE_URL}/posts/${Astro.url.pathname.split('/').filter(Boolean).pop()}`} />
     <article class="prose">
       <header style="margin-bottom: 32px;">
         <p style="font-family:'Chakra Petch',sans-serif;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:var(--nucleo-eletrico);margin-bottom:12px;">
@@ -47,6 +50,7 @@ const { title, description, pubDate, updatedDate, image, canonicalUrl, tags } = 
       <slot />
     </article>
     <CopyCode />
+    <ShareBar title={title} url={canonicalUrl ?? `${SITE_URL}/posts/${Astro.url.pathname.split('/').filter(Boolean).pop()}`} />
     <NewsletterEmbed />
     <section class="comments-section" aria-labelledby="comments-heading">
       <h2
