@@ -1,7 +1,7 @@
 ---
 phase: 7
 slug: newsletter-lgpd
-status: draft
+status: approved
 shadcn_initialized: false
 preset: none
 created: 2026-04-28
@@ -37,9 +37,9 @@ Declared values — mirrors existing `--space-*` tokens in `global.css`:
 | Token | CSS Var | Value | Usage |
 |-------|---------|-------|-------|
 | xs | `--space-1` | 4px | Icon gaps, hash prefix gap in tags |
-| sm | `--space-2` | 8px | Tag row gap, inline tight spacing |
-| md | `--space-4` | 16px | Default element padding, input padding |
-| lg | `--space-5` | 24px | Section padding, form group gap |
+| sm | `--space-2` | 8px | Tag row gap, inline tight spacing, form field row gap |
+| md | `--space-4` | 16px | Default element padding, input padding, consent row margin-top |
+| lg | `--space-5` | 24px | Section padding, form group gap, button horizontal padding |
 | xl | `--space-6` | 32px | Post header margin-bottom |
 | 2xl | `--space-7` | 48px | Major section breaks (e.g., comments-section margin-top) |
 | 3xl | `--space-8` | 64px | Clear break between article prose and newsletter section |
@@ -57,16 +57,16 @@ Exceptions:
 
 | Role | Size | Weight | Line Height | Font | Usage |
 |------|------|--------|-------------|------|-------|
-| Body | 18px | 400 | 1.72 | Space Grotesk | Prose, form description paragraph |
-| Label | 13px | 600 | 1.4 | Chakra Petch | Section headings (uppercase, letter-spacing: 0.2em), form labels |
-| Meta | 11px | 400 | 1.4 | Chakra Petch | Uppercase eyebrow labels, LGPD checkbox label font |
+| Body | 18px | 400 | 1.72 | Space Grotesk | Prose, form description paragraph, email input, message copy |
+| Label | 13px | 600 | 1.4 | Chakra Petch | Section headings (uppercase, letter-spacing: 0.2em), form labels, LGPD checkbox label |
+| Meta | 11px | 400 | 1.4 | Chakra Petch | Uppercase eyebrow labels |
 | Mono-small | 12px | 400 | 1.4 | JetBrains Mono | Privacy page last-updated date, error state copy |
 
 Notes:
 - Section heading for newsletter block ("Receba novos posts") follows the established `Comentários` heading pattern: Chakra Petch, 13px, weight 600, `letter-spacing: 0.2em`, `text-transform: uppercase`, color `var(--texto-secundario)`.
-- The `/newsletter` page `<h1>` follows the `/tags/index.astro` pattern: `clamp(28px, 2.8vw, 36px)`, weight 600, line-height 1.2.
+- The `/newsletter` page `<h1>` follows the `/tags/index.astro` pattern: `clamp(28px, 2.8vw, 36px)`, weight 600, line-height 1.2. This is an inherited page pattern and does not count as a new scale declaration.
 - The `/privacidade` page prose uses the `.prose` class as-is: 18px body, 1.72 line-height, `--prose-fg` color.
-- LGPD checkbox label text: 14px Space Grotesk weight 400 — matches form body copy size for readable consent.
+- LGPD checkbox label text: 13px Chakra Petch weight 600 — maps to the Label scale; legible at consent-text sizes and consistent with form label treatment.
 
 **Source:** `src/styles/global.css` `.prose`, `.prose h1/h2/h3`, `CommentsEmbed.astro` heading style; `tags/index.astro` h1 pattern.
 
@@ -80,6 +80,7 @@ Notes:
 | Secondary (30%) | `--sub-nivel` | `#1B293C` | `#E8E3D8` | Newsletter section background, email input background, card surfaces |
 | Accent (10%) | `--nucleo-eletrico` | `#00FFFF` | `#284068` | CTA button background, focus ring, section heading color accent, link color |
 | Destructive | n/a | n/a | n/a | No destructive actions in this phase |
+| State tints | n/a | `rgba(107,255,180,0.4)` / `rgba(255,107,214,0.35)` | same | Success border/bg tint; error border/bg tint — non-accent status indicators only, never used for text |
 
 **Accent reserved for:**
 - Subscribe CTA button background: `var(--nucleo-eletrico)` with text color `var(--abismo-profundo)` (ensures WCAG AA contrast)
@@ -91,7 +92,7 @@ Notes:
 - Dark mode: `#00FFFF` on `#1A3AC8` (button bg from `--chama-primaria`) — The CTA button uses `background: var(--nucleo-eletrico)` with `color: var(--abismo-profundo)` (`#0A0F1E`). Ratio: #00FFFF on #0A0F1E = 16.5:1 (WCAG AAA). Use this pattern.
 - Light mode: `--nucleo-eletrico` overrides to `#284068`; CTA button keeps `background: var(--chama-primaria)` (`#1A3AC8`) with `color: var(--texto-principal)` (`#0A0F1E`). Verified safe.
 
-**No second semantic color needed** — no destructive actions exist in this phase.
+**State tints** (`rgba(107,255,180,0.4)` for success and `rgba(255,107,214,0.35)` for error) are used exclusively for border and background of the inline feedback messages. These are non-accent, non-semantic-text colors — they are not applied to any text or interactive elements.
 
 **Source:** `src/styles/global.css` design tokens; `CLAUDE.md` WCAG notes; `global.css` `[data-theme="light"]` overrides.
 
@@ -110,7 +111,7 @@ Notes:
 <section class="newsletter-section" aria-labelledby="newsletter-heading">
   <h2 id="newsletter-heading">  <!-- Chakra Petch 13px uppercase label -->
   <div class="newsletter-form-wrap">
-    <p>  <!-- pitch paragraph, 16px Space Grotesk -->
+    <p>  <!-- pitch paragraph, 18px Space Grotesk -->
     <form id="newsletter-form">
       <div class="newsletter-field-row">
         <label for="newsletter-email">  <!-- visually hidden but present for a11y -->
@@ -244,7 +245,7 @@ Add under `/* Phase 7 — Newsletter */` comment block:
   border: 1px solid var(--hairline);
   color: var(--texto-principal);
   font-family: 'Space Grotesk', system-ui, sans-serif;
-  font-size: 15px;
+  font-size: 18px;
   outline: none;
 }
 
@@ -285,9 +286,9 @@ Add under `/* Phase 7 — Newsletter */` comment block:
 
 .newsletter-consent {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: var(--space-2); /* 8px */
-  margin-top: var(--space-3); /* 12px */
+  margin-top: var(--space-4); /* 16px */
   min-height: 44px; /* WCAG 2.5.3 touch target */
 }
 
@@ -295,13 +296,14 @@ Add under `/* Phase 7 — Newsletter */` comment block:
   width: 16px;
   height: 16px;
   min-width: 16px; /* prevent shrink */
-  margin-top: 3px; /* optical alignment with label first line */
   accent-color: var(--nucleo-eletrico);
   cursor: pointer;
 }
 
 .newsletter-consent label {
-  font-size: 14px;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
   color: var(--texto-secundario);
   line-height: 1.5;
   cursor: pointer;
@@ -317,7 +319,7 @@ Add under `/* Phase 7 — Newsletter */` comment block:
   margin-top: var(--space-4); /* 16px */
   padding: var(--space-4) var(--space-5);
   border: 1px solid var(--hairline-strong);
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.5;
   color: var(--texto-principal);
 }
