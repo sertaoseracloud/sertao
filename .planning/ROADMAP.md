@@ -404,7 +404,7 @@ Plans:
 **Plans:** 3 plans
 
 Plans:
-- [ ] 08-01-PLAN.md — Install satori+sharp, OG image endpoint, wire og:image into post pages
+- [x] 08-01-PLAN.md — Install satori+sharp, OG image endpoint, wire og:image into post pages
 - [ ] 08-02-PLAN.md — ShareBar component + Phase 8 CSS + PostLayout wiring
 - [ ] 08-03-PLAN.md — /sobre page + linkedin in consts.ts + human checkpoint + REQ-VAL-01 validation
 

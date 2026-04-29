@@ -4,20 +4,20 @@ milestone: v1.2
 milestone_name: milestone
 current_phase: 08-share-og-about
 status: in_progress
-stopped_at: "Phase 7 complete (2026-04-29). Newsletter + LGPD — all code verified. 9 human/authorial items pending in 07-HUMAN-UAT.md (Buttondown setup + visual checks). Next: Phase 8 (Share + OG dinâmico + About)."
-last_updated: "2026-04-29T12:30:00Z"
+stopped_at: "Phase 8 plan 01 complete (2026-04-29). OG endpoint live, og:image wired. Next: 08-02 ShareBar."
+last_updated: "2026-04-29T21:37:39Z"
 progress:
   total_phases: 9
   completed_phases: 7
-  total_plans: 22
-  completed_plans: 22
-  percent: 78
+  total_plans: 25
+  completed_plans: 23
+  percent: 80
 ---
 
 # Project State — O Sertão será Cloud
 
 **Last updated:** 2026-04-29
-**Status:** Phase 7 complete — pending authorial Buttondown setup (07-HUMAN-UAT.md)
+**Status:** Phase 8 in progress — 08-01 (OG endpoint) complete, 08-02 (ShareBar) and 08-03 (/sobre) pending
 
 ---
 
@@ -45,7 +45,7 @@ Progress: [####################] Phase 4: 3/3 plans complete ✓
 Progress: [####################] Phase 5: 2/2 plans complete ✓
 Progress: [####################] Phase 6: 3/3 plans complete ✓
 Progress: [####################] Phase 7: 2/2 plans complete ✓
-Progress: [--------------------] Phase 8: 0/? plans (not started)
+Progress: [#-------------------] Phase 8: 1/3 plans complete
 ```
 
 ---
@@ -108,6 +108,9 @@ Progress: [--------------------] Phase 8: 0/? plans (not started)
 - no-cors fetch treats resolved promise as success — Buttondown embed endpoint opaque response cannot provide HTTP status; catch() handles network failures only (07-01)
 - URLSearchParams body (application/x-www-form-urlencoded) matches native browser form POST for Buttondown embed; avoids multipart FormData encoding issue (07-01)
 - REPLACE_WITH_BUTTONDOWN_USERNAME placeholder in two places in NewsletterEmbed.astro: form action (fallback) + USERNAME var in is:inline script (07-01)
+- WOFF from node_modules @fontsource used for satori (not WOFF2 from public/fonts/) — satori opentype.js does not support brotli-compressed WOFF2 (08-01)
+- OG image URL constructed in [..slug].astro as SITE_URL/og/slug.png unconditionally — replaces coverImageUrl; OG endpoint handles all posts (08-01)
+- Font buffers loaded at module level in OG endpoint (once per build) not inside GET handler — avoids repeated disk reads per slug (08-01)
 
 ---
 
@@ -136,12 +139,13 @@ Progress: [--------------------] Phase 8: 0/? plans (not started)
 | 06-comments-search | 02 | 15min | 2 | 5 |
 | 06-comments-search | 03 | 2min | 2 | 3 |
 | 07-newsletter-lgpd | 01 | 4min | 3 | 3 |
+| 08-share-og-about | 01 | 3min | 3 | 3 |
 
 ---
 
 ## Last Session
 
-- **Timestamp:** 2026-04-29T12:30:00Z
-- **Stopped at:** Phase 8 context captured (2026-04-29). OG template, share buttons, /sobre discussed. Ready for /gsd-plan-phase 8.
-- **Resume file:** .planning/phases/08-share-og-about/08-CONTEXT.md
+- **Timestamp:** 2026-04-29T21:37:39Z
+- **Stopped at:** Phase 8 plan 01 complete. OG endpoint (satori+sharp) live, og:image wired. Ready for 08-02 (ShareBar) and 08-03 (/sobre).
+- **Resume file:** .planning/phases/08-share-og-about/08-01-SUMMARY.md
 - **Pending authorial action:** (1) Buttondown account setup + replace REPLACE_WITH_BUTTONDOWN_USERNAME in NewsletterEmbed.astro + newsletter.astro. (2) GitHub Discussions + Giscus IDs in CommentsEmbed.astro (pre-existing from Phase 6).
