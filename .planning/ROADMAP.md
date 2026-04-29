@@ -352,6 +352,12 @@ Plans:
 
 **Goal:** Captura de email conforme LGPD. `/privacidade` completa. Inscrição inline no fim do post + página `/newsletter` dedicada.
 
+**Plans:** 2 plans
+
+Plans:
+- [ ] 07-01-PLAN.md — CSS + NewsletterEmbed component + PostLayout wiring
+- [ ] 07-02-PLAN.md — /newsletter page + /privacidade LGPD update + Footer link + human checkpoint
+
 **Success criteria:**
 
 - [ ] Conta Buttondown criada + domínio `news@sertaoseracloud.com` configurado (SPF/DKIM/DMARC)
