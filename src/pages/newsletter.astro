@@ -1,0 +1,128 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Newsletter · O Sertão será Cloud"
+  description="Assine a newsletter para receber novos posts sobre cloud, DevOps e arquitetura diretamente no email. Sem spam."
+>
+  <Header slot="header" />
+
+  <div class="stage">
+    <section style="padding:64px 0 32px; max-width:720px;">
+      <h1
+        style="font-family:'Chakra Petch',sans-serif;font-size:clamp(28px,2.8vw,36px);font-weight:600;line-height:1.2;color:var(--texto-principal);margin-bottom:var(--space-5);"
+      >
+        Newsletter
+      </h1>
+      <p
+        style="font-family:'Space Grotesk',system-ui,sans-serif;font-size:18px;line-height:1.72;color:var(--texto-principal);max-width:540px;"
+      >
+        Receba novos posts sobre cloud, DevOps e arquitetura diretamente no seu email.
+        Posts novos chegam automaticamente — sem spam, cancele quando quiser.
+      </p>
+    </section>
+
+    <section style="max-width:540px; padding-bottom:64px;">
+      <form
+        id="newsletter-form"
+        action="https://buttondown.com/api/emails/embed-subscribe/REPLACE_WITH_BUTTONDOWN_USERNAME"
+        method="POST"
+        target="_blank"
+      >
+        <div class="newsletter-field-row">
+          <label for="newsletter-email" class="sr-only">Endereço de email</label>
+          <input
+            type="email"
+            id="newsletter-email"
+            name="email"
+            required
+            placeholder="seu@email.com"
+            aria-label="Endereço de email"
+            autocomplete="email"
+          />
+          <button type="submit" class="newsletter-submit-btn">
+            Inscrever-se
+          </button>
+        </div>
+
+        <div class="newsletter-consent">
+          <input
+            type="checkbox"
+            id="newsletter-consent"
+            name="consent"
+            required
+          />
+          <label for="newsletter-consent">
+            Li e aceito a <a href="/privacidade">Política de Privacidade</a>
+            e consinto com o envio de emails.
+          </label>
+        </div>
+      </form>
+
+      <div
+        id="newsletter-success"
+        hidden
+        role="status"
+        tabindex="-1"
+        class="newsletter-message newsletter-message--success"
+      >
+        Obrigado! Confira sua caixa de entrada para confirmar.
+      </div>
+
+      <div
+        id="newsletter-error"
+        hidden
+        role="alert"
+        tabindex="-1"
+        class="newsletter-message newsletter-message--error"
+      >
+      </div>
+    </section>
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<script is:inline>
+  (function () {
+    var USERNAME = 'REPLACE_WITH_BUTTONDOWN_USERNAME';
+    var form = document.getElementById('newsletter-form');
+    var successDiv = document.getElementById('newsletter-success');
+    var errorDiv = document.getElementById('newsletter-error');
+    if (!form) return;
+    var submitBtn = form.querySelector('button[type="submit"]');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var emailVal = document.getElementById('newsletter-email').value;
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando...';
+      errorDiv.setAttribute('hidden', '');
+
+      var body = new URLSearchParams();
+      body.append('email', emailVal);
+
+      fetch(
+        'https://buttondown.com/api/emails/embed-subscribe/' + USERNAME,
+        { method: 'POST', body: body, mode: 'no-cors' }
+      )
+        .then(function () {
+          form.style.display = 'none';
+          successDiv.removeAttribute('hidden');
+          successDiv.focus();
+        })
+        .catch(function () {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Inscrever-se';
+          errorDiv.textContent =
+            'Algo deu errado. Tente novamente ou entre em contato: engcfraposo@gmail.com';
+          errorDiv.removeAttribute('hidden');
+          errorDiv.focus();
+        });
+    });
+  })();
+</script>
