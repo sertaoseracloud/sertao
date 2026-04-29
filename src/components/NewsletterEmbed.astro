@@ -1,0 +1,125 @@
+---
+// NewsletterEmbed.astro
+// Phase 7 — Newsletter subscribe section
+// Follows CommentsEmbed.astro pattern: is:inline AJAX handler, no client: directive
+// AUTHORIAL ACTION REQUIRED: Replace REPLACE_WITH_BUTTONDOWN_USERNAME with your Buttondown username
+//   in two places below: the <form action> attribute AND the USERNAME var in the <script is:inline>.
+---
+
+<section class="newsletter-section" aria-labelledby="newsletter-heading">
+  <h2
+    id="newsletter-heading"
+    style="font-family:'Chakra Petch',sans-serif;font-size:13px;letter-spacing:0.2em;text-transform:uppercase;color:var(--texto-secundario);margin-bottom:var(--space-5);"
+  >
+    Receba novos posts
+  </h2>
+
+  <div class="newsletter-form-wrap">
+    <p style="font-family:'Space Grotesk',system-ui,sans-serif;font-size:18px;line-height:1.72;color:var(--texto-principal);margin-bottom:var(--space-5);max-width:540px;">
+      Receba novos posts sobre cloud, DevOps e arquitetura diretamente no seu email.
+      Posts novos chegam automaticamente — sem spam, cancele quando quiser.
+    </p>
+
+    <form
+      id="newsletter-form"
+      action="https://buttondown.com/api/emails/embed-subscribe/REPLACE_WITH_BUTTONDOWN_USERNAME"
+      method="POST"
+      target="_blank"
+      style="max-width:540px;"
+    >
+      <div class="newsletter-field-row">
+        <label for="newsletter-email" class="sr-only">Endereço de email</label>
+        <input
+          type="email"
+          id="newsletter-email"
+          name="email"
+          required
+          placeholder="seu@email.com"
+          aria-label="Endereço de email"
+          autocomplete="email"
+        />
+        <button type="submit" class="newsletter-submit-btn">
+          Inscrever-se
+        </button>
+      </div>
+
+      <div class="newsletter-consent">
+        <input
+          type="checkbox"
+          id="newsletter-consent"
+          name="consent"
+          required
+        />
+        <label for="newsletter-consent">
+          Li e aceito a <a href="/privacidade">Política de Privacidade</a>
+          e consinto com o envio de emails.
+        </label>
+      </div>
+    </form>
+
+    <div
+      id="newsletter-success"
+      hidden
+      role="status"
+      tabindex="-1"
+      class="newsletter-message newsletter-message--success"
+    >
+      Obrigado! Confira sua caixa de entrada para confirmar.
+    </div>
+
+    <div
+      id="newsletter-error"
+      hidden
+      role="alert"
+      tabindex="-1"
+      class="newsletter-message newsletter-message--error"
+    >
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var USERNAME = 'REPLACE_WITH_BUTTONDOWN_USERNAME';
+    var form = document.getElementById('newsletter-form');
+    var successDiv = document.getElementById('newsletter-success');
+    var errorDiv = document.getElementById('newsletter-error');
+    if (!form) return;
+    var submitBtn = form.querySelector('button[type="submit"]');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var emailVal = document.getElementById('newsletter-email').value;
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando...';
+      errorDiv.setAttribute('hidden', '');
+
+      var body = new URLSearchParams();
+      body.append('email', emailVal);
+
+      // mode: 'no-cors' — response is opaque; cannot read status code.
+      // A resolved fetch (no throw) means the request reached Buttondown.
+      // Network failures (DNS, timeout, Buttondown down) go to catch.
+      fetch(
+        'https://buttondown.com/api/emails/embed-subscribe/' + USERNAME,
+        { method: 'POST', body: body, mode: 'no-cors' }
+      )
+        .then(function () {
+          // Opaque response — fetch resolved = request reached server
+          form.style.display = 'none';
+          successDiv.removeAttribute('hidden');
+          successDiv.focus();
+        })
+        .catch(function () {
+          // Network failure only (no-cors cannot distinguish 200 from 400)
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Inscrever-se';
+          errorDiv.textContent =
+            'Algo deu errado. Tente novamente ou entre em contato: engcfraposo@gmail.com';
+          errorDiv.removeAttribute('hidden');
+          errorDiv.focus();
+        });
+    });
+  })();
+</script>
