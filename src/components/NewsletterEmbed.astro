@@ -86,6 +86,7 @@
     var errorDiv = document.getElementById('newsletter-error');
     if (!form) return;
     var submitBtn = form.querySelector('button[type="submit"]');
+    if (!submitBtn) return; // guard — mirrors form guard above
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
