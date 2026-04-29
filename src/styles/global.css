@@ -1139,3 +1139,88 @@ body {
   background: rgba(255, 107, 214, 0.04);
   color: var(--texto-secundario);
 }
+
+/* ------------------------------------------------------------------ */
+/* 17 · Phase 8 — Share + OG + About                                   */
+/* ------------------------------------------------------------------ */
+
+/* ShareBar wrapper */
+.share-bar {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  align-items: center;
+  margin: var(--space-5) 0;
+}
+
+/* Share button base — applies to both <a> and <button> elements */
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  height: 44px;
+  padding: 0 var(--space-4);
+  border: 1px solid var(--hairline);
+  background: var(--sub-nivel);
+  color: var(--texto-secundario);
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+.share-btn:hover,
+.share-btn:focus-visible {
+  border-color: var(--hairline-strong);
+  color: var(--nucleo-eletrico);
+}
+
+/* Copy-link success state */
+.share-btn--copied {
+  color: var(--nucleo-eletrico);
+}
+
+/* /sobre author photo */
+.sobre-photo {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  float: right;
+  margin: 0 0 var(--space-4) var(--space-6);
+}
+
+@media (max-width: 640px) {
+  .sobre-photo {
+    float: none;
+    display: block;
+    margin: 0 auto var(--space-5);
+  }
+}
+
+/* /sobre social links row */
+.sobre-social-row {
+  display: flex;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+  margin-top: var(--space-6);
+}
+
+.sobre-social-link {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--texto-secundario);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.sobre-social-link:hover {
+  color: var(--nucleo-eletrico);
+}
