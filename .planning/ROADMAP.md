@@ -355,7 +355,7 @@ Plans:
 **Plans:** 2 plans
 
 Plans:
-- [ ] 07-01-PLAN.md — CSS + NewsletterEmbed component + PostLayout wiring
+- [x] 07-01-PLAN.md — CSS + NewsletterEmbed component + PostLayout wiring (2026-04-29)
 - [ ] 07-02-PLAN.md — /newsletter page + /privacidade LGPD update + Footer link + human checkpoint
 
 **Success criteria:**

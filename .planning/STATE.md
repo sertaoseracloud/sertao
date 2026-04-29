@@ -2,22 +2,22 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: milestone
-current_phase: 06-comments-search (VERIFIED — human UAT approved 2026-04-28)
-status: ready_to_execute
-stopped_at: "Phase 7 context gathered (2026-04-28). Newsletter: custom form + inline success, Buttondown sub-processor, minimal /newsletter page. Next: plan phase 7."
-last_updated: "2026-04-28T21:07:12Z"
+current_phase: 07-newsletter-lgpd
+status: in_progress
+stopped_at: "Phase 7 plan 01 complete (2026-04-29). NewsletterEmbed.astro + CSS block + PostLayout wired. Next: 07-02 (newsletter page + privacidade update)."
+last_updated: "2026-04-29T10:56:00Z"
 progress:
   total_phases: 9
   completed_phases: 6
   total_plans: 20
-  completed_plans: 19
-  percent: 65
+  completed_plans: 20
+  percent: 68
 ---
 
 # Project State — O Sertão será Cloud
 
-**Last updated:** 2026-04-28
-**Status:** Phase 6 complete — all 3 plans shipped
+**Last updated:** 2026-04-29
+**Status:** Phase 7 in progress — plan 01 complete
 
 ---
 
@@ -33,9 +33,9 @@ All 5 phases complete. Blog is live at sertaoseracloud.com. First post published
 
 ## Current Position
 
-- **Current Phase:** Phase 6 — Comments + Search — COMPLETE (all 3 plans done 2026-04-28)
-- **Previous Phase:** 06-comments-search plan 03 — COMPLETE (2026-04-28)
-- **Progress:** Phase 6 all waves complete — Giscus, Search, Tag pages fully shipped
+- **Current Phase:** Phase 7 — Newsletter + LGPD — in progress (plan 01 of 2 done 2026-04-29)
+- **Previous Phase:** 07-newsletter-lgpd plan 01 — COMPLETE (2026-04-29)
+- **Progress:** Phase 7 plan 01 — NewsletterEmbed component + CSS + PostLayout wired
 
 ```
 Progress: [####################] Phase 1: 3/3 plans complete ✓
@@ -44,6 +44,7 @@ Progress: [####################] Phase 3: 4/4 plans complete ✓
 Progress: [####################] Phase 4: 3/3 plans complete ✓
 Progress: [####################] Phase 5: 2/2 plans complete ✓
 Progress: [####################] Phase 6: 3/3 plans complete ✓
+Progress: [##########----------] Phase 7: 1/2 plans complete (in progress)
 ```
 
 ---
@@ -103,6 +104,9 @@ Progress: [####################] Phase 6: 3/3 plans complete ✓
 - tag.toLowerCase() applied in THREE locations: getStaticPaths param, index.astro href, [tag].astro href — prevents Pitfall 5 (404 from case mismatch) per T-06-09 (06-03)
 - Set<string> per-post dedup in /tags/ index prevents double-counting a tag appearing twice in post.data.tags (06-03)
 - card-media prefix uses tags?.[0]?.toLowerCase() ?? 'arq' to avoid p-AWS class with no CSS match (06-03)
+- no-cors fetch treats resolved promise as success — Buttondown embed endpoint opaque response cannot provide HTTP status; catch() handles network failures only (07-01)
+- URLSearchParams body (application/x-www-form-urlencoded) matches native browser form POST for Buttondown embed; avoids multipart FormData encoding issue (07-01)
+- REPLACE_WITH_BUTTONDOWN_USERNAME placeholder in two places in NewsletterEmbed.astro: form action (fallback) + USERNAME var in is:inline script (07-01)
 
 ---
 
@@ -130,12 +134,13 @@ Progress: [####################] Phase 6: 3/3 plans complete ✓
 | 04-typography-dark-mode | 03 | 5min | 2 | 3 |
 | 06-comments-search | 02 | 15min | 2 | 5 |
 | 06-comments-search | 03 | 2min | 2 | 3 |
+| 07-newsletter-lgpd | 01 | 4min | 3 | 3 |
 
 ---
 
 ## Last Session
 
-- **Timestamp:** 2026-04-28T21:07:12Z
-- **Stopped at:** Completed 06-03-PLAN.md — Phase 6 complete. Tag chips as <a> links, /tags/ cloud index, /tags/[tag] dynamic routes (13 tags). 24 pages built, pagefind indexed 2180 words.
-- **Resume file:** None — Phase 6 fully complete. Next: Phase 7 (if planned).
-- **Pending authorial action:** Enable GitHub Discussions on sertaoseracloud/sertao, create "Comments" category, visit giscus.app to obtain data-repo-id and data-category-id, substitute placeholders in CommentsEmbed.astro.
+- **Timestamp:** 2026-04-29T10:56:00Z
+- **Stopped at:** Completed 07-01-PLAN.md — NewsletterEmbed.astro + Phase 7 CSS block + PostLayout wired. 24 pages built, 2188 words indexed.
+- **Resume file:** None — 07-01 complete. Next: 07-02 (newsletter.astro page + privacidade.astro update).
+- **Pending authorial action:** (1) Buttondown account setup + replace REPLACE_WITH_BUTTONDOWN_USERNAME in NewsletterEmbed.astro. (2) GitHub Discussions + Giscus IDs in CommentsEmbed.astro (pre-existing from Phase 6).
