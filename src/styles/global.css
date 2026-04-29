@@ -1019,3 +1019,123 @@ body {
   --pagefind-ui-image-box-ratio: 3 / 2;
   --pagefind-ui-font: 'Space Grotesk', system-ui, sans-serif;
 }
+
+/* ------------------------------------------------------------------ */
+/* 16 · Phase 7 — Newsletter                                            */
+/* ------------------------------------------------------------------ */
+
+/* Newsletter section wrapper — mirrors .comments-section spacing */
+.newsletter-section {
+  margin-top: var(--space-8);    /* 64px — clear break from prose */
+  margin-bottom: var(--space-7); /* 48px — space before comments */
+}
+
+/* Inline form layout: [email input][button] on desktop, stacked on mobile */
+.newsletter-field-row {
+  display: flex;
+  gap: var(--space-2); /* 8px */
+  align-items: stretch;
+  flex-wrap: wrap; /* stacks on narrow viewports */
+}
+
+.newsletter-field-row input[type="email"] {
+  flex: 1 1 200px;
+  min-width: 0;
+  height: 44px;
+  padding: 0 var(--space-4);
+  background: var(--sub-nivel);
+  border: 1px solid var(--hairline);
+  color: var(--texto-principal);
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-size: 18px;
+  outline: none;
+}
+
+.newsletter-field-row input[type="email"]:focus-visible {
+  border-color: var(--nucleo-eletrico);
+  /* global :focus-visible outline applies automatically */
+}
+
+.newsletter-field-row input[type="email"]::placeholder {
+  color: var(--texto-secundario);
+  opacity: 0.7;
+}
+
+/* CTA button — --nucleo-eletrico on --abismo-profundo = 16.5:1 (WCAG AAA) */
+.newsletter-submit-btn {
+  height: 44px;
+  padding: 0 var(--space-5);
+  background: var(--nucleo-eletrico);
+  color: var(--abismo-profundo);
+  border: none;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+
+.newsletter-submit-btn:hover {
+  opacity: 0.88;
+}
+
+.newsletter-submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* LGPD consent checkbox row — min-height 44px per WCAG 2.5.3 touch target */
+.newsletter-consent {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2); /* 8px */
+  margin-top: var(--space-4); /* 16px */
+  min-height: 44px;
+}
+
+.newsletter-consent input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  min-width: 16px; /* prevent flex shrink */
+  accent-color: var(--nucleo-eletrico);
+  cursor: pointer;
+}
+
+.newsletter-consent label {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--texto-secundario);
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.newsletter-consent label a {
+  color: var(--nucleo-eletrico);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Inline feedback messages (success / error) */
+.newsletter-message {
+  margin-top: var(--space-4); /* 16px */
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--hairline-strong);
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--texto-principal);
+}
+
+.newsletter-message--success {
+  border-color: rgba(107, 255, 180, 0.4);
+  background: rgba(107, 255, 180, 0.05);
+}
+
+.newsletter-message--error {
+  border-color: rgba(255, 107, 214, 0.35);
+  background: rgba(255, 107, 214, 0.04);
+  color: var(--texto-secundario);
+}
